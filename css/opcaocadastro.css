@@ -1,0 +1,96 @@
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;   
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  flex-grow: 1; 
+}
+
+.button {
+  width: 500px;
+  height: 280px; 
+  background-color: #BB4848;
+  color: white;
+  font-size: 20px;
+  border: none; 
+  border-radius: 18px;
+  margin: 20px 50px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 20px; 
+  text-align: center; 
+  text-decoration: none; 
+}
+
+.button-icon { 
+  width: 80px; 
+  height: auto; 
+  margin-top: 10px; 
+}
+
+.button h1 {
+  padding: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+}
+
+.button p {
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  margin-left: 3%;
+  margin-right: 3%;
+  text-decoration: none; 
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.logo {
+  width: 400px;
+  height: 300px;
+  margin-bottom: 50px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.link a {
+  text-decoration: none; 
+  color: #BB4848;
+}
+
+.link p {
+  margin: 0; 
+  margin-top: 30px;
+}

@@ -1,0 +1,67 @@
+.role-selection {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 343px;
+    margin-bottom: 20px;
+    padding-left: 180px;
+}
+.role-selection::before {
+    content: '';
+    position: absolute;
+    width: 430px;
+    top: 50%; 
+    left: 20%; 
+    height: 2px;
+    background-color: var(--vermelho);
+    z-index: 1;
+}
+
+.role-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: var(--vermelho);
+    z-index: 2; 
+}
+
+.role-option label{
+    padding-top: 3px;
+    color: var(--vermelho);
+    font-size: 20px;
+}
+
+.role-option input[type="checkbox"] {
+    appearance: none;
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--vermelho);
+    background-color: var(--branco);
+    margin-right: 10px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.role-option input[type="checkbox"]:checked {
+    background-color: var(--vermelho);
+    border: none;
+}
+
+.role-option input[type="checkbox"]#empresa {
+    background-image: url('../css/img/company-not-selected.png');
+ 
+}
+
+.role-option input[type="checkbox"]#funcionario {
+    background-image: url('../css/img/employee-not-selected.png');
+}
+
+.role-option input[type="checkbox"]:checked#empresa {
+    background-image: url('../css/img/company-selected.png');
+}
+
+.role-option input[type="checkbox"]:checked#funcionario {
+    background-image: url('../css/img/employee-selected.png');
+}

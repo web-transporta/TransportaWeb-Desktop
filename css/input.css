@@ -1,0 +1,20 @@
+.field{
+    padding-bottom: 42px;
+}
+input{
+height: 49px;
+ width: 675px;
+ border: none;
+ border-bottom: 2px solid var(--vermelho);
+ background-color: var(--cinza);
+ padding-left: 15px;
+ font-size: 18px;
+ outline: 0;
+ color: var(--preto);
+}
+.label{
+    padding-bottom: 17px;
+    color: var(--vermelho);
+    font-size: 20px;
+    font-weight: 600;
+}

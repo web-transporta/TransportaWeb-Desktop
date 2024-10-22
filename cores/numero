@@ -1,0 +1,120 @@
+D92727 - vermelho 
+E8E8E8 - cinza
+8D8D8D - Cinza dos passos
+
+FONTE: 
+
+/* 
+    <div class="container">
+        <selection>
+            <div class="form-box">
+                <div class="forms">
+                    <form action="">
+                        <h2>LOGIN</h2>
+                        <div class="inputbox">
+                            <input type="email" required>
+                            <label for="Email">Email:</label>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" required>
+                            <label for="Senha">Senha:</label>
+                        </div>
+                        <div>
+                            <button id="entrar">Entrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </selection>
+
+        <div class="desc-container">
+            <div class="header">
+                <div class="footer">
+                    <!-- Conteúdo da desc-container -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/eva.js"></script>
+</body>
+</html> */
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Adicionando estilo para a container geral */
+        .container {
+            display: flex;
+            justify-content: center; /* Alinhamento horizontal do formulário */
+            align-items: flex-start;
+            height: 100vh; /* Ocupa 100% da altura da viewport */
+        }
+
+        /* Adicionando estilo para o desc-container */
+        .desc-container {
+            position: fixed;
+            right: 20px; /* Espaçamento da borda direita da tela */
+            top: 20px; /* Espaçamento do topo da tela */
+            padding: 20px; /* Espaçamento interno */
+            width: 300px; /* Largura do container */
+            background-color: #f0f0f0; /* Cor de fundo */
+            border-left: 1px solid #ccc; /* Borda à esquerda */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+        }
+
+        /* Adicionando estilo para o formulário */
+        .form-box {
+            margin: 0 auto;
+        }
+
+        /* Ajustando o layout para o elemento selection (se necessário) */
+        selection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <selection>
+            <div class="form-box">
+                <div class="forms">
+                    <form action="">
+                        <h2>LOGIN</h2>
+                        <div class="inputbox">
+                            <input type="email" required>
+                            <label for="Email">Email:</label>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" required>
+                            <label for="Senha">Senha:</label>
+                        </div>
+                        <div>
+                            <button id="entrar">Entrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </selection>
+
+        <div class="desc-container">
+            <div class="header">
+                <div class="footer">
+                    <!-- Conteúdo da desc-container -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/eva.js"></script>
+</body>
+</html>

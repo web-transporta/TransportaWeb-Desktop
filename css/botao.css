@@ -1,0 +1,18 @@
+.button{
+    width: 223px;
+    height: 50px;
+    border-radius: 50px;
+    font-family: var(--titulo);
+    color: var(--vermelho);
+    font-size: 30px;
+    font-weight: 900;
+    background-color: transparent;
+    border: 2px solid var(--vermelho);
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);  
+    cursor: pointer;
+}
+.button:hover{
+    color: var(--branco);
+    background-color: var(--vermelho);
+    transform: translateY(-0.125em);
+}

@@ -1,0 +1,197 @@
+/* 
+Nome: Leonardo Torquato de Andrade
+TransportaWeb
+Data: 01/10/2024
+*/
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #BB4848;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    margin-right: 1rem;
+    border-radius: 20px;
+}
+
+.button-group {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    font-family: "Nunito", sans-serif;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 2px;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    font-weight: 630;
+}
+
+.button.viagens {
+    width: 250px;
+    height: 30px;   
+    line-height: 30px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 0 1rem;
+    margin-right: 100px;
+}
+
+.button.motoristas, .button.historico {
+    width: auto;
+    height: 30px;   
+    line-height: 30px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 0 1rem;
+    margin-right: 100px;
+}
+
+.button.test {
+    background-color: #8b8b8b;
+    color: #ffffff;
+    width: 50px;
+    height: 80px;
+    line-height: 50px;
+    border-radius: 100px;
+    padding: 0 1rem;
+    margin-right: 60px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 625;
+}
+
+.weather {
+    background-color: #BB4848;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    position: absolute;
+    top: 150px;
+    right: 20px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+}
+
+.weather img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.container {
+    width: 1197px;
+    padding: 30px;
+    border: 2.5px solid #BB4848;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+}
+
+.info {
+    margin: 5%;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+}
+
+.footer {
+    justify-content: space-between; 
+    background-color: #BB4848;
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.logobaixa {
+    text-align: center;
+}
+
+.footer-container .text-muted {
+    display: block;
+    text-align: center;
+}
+
+.text-muted {
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    .info-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-item {
+        max-width: 100%;
+        margin-bottom: 20px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .info-item h2 {
+        font-size: 18px;
+    }
+
+    .info-item p {
+        font-size: 16px;
+    }
+
+    .button {
+        font-size: 0.9rem;
+    }
+}

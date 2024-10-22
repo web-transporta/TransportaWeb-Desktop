@@ -1,0 +1,303 @@
+body { 
+
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Nunito', sans-serif; 
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+
+.container { 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+    height: 100vh; 
+
+} 
+
+
+/*Passos - passo */ 
+
+.passos { 
+
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 30px; 
+    position: absolute; /* Ajusta a posição se necessário */ 
+    top: 80px; /* Ajusta a posição se necessário */ 
+    left: -400px; 
+    width: 100%; 
+    text-align: center; 
+
+} 
+
+
+.passo { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0 100px; 
+    position: relative; 
+
+} 
+
+.passo:not(:last-child)::after { 
+    content: ""; 
+    position: absolute; 
+    width: 170px; /* Ajuste o comprimento da linha conforme necessário */ 
+    height: 2px; /* Ajuste a espessura da linha conforme necessário */ 
+    background-color: #8D8D8D; /* Cor da linha */ 
+    top: 2vh; 
+    left: 25px; /* Ajuste a posição horizontal da linha conforme necessário */ 
+    transform: translateY(-50%); 
+
+} 
+
+.passo2 { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0 100px; 
+    position: relative; 
+
+} 
+
+.passo2:not(:last-child)::after { 
+    content: ""; 
+    position: absolute; 
+    width: 200px; /* Ajuste o comprimento da linha conforme necessário */ 
+    height: 2px; /* Ajuste a espessura da linha conforme necessário */ 
+    background-color: #8D8D8D; /* Cor da linha */ 
+    top: 2vh; 
+    left: 10px; /* Ajuste a posição horizontal da linha conforme necessário */ 
+    transform: translateY(-50%); 
+
+} 
+
+.passo-circulo { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    border: 2px solid #D92727; /* Adiciona a borda vermelha */ 
+    color: #D92727; /* Cor do texto */ 
+    background-color: red; /* Fundo transparente */ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+
+} 
+.passo-circulo2 { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    border: 2px solid #8D8D8D; /* Adiciona a borda vermelha */ 
+    color: #8D8D8D; /* Cor do texto */ 
+    background-color: #8D8D8D; /* Fundo transparente */ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+
+} 
+
+.passo-borda { 
+    top: -9px;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    border: 2px solid #ff0000; /* Adiciona a borda vermelha */ 
+    background-color:rgba(9, 255, 0, 0);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+} 
+.passo-borda2 { 
+    top: -9px;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    border: 2px solid #c6c6c6; /* Adiciona a borda vermelha */ 
+    background-color:rgba(9, 255, 0, 0);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+} 
+
+/*formulário */ 
+
+.forms-section { 
+    display: flex; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    min-height: 100vh; 
+    width: 100%; 
+    margin-right: 100vh; 
+    margin-top: 20vh; 
+
+} 
+ 
+
+.forms { 
+
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+
+} 
+
+ 
+selection{
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+    margin-right: 100vh;
+    margin-top: 20vh;
+}
+
+.inputbox{
+    position: relative;
+    margin: 80px 0; /* margem entre eles */
+    width: 750px; /* distancia os itens */
+    color: #D92727;
+}
+
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-200%);
+    font-size: 20px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.inputbox input{
+    width: 90vh; /* aumenta o tamanho dos inputs */
+    height: 40px;
+    outline: none;
+    font-size: 15px;
+    border-bottom: 2px solid rgb(192, 0, 0); 
+    border-top: 2px solid #E8E8E8; 
+    border-left: 2px solid #E8E8E8; 
+    border-right: 2px solid #E8E8E8; 
+    background: #E8E8E8;
+
+}
+
+button{
+background-color: #D92727;
+width: 265px;
+height: 50px;
+border-radius: 40px;
+border: none;
+outline: none;
+position:relative;
+top: 80%;
+font-size: 30px;
+color: rgb(255, 255, 255);
+text-align: center; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: "Nunito";
+font-weight: 600;
+
+}
+
+button img{
+    margin-left: 30px;
+}
+
+
+
+p{
+    color: black;
+    font-family: "Nunito";
+    font-size: 18px;
+    margin: 10px;
+}
+
+.palavra{
+    color: #D92727;
+    font-weight: 800;
+  }
+
+
+/* hr{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 60%;
+  } */
+  
+  
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito";
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    height: 100vh; 
+}
+
+.desc-container {
+    position: fixed;
+    right: 20vh; /* Espaçamento da borda direita da tela */
+    top: 60px; /* Espaçamento do topo da tela */
+    bottom: 60px;
+    padding-bottom: 60vh; /* Espaçamento interno */
+    width: 60vh; /* Largura do container */
+    background-color: #D92727; /* Cor de fundo */
+}
+
+.desc-container h1 {
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    padding: center;
+}
+
+.desc-container p {
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    /* padding-right: 20px; */
+    margin: 5px;
+
+}
+
+.desc-container img {
+    position: relative;
+    bottom: 60px;
+    height: 70vh;
+    right: 10vh;
+}
+
+

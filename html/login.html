@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/root.css">
+    <link rel="stylesheet" href="../css/input.css">
+    <link rel="stylesheet" href="../css/botao.css">
+    <link rel="stylesheet" href="../css/checkbox.css">
+    <script type="module" src="../js/login.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Login</title>
+</head>
+
+
+<body>
+    <main>
+        <section class="login-area">
+
+            <div class="role-selection">
+                <div class="role-option">
+                    <input type="checkbox" id="empresa" name="role" value="empresa">
+                    <label for="empresa">Empresa</label>
+                </div>
+                <div class="role-option">
+                    <input type="checkbox" id="funcionario" name="role" value="funcionario">
+                    <label for="funcionario">Funcionário</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="label">
+                   Email:
+                </div>
+                <input type="email" id="email" placeholder="Digite seu e-mail">
+             </div>
+
+
+             <div class="field">
+                <div class="label">
+                    Senha:
+                </div>
+                <input type="password" id="senha" placeholder="Digite sua senha">
+             </div>
+             <div class="field">
+                    <div class="forgot-password">
+                        Esqueci a senha
+                    </div>
+                </a>
+             </div>
+                <button class="button" id="signin">Continuar ></button>
+        </section>
+        <section class="image-area">
+            <div class="background">
+                <h1 class="title">
+                    Faça seu login!
+                </h1>
+                <h4 class="text">
+                    Com a Transporta Web, você pode gerenciar toda a operação de transporte, melhorar a comunicação
+                    entre a empresa e o motorista, e acompanhar o progresso em tempo integral.
+                </h4>
+                <div class="image-login">
+                    <img src="../css/img/login-image.png" alt="telephone">
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
