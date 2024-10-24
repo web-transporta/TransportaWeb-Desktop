@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Empresa</title>
+    <script type="module" src="../js/cadastro-empresa2.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/root.css">
+</head>
+
+<body>
+    <div class="container">
+        <section class="passos">
+            <div class="passo">
+                <div class="passo-circulo"></div>
+                <div class="passo-borda"></div>
+            </div>
+            <div class="passo">
+                <div class="passo-circulo"></div>
+                <div class="passo-borda"></div>
+            </div>
+        </section>
+
+        <div class="container">
+            <form action="">
+                <div class="inputbox">
+                    <input type="text" id="cep" placeholder="Digite seu CEP">
+                    <label for="cep">CEP:</label>
+                </div>
+
+                <div class="inputbox">
+                    <input type="file" id="img">
+                    <label for="img">Imagem de Perfil:</label>
+                </div>
+
+                <div class="inputbox">
+                    <input type="email" id="email" placeholder="Digite seu e-mail">
+                    <label for="email">Email:</label>
+                </div>
+
+                <div class="inputbox">
+                    <input type="text" id="senha" placeholder="Digite sua senha">
+                    <label for="senha">Senha:</label>
+                </div>
+
+                <div>
+                    <button id="next2">Cadastrar</button>
+                    <p>Já possui uma conta? <span class="palavra">Login</span></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="desc-container">
+            <h1>Crie uma conta para gerenciar sua empresa!</h1>
+            <p>Com a Transporta Web, você pode gerenciar toda a operação de transporte, melhorar a comunicação entre a empresa e o motorista, e acompanhar o progresso em tempo integral.</p>
+            <img src="../css/img/cadastro.png" alt="Cadastro">
+        </div>
+    </div>
+</body>
+
+</html>
