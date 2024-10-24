@@ -52,3 +52,19 @@ export async function postMotorista(insert) {
         return false;  // Falha em caso de erro na requisição
     }
 }
+
+export async function getViagens() {
+
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagens` 
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.viagens    
+}
+
+export async function getViagem(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`
+    console.log(url);
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.viagem[0]
+}
