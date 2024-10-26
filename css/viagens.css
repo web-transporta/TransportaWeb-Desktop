@@ -1,10 +1,3 @@
-    
-    /* 
-Nome: Leonardo Torquato de Andrade
-TransportaWeb
-Data: 01/10/2024
-*/
-
 body {
     margin: 0;
     font-family: Nunito;
@@ -12,78 +5,75 @@ body {
 
 .header-container {
     display: flex;
-    justify-content: space-between; /* Espaço entre logo e botões */
-    align-items: center; /* Centraliza verticalmente */
-    padding: 10px; /* Adiciona um pouco de espaço */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
 .profile-container {
     display: flex;
-    align-items: center; /* Centraliza verticalmente a imagem e o texto */
+    align-items: center;
 }
 
 .profile-container img {
-    width: 50px; /* Ajuste o tamanho da imagem conforme necessário */
-    height: 50px; /* Ajuste o tamanho da imagem conforme necessário */
-    border-radius: 50%; /* Faz a imagem ficar redonda */
-    margin-right: 10px; /* Espaço entre a imagem e o texto */
-    margin-left: 0px; /* Espaço entre a imagem e o texto */
-
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 0px;
 }
 
 .profile-container span {
-    font-size: 14px; /* Diminui o tamanho da letra */
-    font-weight: bold; /* Deixa a letra em negrito */
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .profile-container .name {
-    color: red; /* Muda a cor do texto para vermelho */
+    color: red;
 }
+
 .button-group {
-    display: flex; /* Alinha os botões em linha */
-    gap: 10px; /* Espaço entre os botões */
-    align-items: center; /* Alinha verticalmente todos os botões */
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .button {
-    text-decoration: none; /* Remove o sublinhado */
-    padding: 10px 15px; /* Adiciona preenchimento */
-    border-radius: 5px; /* Arredonda os cantos */
-    color: rgb(0, 0, 0); /* Cor do texto */
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
     font-weight: 600;
-    transition: background-color 0.3s; /* Efeito de transição */
-    display: flex; /* Permite alinhar o texto */
-    align-items: center; /* Alinha verticalmente o texto */
-    justify-content: center; /* Centraliza horizontalmente o texto */
-    height: 40px; /* Altura comum para todos os botões */
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
 }
 
 #openModal {
     background-color: #D92727;
-    margin-right: 20px; /* Margem direita */
-    color: white; /* Cor do texto */
-    border: none; /* Remove a borda */
-    border-radius: 25px; /* Aumenta o arredondamento */
-    width: 150px; /* Largura do botão */
-    height: 40px; /* Altura do botão */
-    font-size: 16px; /* Tamanho da fonte */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    margin-right: 20px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
     font-family: nunito;
     font-weight: 700;
 }
 
-
 #openModal:hover {
-    background-color: #aa0c0c
-    }
-
-.viagens {
-    color: red; /* Cor do texto para "Viagens" */
-    text-decoration: underline; /* Linha embaixo */
+    background-color: #aa0c0c;
 }
 
+.viagens {
+    color: red;
+    text-decoration: underline;
+}
 
-/* Fundo do modal */
 .modal-background {
     display: none;
     position: fixed;
@@ -97,7 +87,6 @@ body {
     z-index: 1000;
 }
 
-/* Estrutura e estilo do modal */
 .modal {
     background-color: white;
     padding: 30px;
@@ -122,7 +111,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Layout do formulário dentro do modal */
 .modal-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -148,7 +136,6 @@ body {
     border-radius: 4px;
 }
 
-/* Estilo dos botões de seleção */
 .form-group button {
     margin-top: 5px;
     padding: 8px;
@@ -163,9 +150,8 @@ body {
     background-color: #0056b3;
 }
 
-/* Estilo do botão de envio */
 .modal-form button[type="submit"] {
-    grid-column: 1 / -1; /* Botão ocupa toda a largura */
+    grid-column: 1 / -1;
     padding: 12px;
     font-size: 16px;
     background-color: #4CAF50;
@@ -189,17 +175,16 @@ body {
     width: 100;
     height: 100px;
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente (se necessário) */
+    justify-content: center;
+    align-items: center;
 }
 
 #pesquisa {
-    width: 40%; /* Ajuste conforme necessário */
-    padding: 10px; /* Para melhor aparência */
-    border: none; /* Adiciona uma borda cinza */
-    border-radius: 5px; /* Arredonda os cantos */
-    background-color: #f0f0f0; /* Cor de fundo cinza claro */
-    color: #333; /* Cor do texto */
+    width: 40%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
     outline: none;
 }
-
