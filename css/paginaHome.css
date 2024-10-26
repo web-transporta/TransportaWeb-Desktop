@@ -1,197 +1,178 @@
-/* 
-Nome: Leonardo Torquato de Andrade
-TransportaWeb
-Data: 01/10/2024
-*/
-
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Nunito;
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #BB4848;
-    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
 }
 
-.logo {
+.profile-container {
     display: flex;
     align-items: center;
 }
 
-.logo img {
-    margin-right: 1rem;
-    border-radius: 20px;
+.profile-container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+.profile-container span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile-container .name {
+    color: red;
 }
 
 .button-group {
     display: flex;
+    gap: 10px;
     align-items: center;
 }
 
 .button {
-    font-family: "Nunito", sans-serif;
-    background-color: transparent;
-    border: none;
-    color: #ffffff;
-    margin-left: 1rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    border-radius: 2px;
-    transition: background-color 0.3s, color 0.3s;
     text-decoration: none;
-    font-weight: 630;
-}
-
-.button.viagens {
-    width: 250px;
-    height: 30px;   
-    line-height: 30px;
-    text-align: center;
-    border-radius: 20px;
-    padding: 0 1rem;
-    margin-right: 100px;
-}
-
-.button.motoristas, .button.historico {
-    width: auto;
-    height: 30px;   
-    line-height: 30px;
-    text-align: center;
-    border-radius: 20px;
-    padding: 0 1rem;
-    margin-right: 100px;
-}
-
-.button.test {
-    background-color: #8b8b8b;
-    color: #ffffff;
-    width: 50px;
-    height: 80px;
-    line-height: 50px;
-    border-radius: 100px;
-    padding: 0 1rem;
-    margin-right: 60px;
-    font-family: "Nunito", sans-serif;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
     font-weight: 600;
-}
-
-.header {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 20px;
-    font-family: "Nunito", sans-serif;
-    font-weight: 625;
-}
-
-.weather {
-    background-color: #BB4848;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
+    transition: background-color 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    position: absolute;
-    top: 150px;
-    right: 20px;
-    font-family: "Nunito", sans-serif;
+    height: 40px;
+}
+
+#openModal {
+    background-color: #D92727;
+    margin-right: 20px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: nunito;
     font-weight: 700;
 }
 
-.weather img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+#openModal:hover {
+    background-color: #aa0c0c;
 }
 
-.container {
-    width: 1197px;
-    padding: 30px;
-    border: 2.5px solid #BB4848;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    font-family: "Nunito", sans-serif;
-    font-weight: 600;
+.motoristas, .historico, .perfil {
+    font-size: 18px; /* Ajuste o tamanho conforme necessário */
+  
 }
 
-.info {
-    margin: 5%;
-    color: rgb(0, 0, 0);
-    font-size: 30px;
+.home {
+    font-size: 18px;
+    color: red;
+    text-decoration: underline;
 }
 
-.footer {
-    justify-content: space-between; 
-    background-color: #BB4848;
-    padding: 1rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    width: 100%;
+
+.desc-container { 
+    width: 1300px; /* Ajuste a largura conforme necessário */
+    max-width: 1300px; /* Largura máxima para telas grandes */
+    height: 220px;
+    margin: 30px auto; /* Centraliza e adiciona espaço acima e abaixo */
+    padding: 20px; /* Padding interno */
+    padding-left: 50px; /* Padding interno */
+    background-color: var(--vermelho);  
+    box-sizing: border-box; 
+    border-radius: 20px; /* Adiciona bordas arredondadas, se desejado */
 }
 
-.logobaixa {
-    text-align: center;
+.desc-container h1 { 
+    font-size: 32px; 
+    font-weight: 600; 
+    color: var(--branco); 
+    padding-bottom: 10px; /* Espaço entre o texto e a linha */
+} 
+
+.line {
+    width: 80%; /* Ajuste a largura conforme necessário */
+    max-width: 150px; /* Largura máxima da linha */
+    height: 2px; /* Espessura da linha */
+    background-color: var(--branco); /* Cor da linha */
+    margin-top: -34px;
 }
 
-.footer-container .text-muted {
-    display: block;
-    text-align: center;
+
+.desc-container p { 
+    font-size: 23px; 
+    color: var(--branco); 
+    margin: 20px 0; /* Margem vertical */
+    font-weight: 200; 
+
+} 
+.container-cards {
+    display: flex;
+    justify-content: center; /* Centraliza os cards */
+    margin: 20px auto; /* Margem acima e abaixo, auto lateral para centralizar */
+    width: 100%; /* Faz o contêiner ocupar toda a largura da tela */
+    max-width: 100%; /* Largura máxima */
+    gap: 50px; /* Distância entre os cards */
 }
 
-.text-muted {
-    color: #ffffff;
-    font-weight: bold;
-    line-height: 1.5;
+
+
+.card {
+    display: flex; /* Usar flexbox para centralizar o conteúdo */
+    flex-direction: column; /* Organiza os itens em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    width: 220px; /* Largura do card */
+    height: 300px; /* Altura do card */
+    background-color: var(--branco); /* Cor de fundo do card */
+    border-radius: 20px; /* Bordas arredondadas */
+    border: 1px solid var(--cinza-escuro); /* Borda fina */
+    text-align: center; /* Centraliza o texto */
+    padding: 15px; /* Espaço interno do card */
+    margin: 15px 5px; /* Reduz a margem lateral para 5px */
 }
 
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
 
-    .button-group {
-        flex-direction: column;
-        align-items: flex-start;
-    }
 
-    .button {
-        margin-left: 0;
-        margin-bottom: 1rem;
-    }
 
-    .info-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .info-item {
-        max-width: 100%;
-        margin-bottom: 20px; 
-    }
+.card img {
+    width: 40%; /* Largura total da imagem */
+    height: auto; /* Altura automática para manter proporção */
+    border-radius: 5px; /* Bordas arredondadas da imagem */
 }
 
-@media (max-width: 480px) {
-    .info-item h2 {
-        font-size: 18px;
-    }
+.button-access {
+    display: flex; /* Usar flexbox para centralizar o texto */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    background-color: #66000000; /* Cor do botão */
+    color: rgb(0, 0, 0); /* Cor do texto do botão */
+    border: 1px solid #888888; /* Borda fina com a mesma cor do botão */
+    border-radius: 15px; /* Aumenta o arredondamento da borda */
+    padding: 10px; /* Espaço interno do botão */
+    cursor: pointer; /* Muda o cursor ao passar por cima */
+    font-weight: 400px; /* Texto em negrito */
+    margin-top: 10px; /* Espaço acima do botão */
+    height: 35px; /* Altura do botão */
+    width: 150px; /* Largura do botão */
+    font-size: 16px; /* Tamanho da fonte */
+}
 
-    .info-item p {
-        font-size: 16px;
-    }
 
-    .button {
-        font-size: 0.9rem;
-    }
+.button-access:hover {
+    background-color: #cacaca; /* Cor do botão ao passar o mouse */
+}
+
+.card h2{
+    font-size: 18px;
 }
