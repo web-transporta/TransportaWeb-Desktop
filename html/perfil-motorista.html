@@ -4,7 +4,8 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Perfil motorista </title>
-   <link rel="stylesheet" href="../css/perfil.css">
+   <script type="module" src="../js/perfilM.js" defer></script>
+   <link rel="stylesheet" href="../css/perfil-motorista.css">
    <link rel="stylesheet" href="../css/root.css">
 </head>
 <body>
@@ -19,15 +20,15 @@
         <div class="detalhes-usuario">
             <div class="inputbox">
                 <span class="detalhes">Nome:</span>
-                <input type="text" placeholder="" required>
+                <input type="text" id="nome" placeholder="" required>
             </div>
             <div class="inputbox">
                 <span class="detalhes">Email:</span>
-                <input type="email" placeholder="" required>
+                <input type="email" id="email" placeholder="" required>
             </div>
             <div class="inputbox">
                 <span class="detalhes">Telefone:</span>
-                <input type="tel" placeholder="" required>
+                <input type="tel" id="telefone" placeholder="" required>
             </div>
             <div class="inputbox">
                 <span class="detalhes">Quantidade de viagens:</span>
@@ -43,11 +44,11 @@
             </div>
             <div class="inputbox">
                 <span class="detalhes">Data do aniversário:</span>
-                <input type="date">
+                <input type="date" id="data">
             </div>
             <div class="inputbox">
                 <span class="detalhes">CPF:</span>
-                <input type="number" placeholder="" required>
+                <input type="number" id="cpf" placeholder="" required>
             </div>
             <div class="inputbox">
                 <span class="detalhes">Avaliação:</span>
