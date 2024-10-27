@@ -70,8 +70,7 @@ body {
 }
 
 .motoristas, .historico, .perfil {
-    font-size: 18px; /* Ajuste o tamanho conforme necessário */
-  
+    font-size: 18px;
 }
 
 .home {
@@ -80,97 +79,89 @@ body {
     text-decoration: underline;
 }
 
-
 .desc-container { 
-    width: 1300px; /* Ajuste a largura conforme necessário */
-    max-width: 1300px; /* Largura máxima para telas grandes */
+    width: 1300px;
+    max-width: 1300px;
     height: 220px;
-    margin: 30px auto; /* Centraliza e adiciona espaço acima e abaixo */
-    padding: 20px; /* Padding interno */
-    padding-left: 50px; /* Padding interno */
+    margin: 30px auto;
+    padding: 20px;
+    padding-left: 50px;
     background-color: var(--vermelho);  
     box-sizing: border-box; 
-    border-radius: 20px; /* Adiciona bordas arredondadas, se desejado */
+    border-radius: 20px;
 }
 
 .desc-container h1 { 
     font-size: 32px; 
     font-weight: 600; 
     color: var(--branco); 
-    padding-bottom: 10px; /* Espaço entre o texto e a linha */
+    padding-bottom: 10px; 
 } 
 
 .line {
-    width: 80%; /* Ajuste a largura conforme necessário */
-    max-width: 150px; /* Largura máxima da linha */
-    height: 2px; /* Espessura da linha */
-    background-color: var(--branco); /* Cor da linha */
+    width: 80%; 
+    max-width: 150px; 
+    height: 2px; 
+    background-color: var(--branco); 
     margin-top: -34px;
 }
-
 
 .desc-container p { 
     font-size: 23px; 
     color: var(--branco); 
-    margin: 20px 0; /* Margem vertical */
+    margin: 20px 0; 
     font-weight: 200; 
-
 } 
+
 .container-cards {
     display: flex;
-    justify-content: center; /* Centraliza os cards */
-    margin: 20px auto; /* Margem acima e abaixo, auto lateral para centralizar */
-    width: 100%; /* Faz o contêiner ocupar toda a largura da tela */
-    max-width: 100%; /* Largura máxima */
-    gap: 50px; /* Distância entre os cards */
+    justify-content: center;
+    margin: 20px auto;
+    width: 100%; 
+    max-width: 100%; 
+    gap: 50px; 
 }
-
-
 
 .card {
-    display: flex; /* Usar flexbox para centralizar o conteúdo */
-    flex-direction: column; /* Organiza os itens em coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    width: 220px; /* Largura do card */
-    height: 300px; /* Altura do card */
-    background-color: var(--branco); /* Cor de fundo do card */
-    border-radius: 20px; /* Bordas arredondadas */
-    border: 1px solid var(--cinza-escuro); /* Borda fina */
-    text-align: center; /* Centraliza o texto */
-    padding: 15px; /* Espaço interno do card */
-    margin: 15px 5px; /* Reduz a margem lateral para 5px */
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 220px; 
+    height: 300px; 
+    background-color: var(--branco); 
+    border-radius: 20px; 
+    border: 1px solid var(--cinza-escuro); 
+    text-align: center; 
+    padding: 15px; 
+    margin: 15px 5px; 
 }
 
-
-
-
 .card img {
-    width: 40%; /* Largura total da imagem */
-    height: auto; /* Altura automática para manter proporção */
-    border-radius: 5px; /* Bordas arredondadas da imagem */
+    width: 40%; 
+    height: auto; 
+    border-radius: 5px; 
 }
 
 .button-access {
-    display: flex; /* Usar flexbox para centralizar o texto */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    background-color: #66000000; /* Cor do botão */
-    color: rgb(0, 0, 0); /* Cor do texto do botão */
-    border: 1px solid #888888; /* Borda fina com a mesma cor do botão */
-    border-radius: 15px; /* Aumenta o arredondamento da borda */
-    padding: 10px; /* Espaço interno do botão */
-    cursor: pointer; /* Muda o cursor ao passar por cima */
-    font-weight: 400px; /* Texto em negrito */
-    margin-top: 10px; /* Espaço acima do botão */
-    height: 35px; /* Altura do botão */
-    width: 150px; /* Largura do botão */
-    font-size: 16px; /* Tamanho da fonte */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #66000000; 
+    color: rgb(0, 0, 0); 
+    border: 1px solid #888888; 
+    border-radius: 15px; 
+    padding: 10px; 
+    cursor: pointer; 
+    font-weight: 400; 
+    margin-top: 10px; 
+    height: 35px; 
+    width: 150px; 
+    font-size: 16px; 
 }
 
-
 .button-access:hover {
-    background-color: #cacaca; /* Cor do botão ao passar o mouse */
+    background-color: #cacaca; 
 }
 
 .card h2{
