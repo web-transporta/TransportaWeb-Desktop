@@ -109,3 +109,67 @@ export async function getEmpresa() {
     const data = await response.json()
     return data.empresa    
 }
+
+export async function getVeiculos() {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/veiculos`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.empresas || []; // Retorna o array de caminhões ou um array vazio
+        } else {
+            console.error("Erro ao obter caminhões:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Erro de rede ao obter caminhões:", error);
+        return []; // Retorna um array vazio em caso de erro
+    }
+}
+export async function getPartida() {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/partidas`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.empresas || []; // Retorna o array de caminhões ou um array vazio
+        } else {
+            console.error("Erro ao obter caminhões:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Erro de rede ao obter caminhões:", error);
+        return []; // Retorna um array vazio em caso de erro
+    }
+}
+export async function getDestino() {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/destinos`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.empresas || []; // Retorna o array de caminhões ou um array vazio
+        } else {
+            console.error("Erro ao obter caminhões:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Erro de rede ao obter caminhões:", error);
+        return []; // Retorna um array vazio em caso de erro
+    }
+}
+export async function getMotoristas() {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/motoristas`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.motoristas || []; // Retorna o array de caminhões ou um array vazio
+        } else {
+            console.error("Erro ao obter caminhões:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Erro de rede ao obter caminhões:", error);
+        return []; // Retorna um array vazio em caso de erro
+    }
+}
+
+
+
