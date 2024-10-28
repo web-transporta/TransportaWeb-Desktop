@@ -22,9 +22,9 @@
             </div>
             <div class="button-group">
                 <a href="*historico*" class="button historico">Histórico</a>
-                <a href="/**/" class="button viagens">Viagens</a>
+                <a href="viagens.html" class="button viagens">Viagens</a>
                 <a href="*motoristas*" class="button motoristas">Motoristas</a>
-                <a href="/**/" class="button test"><p>Perfil</p></a> 
+                <a href="perfil-motorista.html" class="button test"><p>Perfil</p></a> 
                 <button id="openModal" class="text-white font-font underline font-semibold text-[12px] border-white w-48 h-10 rounded-xl">
                     Criar Viagem
                 </button>
@@ -73,19 +73,39 @@
                     </div>
                     <div class="form-group">
                         <label for="partida_cep">CEP de Partida:</label>
-                        <input type="text" id="id_partida" name="id_partida" placeholder="Ex.: 59156-745" required>
+                        <select id="id_partida" name="id_partida" required>
+                            <option value="selecione">Selecione uma partida:</option>
+                            <!-- <option value="59156-745">59156-745</option>
+                            <option value="50000-000">50000-000</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="destino_cep">CEP de Destino:</label>
-                        <input type="text" id="id_destino" name="id_destino" placeholder="Ex.: 50751-310" required>
+                        <select id="id_destino" name="id_destino" required>
+                            <option value="selecione">Selecione um destino:</option>
+                            <!-- <option value="50751-310">50751-310</option>
+                            <option value="60000-000">60000-000</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
                     </div>
-                    <div class="inputbox">
+                    <div class="form-group">
                         <span class="detalhes">Motorista ID:</span>
-                        <input type="text" id="id_motorista" placeholder="Digite o ID do motorista" required>
+                        <select id="id_motorista" name="id_motorista" required>
+                            <option value="selecione">Selecione um motorista:</option>
+                            <!-- <option value="12345">12345</option>
+                            <option value="67890">67890</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
                     </div>
-                    <div class="inputbox">
+                    <div class="form-group">
                         <span class="detalhes">Caminhão ID:</span>
-                        <input type="text" id="id_veiculo" placeholder="Digite o ID do caminhão" required>
+                        <select id="id_veiculo" name="id_veiculo" required>
+                            <option value="selecione">Selecione um caminhão:</option>
+                            <!-- <option value="ABC123">ABC123</option>
+                            <option value="DEF456">DEF456</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
                     </div>
                     
                     <button type="submit">Salvar Viagem</button>
