@@ -53,6 +53,7 @@ main {
   font-weight: 400;
   font-style: italic;
   text-align: center;
+  text-decoration: none;
 }
 
 .button p {

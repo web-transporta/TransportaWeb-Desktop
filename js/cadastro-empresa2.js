@@ -22,15 +22,12 @@ const button = document.getElementById('next2');
 if (!numero_telefone || !img_perfil || !email || !senha || !button) {
     console.error('Um ou mais elementos não foram encontrados no DOM.');
 } else {
-    // Função para validar número de telefone
     const validarNumeroTelefone = (numero) => {
         return /^[0-9]{11}$/.test(numero) || /^\d{2}-\d{5}-\d{4}$/.test(numero);
     };
 
-    // Função para validar email
     const validarEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    // Função para validar senha
     const validarSenha = (senha) => {
         const regex = /^(?=.*[A-Z]).{8,}$/; // Mínimo de 8 caracteres e pelo menos 1 maiúsculo
         return regex.test(senha);
@@ -39,7 +36,6 @@ if (!numero_telefone || !img_perfil || !email || !senha || !button) {
     button.addEventListener('click', async (event) => {
         event.preventDefault();
 
-        // Coleta os valores dos inputs **após** o evento de clique
         const numero_telefoneInput = numero_telefone.value;
         const imgInput = img_perfil.value;
         const emailInput = email.value;
@@ -50,7 +46,6 @@ if (!numero_telefone || !img_perfil || !email || !senha || !button) {
         console.log('email:', emailInput);
         console.log('senha:', senhaInput);
 
-        // Limpar mensagens de erro anteriores
         numeroError.style.display = 'none';
         numeroError.textContent = '';
         emailError.style.display = 'none';
@@ -58,7 +53,6 @@ if (!numero_telefone || !img_perfil || !email || !senha || !button) {
         senhaError.style.display = 'none';
         senhaError.textContent = '';
 
-        // Validação dos campos
         if (!numero_telefoneInput || !imgInput || !emailInput || !senhaInput) {
             console.error('Todos os campos são obrigatórios.');
             return;
@@ -82,7 +76,6 @@ if (!numero_telefone || !img_perfil || !email || !senha || !button) {
             return;
         }
 
-        // Atualiza o objeto cadastro1 com os novos dados
         cadastro1.numero_telefone = numero_telefoneInput;
         cadastro1.img_perfil = imgInput;
         cadastro1.email = emailInput;
@@ -91,17 +84,32 @@ if (!numero_telefone || !img_perfil || !email || !senha || !button) {
         console.log(cadastro1);
 
         try {
-            // Tenta enviar os dados
+            // Mostra o alerta de carregamento
+            Swal.fire({
+                title: 'Cadastrando...',
+                text: 'Por favor, aguarde.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
             const sucesso = await postEmpresas(cadastro1);
+
+            // Fecha o alerta de carregamento
+            Swal.close();
+
             if (sucesso) {
-                alert("Cadastrado com sucesso!");
-                console.log('Empresa cadastrada com sucesso!');
-                window.location.href = '../html/cadastro-empresa2.html';
+                Swal.fire('Sucesso', 'Empresa cadastrada com sucesso!', 'success')
+                    .then(() => {
+                        window.location.href = '../html/paginaHome.html';
+                    });
             } else {
-                alert("Falha ao cadastrar a empresa, tente novamente.");
-                console.error('Falha ao cadastrar a empresa. Por favor, tente novamente.');
+                Swal.fire('Erro', 'Falha ao cadastrar a empresa, tente novamente.', 'error');
             }
         } catch (error) {
+            Swal.close();
+            Swal.fire('Erro', 'Erro ao tentar cadastrar a empresa. Verifique sua conexão.', 'error');
             console.error('Erro ao tentar cadastrar a empresa:', error);
         }
     });
