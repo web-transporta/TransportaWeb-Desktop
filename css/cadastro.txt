@@ -1,0 +1,609 @@
+body {   
+    margin: 0;  
+    padding: 0;  
+    font-family: 'Nunito', sans-serif;  
+    overflow: hidden;  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+} 
+
+.container {
+    justify-content: center;
+    align-items: center;
+    margin-left: 680px;
+    margin-top: 260px;
+
+}
+
+
+.passos {  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    margin-bottom: 30px;  
+    position: absolute; 
+    top: 190px; 
+    left: -300px; 
+    margin-left: -100px;
+    width: 100%;  
+    text-align: center;  
+}  
+
+
+.passo { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0 100px; 
+    position: relative; 
+
+} 
+
+.passo:not(:last-child)::after { 
+    content: ""; 
+    position: absolute; 
+    width: 170px; /* Ajuste o comprimento da linha conforme necessário */ 
+    height: 2px; /* Ajuste a espessura da linha conforme necessário */ 
+    background-color: #8D8D8D; /* Cor da linha */ 
+    top: 2vh; 
+    left: 25px; /* Ajuste a posição horizontal da linha conforme necessário */ 
+    transform: translateY(-50%); 
+
+} 
+
+.passo2 { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0 100px; 
+    position: relative; 
+
+} 
+
+.passo2:not(:last-child)::after { 
+    content: ""; 
+    position: absolute; 
+    width: 200px; /* Ajuste o comprimento da linha conforme necessário */ 
+    height: 2px; /* Ajuste a espessura da linha conforme necessário */ 
+    background-color: #8D8D8D; /* Cor da linha */ 
+    top: 2vh; 
+    left: 10px; /* Ajuste a posição horizontal da linha conforme necessário */ 
+    transform: translateY(-50%); 
+
+} 
+
+.passo-circulo { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    border: 2px solid #D92727; /* Adiciona a borda vermelha */ 
+    color: #D92727; /* Cor do texto */ 
+    background-color: red; /* Fundo transparente */ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+
+} 
+.passo-circulo2 { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    border: 2px solid #8D8D8D; /* Adiciona a borda vermelha */ 
+    color: #8D8D8D; /* Cor do texto */ 
+    background-color: #8D8D8D; /* Fundo transparente */ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+
+} 
+
+.passo-borda { 
+    top: -9px;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    border: 2px solid #ff0000; /* Adiciona a borda vermelha */ 
+    background-color:rgba(9, 255, 0, 0);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+} 
+.passo-borda2 { 
+    top: -9px;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    border: 2px solid #c6c6c6; /* Adiciona a borda vermelha */ 
+    background-color:rgba(9, 255, 0, 0);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold; 
+    position: absolute;
+} 
+
+.forms-section { 
+    display: flex; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    min-height: 100vh; 
+    width: 100%; 
+
+} 
+ 
+
+.forms { 
+    flex-direction: column; 
+
+} 
+
+.inputbox { 
+    position: relative; 
+    margin: 80px 0; 
+    width: 500px; 
+    max-width: 850px; 
+    color: var(--vermelho); 
+    right: 980px; 
+} 
+
+.inputbox label { 
+    position: absolute; 
+    top: 50%; 
+    left: 10px; 
+    transform: translateY(-200%); 
+    font-size: 20px; 
+    font-weight: 600; 
+    pointer-events: none; 
+} 
+
+.inputbox input { 
+    width: 600px; /* Largura total */
+    height: 40px; 
+    outline: none; 
+    font-size: 18px; 
+    border-bottom: 3px solid var(--vermelho);  
+    border: 2px solid var(--branco);  
+    background: var(--cinza); 
+    padding-left: 20px; 
+    padding-top: 10px; 
+} 
+
+button { 
+    width: 265px;
+    height: 50px; 
+    border-radius: 40px; 
+    font-family: var(--titulo); 
+    color: var(--vermelho); 
+    font-size: 30px; 
+    font-weight: 600; 
+    background-color: transparent; 
+    border: 2px solid var(--vermelho); 
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1); 
+    cursor: pointer;
+    margin-left: -980px; 
+} 
+
+button:hover { 
+    color: var(--branco); 
+    background-color: var(--vermelho); 
+    transform: translateY(-0.125em); 
+} 
+
+.container p {
+    margin-left: -950px;
+}
+
+.desc-container { 
+    position: fixed; 
+    width: 500px; 
+    max-width: 600px; 
+    height: 900px; 
+    right: 20%;  
+    top: 54px; 
+    background-color: var(--vermelho);  
+    padding: 40px;
+    box-sizing: border-box; 
+}
+
+.desc-container h1 { 
+    font-size: 32px; 
+    font-weight: 900; 
+    color: var(--branco); 
+    text-align: center;
+} 
+
+.desc-container p { 
+    font-size: 25px; 
+    color: var(--branco); 
+    text-align: center; 
+    margin: 20px; 
+} 
+
+
+
+.desc-container img {
+    width: 100%;
+    height: auto; 
+    max-height: 500px; 
+    object-fit: cover; 
+}
+
+
+
+@media screen and (max-width: 1300px) {
+
+    .container {
+        justify-content: center;
+        align-items: center;
+        margin-left: 270px;
+        margin-top: 150px;
+    
+    }
+    .desc-container { 
+        position: fixed; 
+        width: 350px; 
+        height: 650px; 
+        right: 10%;  
+        top: 125px; 
+        background-color: var(--vermelho);  
+        padding: 20px;
+        box-sizing: border-box; 
+    }
+    
+.desc-container h1 { 
+    font-size: 20px; 
+    font-weight: 900; 
+    color: var(--branco); 
+    text-align: center;
+    margin-bottom: 50px;
+} 
+
+.desc-container p { 
+    font-size: 15px; 
+    color: var(--branco); 
+    text-align: center;  
+} 
+
+
+.desc-container img {
+    width: 100%;
+    height: auto; 
+    max-height: 500px; 
+    object-fit: cover; 
+}
+
+
+    .passos {
+display: none;
+
+    }
+
+    
+.forms-section { 
+    display: flex; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+
+} 
+ 
+.forms { 
+
+    flex-direction: column; 
+    align-items: center;
+
+} 
+    .inputbox { 
+        position: relative; 
+        margin: 80px 0; 
+        color: var(--vermelho); 
+        top: -40px;
+        left: -420px;
+    } 
+
+    
+    .inputbox label { 
+        position: absolute; 
+        transform: translateY(-200%); 
+        font-size: 15px; 
+        pointer-events: none; 
+    } 
+    
+    .inputbox input { 
+        width: 400px; /* Largura total */
+        height: 30px; 
+        outline: none; 
+        font-size: 18px; 
+        border-bottom: 3px solid var(--vermelho);  
+        border: 2px solid var(--branco);  
+        background: var(--cinza); 
+        padding-left: 20px; 
+        padding-top: 10px; 
+    } 
+
+    
+button { 
+    height: 45px; 
+    width: 150px;
+    border-radius: 40px; 
+    font-family: var(--titulo); 
+    color: var(--vermelho); 
+    font-size: 20px; 
+    font-weight: 800; 
+    background-color: transparent; 
+    border: 2px solid var(--vermelho); 
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1); 
+    cursor: pointer;
+    margin-left: -425px;
+}
+
+.container p {
+    margin-left: -420px;
+    font-size: 14px;
+
+}
+}
+
+@media screen and (max-width: 985px) {
+
+    .desc-container{
+        display: none;
+    }
+    
+.container {
+    justify-content: center;
+    align-items: center;
+    margin-left: 600px;
+ margin-top: 150px;
+
+}
+
+
+.passos {  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    margin-bottom: 30px;  
+    position: absolute; 
+    top: 80px; 
+    left: -350px; 
+    margin-left: 350px;
+    width: 100%;  
+    text-align: center;  
+}  
+
+    .container {
+        margin-left: 0px;
+        margin-top: 0px;
+        text-align: center;
+    
+    }
+
+    .forms{
+        width: 600px;
+        height: 700px;
+        text-align: center;
+        position: absolute; top: 50%; left: 50%; 
+        transform: translate(-50%, -50%)
+
+    }
+    .inputbox { 
+        position: relative; 
+        margin-bottom: 80px;
+        color: var(--vermelho); 
+        top: 20px;
+        left: 35px;
+    } 
+
+    
+    .inputbox input { 
+        width: 450px; /* Largura total */
+        height: 33px; 
+        outline: none; 
+        font-size: 22px; 
+        border-bottom: 3px solid var(--vermelho);  
+        border: 2px solid var(--branco);  
+        background: var(--cinza); 
+        padding-left: 90px; 
+        padding-top: 10px; 
+    } 
+
+    
+button { 
+    height: 55px; 
+    width: 180px;
+    border-radius: 40px; 
+    font-family: var(--titulo); 
+    color: var(--vermelho); 
+    font-size: 25px; 
+    font-weight: 800; 
+    background-color: transparent; 
+    border: 2px solid var(--vermelho); 
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1); 
+    cursor: pointer;
+    margin-left: -335px;
+}
+
+.container p {
+    margin-left: -300px;
+
+}
+
+.inputbox label { 
+    position: absolute; 
+    top: 50%; 
+    left: 10px; 
+    transform: translateY(-200%); 
+    font-size: 19px; 
+    font-weight: 600; 
+    pointer-events: none; 
+} 
+
+
+}
+@media screen and (max-width: 600px) {
+    .passos {  
+        display: none;
+    }  
+    
+
+    .desc-container{
+        display: none;
+    }
+
+    .container {
+        margin-left: 0px;
+        margin-top: 0px;
+        text-align: center;
+    
+    }
+
+    .forms{
+        width: 600px;
+        height: 700px;
+        text-align: center;
+        position: absolute; top: 50%; left: 50%; 
+        transform: translate(-50%, -50%)
+
+    }
+    .inputbox { 
+        position: relative; 
+        margin-bottom: 80px;
+        color: var(--vermelho); 
+        top: 20px;
+        left: 35px;
+    } 
+
+    
+    .inputbox input { 
+        width: 320px; /* Largura total */
+        height: 30px; 
+        outline: none; 
+        font-size: 22px; 
+        border-bottom: 3px solid var(--vermelho);  
+        border: 2px solid var(--branco);  
+        background: var(--cinza); 
+        padding-left: 90px; 
+        padding-top: 10px; 
+    } 
+
+    
+button { 
+    height: 46px; 
+    width: 140px;
+    border-radius: 40px; 
+    font-family: var(--titulo); 
+    color: var(--vermelho); 
+    font-size: 20px; 
+    font-weight: 800; 
+    background-color: transparent; 
+    border: 2px solid var(--vermelho); 
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1); 
+    cursor: pointer;
+    margin-left: -295px;
+}
+
+.container p {
+    margin-left: -285px;
+    font-size: 12px;
+
+}
+
+.inputbox label { 
+    position: absolute; 
+    top: 50%; 
+    left: 50px; 
+    transform: translateY(-200%); 
+    font-size: 16px; 
+    font-weight: 600; 
+    pointer-events: none; 
+} 
+
+
+}
+
+@media screen and (max-width: 476px) {
+
+    .desc-container{
+        display: none;
+    }
+
+    .container {
+        margin-left: 0px;
+        margin-top: 0px;
+        text-align: center;
+    
+    }
+
+    .forms{
+        width: 600px;
+        height: 700px;
+        text-align: center;
+        position: absolute; top: 50%; left: 50%; 
+        transform: translate(-50%, -50%)
+
+    }
+    .inputbox { 
+        position: relative; 
+        margin-bottom: 80px;
+        color: var(--vermelho); 
+        top: 20px;
+        left: 35px;
+    } 
+
+    
+    .inputbox input { 
+        width: 190px; /* Largura total */
+        height: 30px; 
+        outline: none; 
+        font-size: 22px; 
+        border-bottom: 3px solid var(--vermelho);  
+        border: 2px solid var(--branco);  
+        background: var(--cinza); 
+        padding-left: 90px; 
+        padding-top: 10px; 
+    } 
+
+    
+button { 
+    height: 46px; 
+    width: 140px;
+    border-radius: 40px; 
+    font-family: var(--titulo); 
+    color: var(--vermelho); 
+    font-size: 20px; 
+    font-weight: 800; 
+    background-color: transparent; 
+    border: 2px solid var(--vermelho); 
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1); 
+    cursor: pointer;
+    margin-left: -134px;
+}
+
+.container p {
+    margin-left: -114px;
+    font-size: 12px;
+
+}
+
+.inputbox label { 
+    position: absolute; 
+    top: 50%; 
+    left: 114px; 
+    transform: translateY(-200%); 
+    font-size: 16px; 
+    font-weight: 600; 
+    pointer-events: none; 
+} 
+
+}
