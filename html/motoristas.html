@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>TransportaWeb</title>
+    <link rel="stylesheet" href="../css/motoristas.css">
+    <script src="../js/funcoes.js" type="module" defer></script>
+    <script src="../js/viagens.js" type="module" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="profile-container">
+                <img src="../css/img/ft-perfil.png" alt="Foto de Perfil">
+                <span>Bem-vindo,<br><span class="name">Fulano de Tal</span></span>
+            </div>
+            <div class="button-group">
+                <a href="paginaHome.html" class="button historico">Home</a>
+                <a href="viagens.html" class="button viagens">Viagens</a>
+                <a href="*motoristas*" class="button motoristas">Motoristas</a>
+                <a href="perfil-motorista.html" class="button test"><p>Perfil</p></a> 
+                <button id="openModal" class="text-white font-font underline font-semibold text-[12px] border-white w-48 h-10 rounded-xl">
+                    Criar Viagem
+                </button>
+            </div>
+        </div>
+        
+    </header>
+    
+    <section class="control-section">
+       <div class="text">
+        <h1>Tenha Controle Total da Sua Equipe!</h1>
+        <p>Simplifique a gestão do seu time com uma plataforma que centraliza todas as informações. Tenha acesso rápido e fácil a todos os usuários que fazem parte da sua equipe, facilitando a administração e o acompanhamento das atividades.</p>
+       </div>
+        <div class="illustration">
+            <img src="../img/foto-equipe.png" alt="Team Illustration">
+        </div>
+    </section>
+    <div class="pesquisa">
+        <input type="text" id="pesquisa" placeholder="Buscar Viagem">
+    </div>
