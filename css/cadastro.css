@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 600px;
- margin-top: 150px;
+    margin-top: 90px;
 
 }
 
@@ -40,7 +40,7 @@ body {
 
 } 
 
-.passo:not(:last-child)::after { 
+.passo:not(:last-child)::before { 
     content: ""; 
     position: absolute; 
     width: 170px; /* Ajuste o comprimento da linha conforme necessário */ 
@@ -51,6 +51,7 @@ body {
     transform: translateY(-50%); 
 
 } 
+
 
 .passo2 { 
     display: flex; 
@@ -247,7 +248,7 @@ button:hover {
         justify-content: center;
         align-items: center;
         margin-left: 270px;
-        margin-top: 150px;
+        margin-top: 90px;
     
     }
     .desc-container { 
@@ -364,7 +365,7 @@ button {
     justify-content: center;
     align-items: center;
     margin-left: 600px;
- margin-top: 150px;
+ margin-top: 90px;
 
 }
 
