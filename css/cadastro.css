@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 600px;
- margin-top: 150px;
+    margin-top: 150px;
 
 }
 
@@ -24,7 +24,7 @@ body {
     margin-bottom: 30px;  
     position: absolute; 
     top: 80px; 
-    left: -350px; 
+    left: -230px; 
     margin-left: -100px;
     width: 100%;  
     text-align: center;  
@@ -186,7 +186,7 @@ button {
     font-family: var(--titulo); 
     color: var(--vermelho); 
     font-size: 30px; 
-    font-weight: 600; 
+    font-weight: 800; 
     background-color: transparent; 
     border: 2px solid var(--vermelho); 
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1); 
@@ -209,7 +209,7 @@ button:hover {
     width: 500px; 
     max-width: 600px; 
     height: 900px; 
-    right: 10%;  
+    right: 20%;  
     top: 54px; 
     background-color: var(--vermelho);  
     padding: 40px;
