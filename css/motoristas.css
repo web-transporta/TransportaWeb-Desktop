@@ -282,3 +282,84 @@ body {
     height: auto; /* Mantém a proporção da imagem */
     border-radius: 4px; /* Arredonda as bordas da imagem */
 }
+
+/* Container para os cards */
+.container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaçamento entre os cards */
+    justify-content: center;
+}
+
+/* Estilo dos cards */
+.motorista-card {
+    background-color: #F5F5F5; /* Fundo branco para os cards */
+    border: 1px solid #e74c3c; /* Bordas sutis */
+    color: black;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+    width: 400px; /* Largura fixa dos cards */
+    height: 250px; /* Altura fixa para acomodar a imagem e informações */
+    overflow: hidden; /* Evitar que o conteúdo transborde */
+    transition: transform 0.3s; /* Transição suave */
+    display: flex; /* Usar flexbox para organizar o conteúdo */
+    flex-direction: column; /* Organizar o conteúdo na vertical */
+}
+
+.motorista-card:hover {
+    transform: translateY(-5px); /* Efeito de hover */
+}
+
+/* Conteúdo do card */
+.motorista-info {
+    padding-left: 12px;
+    display: flex;
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    justify-content: space-between; /* Distribui espaço entre os elementos */
+    height: 100%; /* Garante que o card ocupe a altura total */
+}
+.motorista-image {
+    width: 80px; /* Tamanho do container da imagem */
+    height: 80px; /* Manter altura igual à largura para formato circular */
+    overflow: hidden; /* Esconde qualquer parte da imagem que transborde */
+    border-radius: 50%; /* Faz o container circular */
+    margin: 0 auto; /* Centraliza a imagem */
+    display: flex; /* Para centrar a imagem dentro do container */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.motorista-image-img {
+    width: auto; /* Mantém a largura automática para preservar a proporção */
+    height: 100%; /* Faz a imagem ocupar toda a altura do container */
+    max-height: 100%; /* Garante que a imagem não ultrapasse o container */
+    object-fit: cover; /* Ajusta a imagem para cobrir o container sem distorcer */
+}
+.motorista-cpf,
+.motorista-telefone {
+    font-size: 0.9em; /* Tamanho da fonte para CPF e Telefone */
+    color: #555; /* Cor mais clara */
+    margin: 5px 0; /* Margem entre os elementos */
+}
+.button-container {
+    display: flex; /* Usado para alinhar o botão à direita */
+    justify-content: flex-end; /* Alinha o botão à direita */
+}
+
+.remove-button {
+    margin-top: 10px; /* Espaço acima do botão */
+    padding: 8px 12px; /* Espaçamento interno do botão */
+    background-color: #e74c3c; /* Cor de fundo vermelha */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Borda arredondada */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    font-size: 14px; /* Tamanho da fonte */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.remove-button:hover {
+    background-color: #c0392b; /* Cor de fundo ao passar o mouse */
+}
+
+
