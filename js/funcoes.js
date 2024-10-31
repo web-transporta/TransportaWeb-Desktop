@@ -184,6 +184,22 @@ export async function getViagemByNome(id_viagem) {
         throw error; // Rejoga o erro para ser capturado onde a função é chamada
     }
 }
+export async function getMotoristaNome(nome) {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/motoristas/filtro?nome=${encodeURIComponent(nome)}`);
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar o motorista: ${response.statusText}`);
+        }
+
+        const data = await response.json(); // Pega o JSON completo
+        return data.motorista || []; // Retorna apenas o array 'motorista' ou um array vazio caso não exista
+    } catch (error) {
+        console.error("Erro ao obter motoristas:", error);
+        throw error; // Rejoga o erro para ser capturado onde a função é chamada
+    }
+}
+
+
 
 
 
