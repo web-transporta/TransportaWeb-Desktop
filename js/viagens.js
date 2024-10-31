@@ -174,8 +174,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    mostrarContainer();
-
     // Função para preencher os selects de veículos, partidas e destinos
     function preencherSelect(lista, selectElement, displayProperty) {
         lista.forEach(item => {
@@ -201,49 +199,69 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    /*********************
-        FUNÇÃO DE PESQUISA
-    **********************/
-   // Função de pesquisa
-const pesquisaInput = document.getElementById('pesquisa'); // Campo de pesquisa
-
-if (pesquisaInput) {
-    let pesquisaTimeout;
-
-    async function pesquisarViagem() {
-        const id_viagem = pesquisaInput.value.trim();
+    // Função para buscar viagens por ID
+    async function pesquisarViagem(id_viagem) {
         const containerCards = document.getElementById('container-cards');
-        
-        if (id_viagem.length === 11) { // Somente busca se tiver 11 caracteres
-            try {
-                const viagens = await getViagemByNome(id_viagem);
-                containerCards.innerHTML = ''; // Limpa o container
+        containerCards.innerHTML = ''; // Limpa o container
 
-                if (viagens.length > 0) {
-                    viagens.forEach(viagem => {
-                        const card = criarContainer(viagem);
-                        containerCards.appendChild(card);
-                    });
-                } else {
-                    await Swal.fire({
-                        title: 'Nenhuma viagem encontrada',
-                        text: 'Verifique o ID da viagem e tente novamente.',
-                        icon: 'info',
-                        confirmButtonText: 'OK',
-                    });
-                }
-            } catch (error) {
-                console.error('Erro ao obter viagens:', error);
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.className = 'loading-spinner'; // Classe CSS para estilizar o indicador de carregamento
+        loadingSpinner.textContent = 'Pesquisando viagens...';
+        containerCards.appendChild(loadingSpinner); // Exibe o indicador de carregamento
+
+        try {
+            const resultado = await getViagemByNome(id_viagem); // Chame a função para buscar viagens pelo ID
+            console.log("Resultado da pesquisa:", resultado); // Log da resposta
+
+            // Verifique se o resultado é um array e se não está vazio
+            const viagens = Array.isArray(resultado) && resultado.length > 0 ? resultado : []; // Altere aqui
+
+            if (viagens.length > 0) {
+                // Exibe todas as viagens encontradas
+                viagens.forEach(viagem => {
+                    const card = criarContainer(viagem); // Cria o card
+                    containerCards.appendChild(card); // Adiciona o card ao contêiner
+                });
+            } else {
+                await Swal.fire({
+                    title: 'Nenhuma viagem encontrada',
+                    text: 'Verifique o ID da viagem e tente novamente.',
+                    icon: 'info',
+                    confirmButtonText: 'OK',
+                });
             }
-        } else if (id_viagem.length === 0) {
-            // Se o campo estiver vazio, carrega todas as viagens
-            await mostrarContainer();
+        } catch (error) {
+            console.error('Erro ao obter viagens:', error);
+            await Swal.fire({
+                title: 'Erro ao buscar viagens',
+                text: 'Ocorreu um erro ao buscar as viagens. Tente novamente mais tarde.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        } finally {
+            containerCards.removeChild(loadingSpinner); // Remove o indicador de carregamento
         }
     }
 
-    pesquisaInput.addEventListener('input', () => {
-        clearTimeout(pesquisaTimeout);
-        pesquisaTimeout = setTimeout(pesquisarViagem, 300); // Chama a pesquisa após 300ms
-    });
+    // Event listener para a pesquisa
+    const pesquisaInput = document.getElementById('pesquisa'); 
+    console.log("Elemento de pesquisa encontrado:", pesquisaInput); 
+
+    if (pesquisaInput) {
+        let pesquisaTimeout;
+
+        pesquisaInput.addEventListener('input', () => {
+            clearTimeout(pesquisaTimeout);
+            pesquisaTimeout = setTimeout(async () => {
+                const id_viagem = pesquisaInput.value.trim();
+                console.log("ID da viagem pesquisado:", id_viagem); // Log do ID pesquisado
+                await pesquisarViagem(id_viagem); // Chama a função de pesquisa
+            }, 300); 
+        });
     }
+
+    // Chame a função para mostrar viagens ao carregar a página
+    await mostrarContainer(); // Adicione 'await' aqui para garantir que as viagens sejam mostradas
 });
+
+
