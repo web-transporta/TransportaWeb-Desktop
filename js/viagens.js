@@ -1,4 +1,4 @@
-import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas } from "./funcoes.js";
+import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome } from "./funcoes.js";
 
 /*********************
         MODAL
@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         ]);
 
         preencherSelect(caminhoes, idVeiculoSelect, "modelo");
-        preencherSelect(partidas, idPartidaSelect, "cep"); // Assumindo que `cep` representa o local de partida
-        preencherSelect(destinos, idDestinoSelect, "cep"); // Assumindo que `cep` representa o local de destino
+        preencherSelect(partidas, idPartidaSelect, "cep"); 
+        preencherSelect(destinos, idDestinoSelect, "cep"); 
         preencherSelectMotoristas(motoristas, idMotoristaSelect);
         
     } catch (error) {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             status_entregue: document.getElementById('status_entregue')?.value || '',
             id_partida: idPartidaSelect?.value || '',
             id_destino: idDestinoSelect?.value || '',
-            id_motorista: idMotoristaSelect?.value || null, // Permite valor null para motorista
+            id_motorista: idMotoristaSelect?.value || null, 
             id_veiculo: idVeiculoSelect?.value || '',
         };
 
@@ -196,8 +196,54 @@ document.addEventListener("DOMContentLoaded", async () => {
         motoristas.forEach(motorista => {
             const option = document.createElement('option');
             option.value = motorista.id;
-            option.textContent = motorista.nome; // Assumindo que `nome` é a propriedade desejada
+            option.textContent = motorista.nome; 
             selectElement.appendChild(option);
         });
+    }
+
+    /*********************
+        FUNÇÃO DE PESQUISA
+    **********************/
+   // Função de pesquisa
+const pesquisaInput = document.getElementById('pesquisa'); // Campo de pesquisa
+
+if (pesquisaInput) {
+    let pesquisaTimeout;
+
+    async function pesquisarViagem() {
+        const id_viagem = pesquisaInput.value.trim();
+        const containerCards = document.getElementById('container-cards');
+        
+        if (id_viagem.length === 11) { // Somente busca se tiver 11 caracteres
+            try {
+                const viagens = await getViagemByNome(id_viagem);
+                containerCards.innerHTML = ''; // Limpa o container
+
+                if (viagens.length > 0) {
+                    viagens.forEach(viagem => {
+                        const card = criarContainer(viagem);
+                        containerCards.appendChild(card);
+                    });
+                } else {
+                    await Swal.fire({
+                        title: 'Nenhuma viagem encontrada',
+                        text: 'Verifique o ID da viagem e tente novamente.',
+                        icon: 'info',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao obter viagens:', error);
+            }
+        } else if (id_viagem.length === 0) {
+            // Se o campo estiver vazio, carrega todas as viagens
+            await mostrarContainer();
+        }
+    }
+
+    pesquisaInput.addEventListener('input', () => {
+        clearTimeout(pesquisaTimeout);
+        pesquisaTimeout = setTimeout(pesquisarViagem, 300); // Chama a pesquisa após 300ms
+    });
     }
 });
