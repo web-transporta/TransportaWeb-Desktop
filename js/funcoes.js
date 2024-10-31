@@ -170,6 +170,21 @@ export async function getMotoristas() {
         return []; // Retorna um array vazio em caso de erro
     }
 }
+export async function getViagemByNome(id_viagem) {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/viagens/filtro?id_viagem=${encodeURIComponent(id_viagem)}`);
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar a viagem: ${response.statusText}`);
+        }
+        
+        const data = await response.json(); // Pega o JSON completo
+        return data.viagem || []; // Retorna apenas o array 'viagem' ou um array vazio caso não exista
+    } catch (error) {
+        console.error("Erro ao obter viagens:", error);
+        throw error; // Rejoga o erro para ser capturado onde a função é chamada
+    }
+}
+
 
 
 
