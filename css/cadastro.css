@@ -77,9 +77,9 @@ body {
     width: 30px; 
     height: 30px; 
     border-radius: 50%; 
-    border: 2px solid #D92727; /* Adiciona a borda vermelha */ 
-    color: #D92727; /* Cor do texto */ 
-    background-color: red; /* Fundo transparente */ 
+    border: 2px solid  var(--vermelho); /* Adiciona a borda vermelha */ 
+    color:  var(--vermelho); /* Cor do texto */ 
+    background-color:  var(--vermelho); /* Fundo transparente */ 
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -109,7 +109,7 @@ body {
     width: 50px; 
     height: 50px; 
     border-radius: 50%; 
-    border: 2px solid #ff0000; /* Adiciona a borda vermelha */ 
+    border: 2px solid  var(--vermelho); /* Adiciona a borda vermelha */ 
     background-color:rgba(9, 255, 0, 0);
     display: flex; 
     justify-content: center; 
