@@ -8,7 +8,7 @@ const App = () => {
       <header>
         <div className="header-container">
           <div className="logo">
-            <img src="./img/logo_sem_fundo.png" alt="Logo" height="80" />
+            <img src="../css/img/logo_sem_fundo.png" alt="Logo" height="80" />
             <h1></h1>
           </div>
           <div className="button-group">

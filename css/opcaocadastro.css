@@ -26,45 +26,58 @@ main {
 
 .button {
   width: 500px;
-  height: 280px; 
-  background-color:#D92727;
+  height: 200px; /* Altura ajustada para o novo layout */
+  background-color: #D92727;
   color: white;
   font-size: 20px;
   border: none; 
   border-radius: 18px;
   margin: 20px 50px; 
   display: flex;
-  flex-direction: column;
-  align-items: center; 
-  padding: 20px; 
-  text-align: center; 
-  text-decoration: none; 
+  flex-direction: row; /* Alinha o conteúdo em linha */
+  align-items: center; /* Alinha verticalmente o conteúdo */
+  padding: 20px;
+  text-align: left; 
+}
+
+.button-left {
+  flex: 0.7; /* O texto ocupa 70% do espaço */
+  padding-right: 20px;
+}
+
+.button-right {
+  flex: 0.3; /* A imagem ocupa 30% do espaço */
 }
 
 .button-icon { 
-  width: 80px; 
-  height: auto; 
-  margin-top: 10px; 
+  width: 100%;  /* A imagem ocupa toda a largura disponível */
+  height: auto; /* Ajusta a altura automaticamente para manter a proporção */
+  object-fit: cover; /* A imagem será cortada ou ajustada para cobrir o espaço sem distorcer */
 }
 
 .button h1 {
-  padding: 12px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: italic;
-  text-align: center;
-  text-decoration: none;
+  text-align: left;
+  margin: 0;
 }
 
 .button p {
-  display: flex;
-  justify-content: center;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: italic;
-  margin-left: 3%;
-  margin-right: 3%;
-  text-decoration: none; 
+  margin-top: 5px;
+  text-align: left;
+}
+
+.button a {
+  text-decoration: none; /* Remove a sublinha de links */
+}
+
+.button a:focus {
+  outline: none; /* Remove a borda azul quando o link está em foco */
+  box-shadow: none; /* Remove qualquer sombra ou borda adicional que apareça no foco */
 }
 
 .button:hover {

@@ -104,7 +104,7 @@ body {
 }
 
 .background-header {
-    background-image: url('img/fundo_com_letras.PNG');
+    background-image: url('../css/img/fundo_com_letras.PNG');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
