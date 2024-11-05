@@ -89,8 +89,8 @@ body {
 }
 
 /* Estilo para o modal */
+.modal-contentt,
 .modal,
-
 .detalhesModal {
     background-color: #fff; /* Fundo branco */
     padding: 20px; /* Espaçamento interno */
@@ -303,4 +303,25 @@ h2 {
 #detalhesViagem {
     font-size: 16px; /* Tamanho da fonte para detalhes */
     line-height: 1.5; /* Espaçamento entre linhas */
+}
+/* Estilo para o botão "Editar" */
+#editButton {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+#editButton:hover {
+    background-color: #45a049; /* Tom mais escuro quando o mouse passa */
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+/* Estilo para o botão "Excluir" */
+#deleteButton {
+    background-color: #e74c3c; /* Vermelho */
+    color: white;
+}
+
+#deleteButton:hover {
+    background-color: #c0392b; /* Tom mais escuro quando o mouse passa */
+    transform: translateY(-2px); /* Efeito de elevação */
 }

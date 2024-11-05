@@ -198,11 +198,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function mostrarContainer() {
         const containerCards = document.getElementById('container-cards');
         containerCards.innerHTML = ''; // Limpa o container
-    
+
         const loadingMessage = document.createElement('div');
         loadingMessage.className = 'loading-message'; // Classe CSS para estilizar a mensagem de carregamento
         loadingMessage.textContent = 'Carregando viagens...';
-    
+
         // Estilizando a mensagem de carregamento
         loadingMessage.style.position = 'absolute';
         loadingMessage.style.top = '50%';
@@ -211,13 +211,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         loadingMessage.style.fontSize = '18px'; // Tamanho da fonte
         loadingMessage.style.color = '#333'; // Cor do texto
         loadingMessage.style.zIndex = '1000'; // Certifique-se de que fique acima de outros elementos
-    
+
         containerCards.appendChild(loadingMessage); // Exibe a mensagem de carregamento
-    
+
         try {
             const viagens = await getViagens();
             containerCards.removeChild(loadingMessage); // Remove a mensagem de carregamento
-    
+
             viagens.forEach(viagem => {
                 const card = criarContainer(viagem);
                 containerCards.appendChild(card);
@@ -229,6 +229,83 @@ document.addEventListener("DOMContentLoaded", async () => {
             errorMessage.textContent = 'Erro ao carregar as viagens. Tente novamente.';
             containerCards.appendChild(errorMessage);
         }
+    }
+
+    /*********************
+        PESQUISA DE VIAGEM
+    **********************/
+    async function pesquisarViagem(id_viagem) {
+        const containerCards = document.getElementById('container-cards');
+        containerCards.innerHTML = ''; // Limpa o container
+
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.className = 'loading-message'; // Classe CSS para estilizar a mensagem de carregamento
+        loadingSpinner.textContent = 'Pesquisando viagens...';
+
+        // Estilizando a mensagem de carregamento
+        loadingSpinner.style.position = 'absolute';
+        loadingSpinner.style.top = '50%';
+        loadingSpinner.style.left = '50%';
+        loadingSpinner.style.transform = 'translate(-50%, -50%)';
+        loadingSpinner.style.fontSize = '18px'; // Tamanho da fonte
+        loadingSpinner.style.color = '#333'; // Cor do texto
+        loadingSpinner.style.zIndex = '1000'; // Certifique-se de que fique acima de outros elementos
+
+        containerCards.appendChild(loadingSpinner); // Exibe a mensagem de carregamento
+
+        try {
+            const resultado = await getViagemByNome(id_viagem); // Chama a função para buscar viagens pelo ID
+            console.log("Resultado da pesquisa:", resultado); // Log da resposta
+
+            const viagens = Array.isArray(resultado) && resultado.length > 0 ? resultado : []; // Altera aqui
+
+            if (viagens.length > 0) {
+                viagens.forEach(viagem => {
+                    const card = criarContainer(viagem);
+                    containerCards.appendChild(card);
+                });
+            } else {
+                await Swal.fire({
+                    title: 'Nenhuma viagem encontrada',
+                    text: 'Verifique o ID da viagem e tente novamente.',
+                    icon: 'info',
+                    confirmButtonText: 'OK',
+                });
+            }
+        } catch (error) {
+            console.error('Erro ao obter viagens:', error);
+            await Swal.fire({
+                title: 'Erro ao buscar viagens',
+                text: 'Ocorreu um erro ao buscar as viagens. Tente novamente mais tarde.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        } finally {
+            containerCards.removeChild(loadingSpinner); // Remove o indicador de carregamento
+        }
+    }
+
+    // Event listener para a pesquisa
+    const pesquisaInput = document.getElementById('pesquisa');
+    console.log("Elemento de pesquisa encontrado:", pesquisaInput);
+
+    if (pesquisaInput) {
+        let pesquisaTimeout;
+
+        pesquisaInput.addEventListener('input', () => {
+            clearTimeout(pesquisaTimeout);
+            pesquisaTimeout = setTimeout(async () => {
+                const id_viagem = pesquisaInput.value.trim();
+                console.log("ID da viagem pesquisado:", id_viagem); // Log do ID pesquisado
+
+                if (id_viagem === '') {
+                    // Se o input estiver vazio, recarregue todas as viagens
+                    await mostrarContainer();
+                } else {
+                    await pesquisarViagem(id_viagem); // Chama a função de pesquisa
+                }
+            }, 300); 
+        });
     }
 
     // Chame a função para carregar as viagens ao iniciar
