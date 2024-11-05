@@ -9,6 +9,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -109,7 +110,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     height: 80vh;
-    width: 100%;
+    width: auto;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

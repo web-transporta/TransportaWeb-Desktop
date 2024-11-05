@@ -28,7 +28,7 @@ body {
 }
 
 .profile-container .name {
-    color: red;
+    color: var(--vermelho);
 }
 
 .button-group {
@@ -51,7 +51,7 @@ body {
 }
 
 #openModal {
-    background-color: #D92727;
+    background-color: var(--vermelho);
     margin-right: 20px;
     color: white;
     border: none;
@@ -68,12 +68,12 @@ body {
     background-color: #aa0c0c;
 }
 .motoristas{
-    color: red;
+    color: var(--vermelho);
     text-decoration: underline;
 }
 
 .control-section {
-    background-color: #d32f2f;
+    background-color: var(--vermelho);
     color: white;
     padding: 40px;
     text-align: left;
@@ -90,16 +90,23 @@ body {
 }
 
 .control-section h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 32px; 
+    font-weight: 800; 
+    color: var(--branco); 
+
 }
 .control-section p {
     font-size: 16px;
     max-width: 500px;
+    font-weight: 300; 
 }
 
 .illustration img {
-    width: 200px;
+    width: 400px;
+    height: auto;
+    margin-bottom: -46px;
+    margin-right: -40px;
+
 }
 
 /* Estilos para o fundo do modal */
@@ -348,7 +355,7 @@ body {
 .remove-button {
     margin-top: 10px; /* Espaço acima do botão */
     padding: 8px 12px; /* Espaçamento interno do botão */
-    background-color: #e74c3c; /* Cor de fundo vermelha */
+    background-color: var(--vermelho); /* Cor de fundo vermelha */
     color: white; /* Cor do texto */
     border: none; /* Remove a borda padrão */
     border-radius: 4px; /* Borda arredondada */
