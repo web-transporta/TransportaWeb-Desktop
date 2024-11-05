@@ -1,4 +1,4 @@
-import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome } from "./funcoes.js";
+import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById } from "./funcoes.js";
 
 /*********************
         MODAL
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         ]);
 
         preencherSelect(caminhoes, idVeiculoSelect, "modelo");
-        preencherSelect(partidas, idPartidaSelect, "cep"); 
-        preencherSelect(destinos, idDestinoSelect, "cep"); 
+        preencherSelect(partidas, idPartidaSelect, "cep");
+        preencherSelect(destinos, idDestinoSelect, "cep");
         preencherSelectMotoristas(motoristas, idMotoristaSelect);
-        
+
     } catch (error) {
         console.error("Erro ao carregar dados:", error);
     }
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             status_entregue: document.getElementById('status_entregue')?.value || '',
             id_partida: idPartidaSelect?.value || '',
             id_destino: idDestinoSelect?.value || '',
-            id_motorista: idMotoristaSelect?.value || null, 
+            id_motorista: idMotoristaSelect?.value || null,
             id_veiculo: idVeiculoSelect?.value || '',
         };
 
@@ -115,85 +115,121 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     /*********************
-        MODAL DE DETALHES DA VIAGEM
+        MODAL DE DETALHES DA VIAGEMa
     **********************/
     const modalDetalhes = document.getElementById('modalDetalhes');
     const closeModalDetalhes = document.getElementById('closeModalDetalhes');
-
-    // Função para exibir detalhes da viagem no modal
-    const mostrarDetalhesViagem = (viagem) => {
-        const detalhesViagem = document.getElementById('detalhesViagem');
-        detalhesViagem.innerHTML = `
-            <p><strong>ID Viagem:</strong> ${viagem.id_viagem}</p>
-            <p><strong>Remetente:</strong> ${viagem.remetente}</p>
-            <p><strong>Destinatário:</strong> ${viagem.destinatario}</p>
-            <p><strong>Data de Partida:</strong> ${new Date(viagem.dia_partida).toLocaleDateString()}</p>
-            <p><strong>Horário de Partida:</strong> ${viagem.horario_partida}</p>
-            <p><strong>Status Entregue:</strong> ${viagem.status_entregue}</p>
-            <p><strong>ID Partida:</strong> ${viagem.id_partida}</p>
-            <p><strong>ID Destino:</strong> ${viagem.id_destino}</p>
-            <p><strong>ID Motorista:</strong> ${viagem.id_motorista}</p>
-            <p><strong>ID Veículo:</strong> ${viagem.id_veiculo}</p>
-        `;
-        modalDetalhes.style.display = 'block'; // Exibe o modal
-    };
-
+    async function mostrarDetalhesViagem(id_viagem) {
+        try {
+            // Requisição para buscar os detalhes da viagem pelo id_viagem
+            const viagemArray = await getViagemByNome(id_viagem);
+            
+            // A resposta é um array, então vamos pegar o primeiro item
+            const viagem = viagemArray && viagemArray[0];
+    
+            if (!viagem) {
+                throw new Error('Viagem não encontrada');
+            }
+    
+            // Requisições para obter detalhes de partida, destino, motorista e veículo
+            const partidaResponse = await getPartidaById(viagem.id_partida);
+            const destinoResponse = await getDestinoById(viagem.id_destino);
+            const motoristaResponse = await getMotorista(viagem.id_motorista);
+            const veiculoResponse = await getVeiculoById(viagem.id_veiculo);
+    
+            // Garantir que a estrutura da resposta seja a esperada
+            const partida = partidaResponse && partidaResponse[0]; // Acessando o primeiro item
+            const destino = destinoResponse && destinoResponse[0]; // Acessando o primeiro item
+            const motorista = motoristaResponse && motoristaResponse[0]; // Acessando o primeiro item
+            const veiculo = veiculoResponse && veiculoResponse[0]; // Acessando o primeiro item
+    
+            // Preencher os dados no modal de detalhes
+            const detalhesViagem = document.getElementById('detalhesViagem');
+            detalhesViagem.innerHTML = `
+                <p><strong>ID Viagem:</strong> ${viagem.id_viagem}</p>
+                <p><strong>Remetente:</strong> ${viagem.remetente}</p>
+                <p><strong>Destinatário:</strong> ${viagem.destinatario}</p>
+                <p><strong>Data de Partida:</strong> ${new Date(viagem.dia_partida).toLocaleDateString()}</p>
+                <p><strong>Horário de Partida:</strong> ${new Date(viagem.horario_partida).toLocaleTimeString()}</p>
+                <p><strong>Status Entregue:</strong> ${viagem.status_entregue ? 'Entregue' : 'Não Entregue'}</p>
+                <p><strong>Partida (CEP):</strong> ${partida && partida.cep ? partida.cep : 'Não encontrado'}</p>
+                <p><strong>Destino (CEP):</strong> ${destino && destino.cep ? destino.cep : 'Não encontrado'}</p>
+                <p><strong>Motorista:</strong> ${motorista && motorista.nome ? motorista.nome : 'Não encontrado'}</p>
+                <p><strong>Veículo:</strong> ${veiculo && veiculo.modelo ? veiculo.modelo : 'Não encontrado'}</p>
+            `;
+    
+            // Exibe o modal
+            modalDetalhes.style.display = 'flex'; // Torna o modal visível
+    
+        } catch (error) {
+            console.error("Erro ao carregar a viagem:", error);
+            Swal.fire({
+                title: 'Erro!',
+                text: 'Não foi possível carregar os detalhes da viagem. Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        }
+    }
+    
     // Fechar o modal de detalhes
     closeModalDetalhes.onclick = () => {
-        modalDetalhes.style.display = 'none';
+        modalDetalhes.style.display = 'none'; // Esconde o modal
     };
 
     window.onclick = (event) => {
         if (event.target === modalDetalhes) {
-            modalDetalhes.style.display = 'none';
+            modalDetalhes.style.display = 'none'; // Fecha o modal se clicar fora
         }
     };
 
     /*********************
         CARDS DE VIAGENS
     **********************/
-    const criarContainer = (viagem) => {
-        const referenciar = document.createElement('button');
-        referenciar.className = '';
-        referenciar.onclick = () => mostrarDetalhesViagem(viagem); // Adiciona o evento de clique
-
-        const container = document.createElement('div');
-        container.className = 'trip-card';
-        const cardContent = document.createElement('div');
-        cardContent.className = 'trip-info';
-
-        const id_viagem = document.createElement('h1');
-        id_viagem.className = 'trip-title';
-        id_viagem.textContent = viagem.id_viagem;
-
-        const remetente = document.createElement('p');
-        remetente.className = 'trip-remetente';
-        remetente.textContent = `Remetente: ${viagem.remetente}`;
-
-        const destinatario = document.createElement('p');
-        destinatario.className = 'trip-destinatario';
-        destinatario.textContent = `Destinatário: ${viagem.destinatario}`;
-
-        const data_partida = new Date(viagem.dia_partida);
-        const formattedDate = data_partida.toISOString().split('T')[0];
-        const data_partida_paragraph = document.createElement('p');
-        data_partida_paragraph.className = 'trip-data';
-        data_partida_paragraph.textContent = `Data: ${formattedDate || 'N/A'}`;
-
-        cardContent.append(id_viagem, remetente, destinatario, data_partida_paragraph);
-
-        const imageContainer = document.createElement('div');
-        imageContainer.className = 'trip-image';
-        const image = document.createElement('img');
-        image.src = viagem.image || '../css/img/caixa.png.png';
-        image.alt = 'Imagem do caminhão';
-        image.className = 'trip-image-img';
-        imageContainer.appendChild(image);
-
-        container.append(cardContent, imageContainer);
-        referenciar.appendChild(container);
-        return referenciar;
-    };
+        const criarContainer = (viagem) => {
+            const referenciar = document.createElement('button');
+            referenciar.className = '';
+            // Passa o id_viagem ao clicar no card
+            referenciar.onclick = () => mostrarDetalhesViagem(viagem.id_viagem); // Passando o id_viagem para a função
+        
+            const container = document.createElement('div');
+            container.className = 'trip-card';
+            const cardContent = document.createElement('div');
+            cardContent.className = 'trip-info';
+        
+            const id_viagem = document.createElement('h1');
+            id_viagem.className = 'trip-title';
+            id_viagem.textContent = viagem.id_viagem;
+        
+            const remetente = document.createElement('p');
+            remetente.className = 'trip-remetente';
+            remetente.textContent = `Remetente: ${viagem.remetente}`;
+        
+            const destinatario = document.createElement('p');
+            destinatario.className = 'trip-destinatario';
+            destinatario.textContent = `Destinatário: ${viagem.destinatario}`;
+        
+            const data_partida = new Date(viagem.dia_partida);
+            const formattedDate = data_partida.toISOString().split('T')[0];
+            const data_partida_paragraph = document.createElement('p');
+            data_partida_paragraph.className = 'trip-data';
+            data_partida_paragraph.textContent = `Data: ${formattedDate || 'N/A'}`;
+        
+            cardContent.append(id_viagem, remetente, destinatario, data_partida_paragraph);
+        
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'trip-image';
+            const image = document.createElement('img');
+            image.src = viagem.image || '../css/img/caixa.png.png';
+            image.alt = 'Imagem do caminhão';
+            image.className = 'trip-image-img';
+            imageContainer.appendChild(image);
+        
+            container.append(cardContent, imageContainer);
+            referenciar.appendChild(container);
+            return referenciar;
+        };
+        
 
     async function mostrarContainer() {
         const containerCards = document.getElementById('container-cards');
@@ -230,85 +266,82 @@ document.addEventListener("DOMContentLoaded", async () => {
             containerCards.appendChild(errorMessage);
         }
     }
-
-    /*********************
+     /*********************
         PESQUISA DE VIAGEM
     **********************/
-    async function pesquisarViagem(id_viagem) {
-        const containerCards = document.getElementById('container-cards');
-        containerCards.innerHTML = ''; // Limpa o container
-
-        const loadingSpinner = document.createElement('div');
-        loadingSpinner.className = 'loading-message'; // Classe CSS para estilizar a mensagem de carregamento
-        loadingSpinner.textContent = 'Pesquisando viagens...';
-
-        // Estilizando a mensagem de carregamento
-        loadingSpinner.style.position = 'absolute';
-        loadingSpinner.style.top = '50%';
-        loadingSpinner.style.left = '50%';
-        loadingSpinner.style.transform = 'translate(-50%, -50%)';
-        loadingSpinner.style.fontSize = '18px'; // Tamanho da fonte
-        loadingSpinner.style.color = '#333'; // Cor do texto
-        loadingSpinner.style.zIndex = '1000'; // Certifique-se de que fique acima de outros elementos
-
-        containerCards.appendChild(loadingSpinner); // Exibe a mensagem de carregamento
-
-        try {
-            const resultado = await getViagemByNome(id_viagem); // Chama a função para buscar viagens pelo ID
-            console.log("Resultado da pesquisa:", resultado); // Log da resposta
-
-            const viagens = Array.isArray(resultado) && resultado.length > 0 ? resultado : []; // Altera aqui
-
-            if (viagens.length > 0) {
-                viagens.forEach(viagem => {
-                    const card = criarContainer(viagem);
-                    containerCards.appendChild(card);
-                });
-            } else {
+        async function pesquisarViagem(id_viagem) {
+            const containerCards = document.getElementById('container-cards');
+            containerCards.innerHTML = ''; // Limpa o container
+    
+            const loadingSpinner = document.createElement('div');
+            loadingSpinner.className = 'loading-message'; // Classe CSS para estilizar a mensagem de carregamento
+            loadingSpinner.textContent = 'Pesquisando viagens...';
+    
+            // Estilizando a mensagem de carregamento
+            loadingSpinner.style.position = 'absolute';
+            loadingSpinner.style.top = '50%';
+            loadingSpinner.style.left = '50%';
+            loadingSpinner.style.transform = 'translate(-50%, -50%)';
+            loadingSpinner.style.fontSize = '18px'; // Tamanho da fonte
+            loadingSpinner.style.color = '#333'; // Cor do texto
+            loadingSpinner.style.zIndex = '1000'; // Certifique-se de que fique acima de outros elementos
+    
+            containerCards.appendChild(loadingSpinner); // Exibe a mensagem de carregamento
+    
+            try {
+                const resultado = await getViagemByNome(id_viagem); // Chama a função para buscar viagens pelo ID
+                console.log("Resultado da pesquisa:", resultado); // Log da resposta
+    
+                const viagens = Array.isArray(resultado) && resultado.length > 0 ? resultado : []; // Altera aqui
+    
+                if (viagens.length > 0) {
+                    viagens.forEach(viagem => {
+                        const card = criarContainer(viagem);
+                        containerCards.appendChild(card);
+                    });
+                } else {
+                    await Swal.fire({
+                        title: 'Nenhuma viagem encontrada',
+                        text: 'Verifique o ID da viagem e tente novamente.',
+                        icon: 'info',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao obter viagens:', error);
                 await Swal.fire({
-                    title: 'Nenhuma viagem encontrada',
-                    text: 'Verifique o ID da viagem e tente novamente.',
-                    icon: 'info',
+                    title: 'Erro ao buscar viagens',
+                    text: 'Ocorreu um erro ao buscar as viagens. Tente novamente mais tarde.',
+                    icon: 'error',
                     confirmButtonText: 'OK',
                 });
+            } finally {
+                containerCards.removeChild(loadingSpinner); // Remove o indicador de carregamento
             }
-        } catch (error) {
-            console.error('Erro ao obter viagens:', error);
-            await Swal.fire({
-                title: 'Erro ao buscar viagens',
-                text: 'Ocorreu um erro ao buscar as viagens. Tente novamente mais tarde.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-        } finally {
-            containerCards.removeChild(loadingSpinner); // Remove o indicador de carregamento
         }
-    }
-
-    // Event listener para a pesquisa
-    const pesquisaInput = document.getElementById('pesquisa');
-    console.log("Elemento de pesquisa encontrado:", pesquisaInput);
-
-    if (pesquisaInput) {
-        let pesquisaTimeout;
-
-        pesquisaInput.addEventListener('input', () => {
-            clearTimeout(pesquisaTimeout);
-            pesquisaTimeout = setTimeout(async () => {
-                const id_viagem = pesquisaInput.value.trim();
-                console.log("ID da viagem pesquisado:", id_viagem); // Log do ID pesquisado
-
-                if (id_viagem === '') {
-                    // Se o input estiver vazio, recarregue todas as viagens
-                    await mostrarContainer();
-                } else {
-                    await pesquisarViagem(id_viagem); // Chama a função de pesquisa
-                }
-            }, 300); 
-        });
-    }
-
-    // Chame a função para carregar as viagens ao iniciar
+    
+        // Event listener para a pesquisa
+        const pesquisaInput = document.getElementById('pesquisa');
+        console.log("Elemento de pesquisa encontrado:", pesquisaInput);
+    
+        if (pesquisaInput) {
+            let pesquisaTimeout;
+    
+            pesquisaInput.addEventListener('input', () => {
+                clearTimeout(pesquisaTimeout);
+                pesquisaTimeout = setTimeout(async () => {
+                    const id_viagem = pesquisaInput.value.trim();
+                    console.log("ID da viagem pesquisado:", id_viagem); // Log do ID pesquisado
+    
+                    if (id_viagem === '') {
+                        // Se o input estiver vazio, recarregue todas as viagens
+                        await mostrarContainer();
+                    } else {
+                        await pesquisarViagem(id_viagem); // Chama a função de pesquisa
+                    }
+                }, 300); 
+            });
+        }
     mostrarContainer();
 });
 

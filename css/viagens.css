@@ -73,6 +73,7 @@ body {
     text-decoration: underline;
 }
 
+
 /* Estilo para o fundo do modal */
 #modalBackground,
 #detalhesModalBackground {
@@ -89,7 +90,40 @@ body {
 }
 
 /* Estilo para o modal */
-.modal-contentt,
+/* Centraliza o modal na tela */
+#modalDetalhes {
+    display: flex; /* Usar Flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    position: fixed; /* Fixa o modal na tela */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    z-index: 9999; /* Garante que o modal fique no topo */
+    padding: 20px; /* Espaçamento nas bordas da tela */
+}
+
+.modal-contentt {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 800px; /* Largura máxima */
+    width: 500px; /* Responsivo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao redor do modal */
+    overflow-y: auto; /* Permite rolagem se o conteúdo for maior que o modal */
+}
+
+/* Se você quiser também centralizar os parágrafos e outros elementos do conteúdo */
+.modal-contentt p {
+    text-align: center; /* Deixe o texto alinhado à esquerda (ajustável caso queira centralizado também) */
+    margin: 10px 0; /* Espaçamento entre os parágrafos */
+}
+
+
 .modal,
 .detalhesModal {
     background-color: #fff; /* Fundo branco */

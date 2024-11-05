@@ -98,7 +98,7 @@ export async function postViagem(insert) {
 
 
 export async function getMotorista(id) {
-    const url = `https://crud-03-09.onrender.com/v1/transportaweb/motoristas/${id}` 
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/motorista/${id}` 
     const response = await fetch(url)
     const data = await response.json()
     return data.motorista    
@@ -125,6 +125,12 @@ export async function getVeiculos() {
         return []; // Retorna um array vazio em caso de erro
     }
 }
+export async function getVeiculoById(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/veiculo/${id}` 
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.motorista    
+}
 export async function getPartida() {
     try {
         const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/partidas`);
@@ -139,6 +145,18 @@ export async function getPartida() {
         console.error("Erro de rede ao obter caminhões:", error);
         return []; // Retorna um array vazio em caso de erro
     }
+}
+export async function getPartidaById(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/partida/${id}` 
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.partida    
+}
+export async function getDestinoById(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/destino/${id}` 
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.partida    
 }
 export async function getDestino() {
     try {
