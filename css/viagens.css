@@ -246,3 +246,63 @@ body {
 .nao-entregue {
     background-color: #D92727; /* Vermelho para nÃ£o entregues */
 }
+
+/* Estilos para o modal de detalhes da viagem */
+#modalDetalhesViagem {
+    display: none; /* Inicialmente escondido */
+    position: fixed; /* Fixa o modal na tela */
+    top: 50%; /* Centraliza o modal na vertical */
+    left: 50%; /* Centraliza o modal na horizontal */
+    transform: translate(-50%, -50%); /* Ajusta o modal para centralizar perfeitamente */
+    z-index: 1000; /* Garante que o modal fique sobre os outros elementos */
+    width: 90%; /* Largura do modal, ajustável conforme necessário */
+    max-width: 600px; /* Largura máxima do modal */
+    background-color: transparent; /* Remove o fundo branco do modal */
+    
+}
+
+/* Estilos para o conteúdo do modal */
+#modalDetalhesViagem .modal-contentt {
+    background-color: #fff; /* Cor de fundo branco para o conteúdo */
+    padding: 20px;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    
+}
+
+/* Estilos para os títulos e textos dentro do modal */
+#modalDetalhesViagem h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#modalDetalhesViagem p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Estilos para os botões */
+#modalDetalhesViagem button {
+    background-color: #aa0c0c; /* Cor de fundo azul */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#modalDetalhesViagem button:hover {
+    background-color: green; /* Cor de fundo quando o botão é hover */
+}
+
+/* Estilos para o botão de fechar */
+#fecharModalBtn {
+    background-color: #dc3545; /* Cor de fundo vermelho */
+}
+
+#fecharModalBtn:hover {
+    background-color: #c82333; /* Cor de fundo quando o botão de fechar é hover */
+}
