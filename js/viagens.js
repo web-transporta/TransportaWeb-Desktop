@@ -115,11 +115,47 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     /*********************
+        MODAL DE DETALHES DA VIAGEM
+    **********************/
+    const modalDetalhes = document.getElementById('modalDetalhes');
+    const closeModalDetalhes = document.getElementById('closeModalDetalhes');
+
+    // Função para exibir detalhes da viagem no modal
+    const mostrarDetalhesViagem = (viagem) => {
+        const detalhesViagem = document.getElementById('detalhesViagem');
+        detalhesViagem.innerHTML = `
+            <p><strong>ID Viagem:</strong> ${viagem.id_viagem}</p>
+            <p><strong>Remetente:</strong> ${viagem.remetente}</p>
+            <p><strong>Destinatário:</strong> ${viagem.destinatario}</p>
+            <p><strong>Data de Partida:</strong> ${new Date(viagem.dia_partida).toLocaleDateString()}</p>
+            <p><strong>Horário de Partida:</strong> ${viagem.horario_partida}</p>
+            <p><strong>Status Entregue:</strong> ${viagem.status_entregue}</p>
+            <p><strong>ID Partida:</strong> ${viagem.id_partida}</p>
+            <p><strong>ID Destino:</strong> ${viagem.id_destino}</p>
+            <p><strong>ID Motorista:</strong> ${viagem.id_motorista}</p>
+            <p><strong>ID Veículo:</strong> ${viagem.id_veiculo}</p>
+        `;
+        modalDetalhes.style.display = 'block'; // Exibe o modal
+    };
+
+    // Fechar o modal de detalhes
+    closeModalDetalhes.onclick = () => {
+        modalDetalhes.style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+        if (event.target === modalDetalhes) {
+            modalDetalhes.style.display = 'none';
+        }
+    };
+
+    /*********************
         CARDS DE VIAGENS
     **********************/
     const criarContainer = (viagem) => {
         const referenciar = document.createElement('button');
         referenciar.className = '';
+        referenciar.onclick = () => mostrarDetalhesViagem(viagem); // Adiciona o evento de clique
 
         const container = document.createElement('div');
         container.className = 'trip-card';
@@ -162,11 +198,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function mostrarContainer() {
         const containerCards = document.getElementById('container-cards');
         containerCards.innerHTML = ''; // Limpa o container
-    
+
         const loadingMessage = document.createElement('div');
         loadingMessage.className = 'loading-message'; // Classe CSS para estilizar a mensagem de carregamento
         loadingMessage.textContent = 'Carregando viagens...';
-    
+
         // Estilizando a mensagem de carregamento
         loadingMessage.style.position = 'absolute';
         loadingMessage.style.top = '50%';
@@ -175,63 +211,37 @@ document.addEventListener("DOMContentLoaded", async () => {
         loadingMessage.style.fontSize = '18px'; // Tamanho da fonte
         loadingMessage.style.color = '#333'; // Cor do texto
         loadingMessage.style.zIndex = '1000'; // Certifique-se de que fique acima de outros elementos
-    
+
         containerCards.appendChild(loadingMessage); // Exibe a mensagem de carregamento
-    
+
         try {
             const viagens = await getViagens();
+            containerCards.removeChild(loadingMessage); // Remove a mensagem de carregamento
+
             viagens.forEach(viagem => {
                 const card = criarContainer(viagem);
                 containerCards.appendChild(card);
             });
         } catch (error) {
-            console.error('Erro ao carregar viagens:', error);
-            await Swal.fire({
-                title: 'Erro ao carregar viagens',
-                text: 'Ocorreu um erro ao carregar as viagens. Tente novamente mais tarde.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-        } finally {
-            // Remove a mensagem de carregamento
-            containerCards.removeChild(loadingMessage);
+            console.error("Erro ao carregar viagens:", error);
+            containerCards.removeChild(loadingMessage); // Remove a mensagem de carregamento em caso de erro
+            const errorMessage = document.createElement('div');
+            errorMessage.textContent = 'Erro ao carregar as viagens. Tente novamente.';
+            containerCards.appendChild(errorMessage);
         }
     }
-    
-    
-    // Função para preencher os selects de veículos, partidas e destinos
-    function preencherSelect(lista, selectElement, displayProperty) {
-        lista.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.id;
-            option.textContent = item[displayProperty];
-            selectElement.appendChild(option);
-        });
-    }
 
-    // Função específica para preencher o select de motoristas com opção "Nenhum motorista"
-    function preencherSelectMotoristas(motoristas, selectElement) {
-        const noMotoristaOption = document.createElement('option');
-        noMotoristaOption.value = null;
-        noMotoristaOption.textContent = "Nenhum motorista";
-        selectElement.appendChild(noMotoristaOption);
-
-        motoristas.forEach(motorista => {
-            const option = document.createElement('option');
-            option.value = motorista.id;
-            option.textContent = motorista.nome; 
-            selectElement.appendChild(option);
-        });
-    }
-
+    /*********************
+        PESQUISA DE VIAGEM
+    **********************/
     async function pesquisarViagem(id_viagem) {
         const containerCards = document.getElementById('container-cards');
         containerCards.innerHTML = ''; // Limpa o container
-    
+
         const loadingSpinner = document.createElement('div');
         loadingSpinner.className = 'loading-message'; // Classe CSS para estilizar a mensagem de carregamento
         loadingSpinner.textContent = 'Pesquisando viagens...';
-    
+
         // Estilizando a mensagem de carregamento
         loadingSpinner.style.position = 'absolute';
         loadingSpinner.style.top = '50%';
@@ -240,15 +250,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         loadingSpinner.style.fontSize = '18px'; // Tamanho da fonte
         loadingSpinner.style.color = '#333'; // Cor do texto
         loadingSpinner.style.zIndex = '1000'; // Certifique-se de que fique acima de outros elementos
-    
+
         containerCards.appendChild(loadingSpinner); // Exibe a mensagem de carregamento
-    
+
         try {
-            const resultado = await getViagemByNome(id_viagem); // Chame a função para buscar viagens pelo ID
+            const resultado = await getViagemByNome(id_viagem); // Chama a função para buscar viagens pelo ID
             console.log("Resultado da pesquisa:", resultado); // Log da resposta
-    
+
             const viagens = Array.isArray(resultado) && resultado.length > 0 ? resultado : []; // Altera aqui
-    
+
             if (viagens.length > 0) {
                 viagens.forEach(viagem => {
                     const card = criarContainer(viagem);
@@ -274,20 +284,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             containerCards.removeChild(loadingSpinner); // Remove o indicador de carregamento
         }
     }
-    
+
     // Event listener para a pesquisa
-    const pesquisaInput = document.getElementById('pesquisa'); 
-    console.log("Elemento de pesquisa encontrado:", pesquisaInput); 
-    
+    const pesquisaInput = document.getElementById('pesquisa');
+    console.log("Elemento de pesquisa encontrado:", pesquisaInput);
+
     if (pesquisaInput) {
         let pesquisaTimeout;
-    
+
         pesquisaInput.addEventListener('input', () => {
             clearTimeout(pesquisaTimeout);
             pesquisaTimeout = setTimeout(async () => {
                 const id_viagem = pesquisaInput.value.trim();
                 console.log("ID da viagem pesquisado:", id_viagem); // Log do ID pesquisado
-                
+
                 if (id_viagem === '') {
                     // Se o input estiver vazio, recarregue todas as viagens
                     await mostrarContainer();
@@ -297,10 +307,25 @@ document.addEventListener("DOMContentLoaded", async () => {
             }, 300); 
         });
     }
-    
 
-    // Chame a função para mostrar viagens ao carregar a página
-    await mostrarContainer(); // Adicione 'await' aqui para garantir que as viagens sejam mostradas
+    // Chame a função para carregar as viagens ao iniciar
+    mostrarContainer();
 });
 
+function preencherSelect(transportes, selectElement, valueField) {
+    transportes.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.id || item[valueField];
+        option.textContent = item[valueField];
+        selectElement.appendChild(option);
+    });
+}
 
+function preencherSelectMotoristas(motoristas, selectElement) {
+    motoristas.forEach(motorista => {
+        const option = document.createElement('option');
+        option.value = motorista.id_motorista;
+        option.textContent = motorista.nome;
+        selectElement.appendChild(option);
+    });
+}
