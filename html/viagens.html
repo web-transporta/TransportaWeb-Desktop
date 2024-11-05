@@ -116,27 +116,12 @@
         <div class="container-cards" id="container-cards">
         
         </div>
-      <!-- Modal para detalhes da viagem -->
-<div id="modalDetalhesViagem" class="modall" style="display: none;">
-    <div class="modal-contentt">
-        <h2 id="modalTitulo">
-            Detalhes
-        </h2>
-        <p id="modalRemetente"></p>
-        <p id="modalDestinatario"></p>
-        <p id="modalDataPartida"></p>
-        <p id="modalDataChegada"></p>
-        <p id="modalHorarioPartida"></p>
-        <p id="modalStatusEntregue"></p>
-        <p id="modalMotorista"></p>
-        <p id="modalVeiculo"></p>
-        
-        <!-- Botões -->
-        <button id="editarViagemBtn">Editar Viagem</button>
-        <button id="excluirViagemBtn">Excluir Viagem</button>
-        
-        <!-- Fechar Modal -->
-        <button id="fecharModalBtn">Fechar</button>
+     <!-- Modal de detalhes da viagem -->
+<div id="modalDetalhes" class="modal-background" style="display:none;">
+    <div class="modal-content">
+        <span id="closeModalDetalhes" class="close">&times;</span>
+        <h2>Detalhes da Viagem</h2>
+        <div id="detalhesViagem"></div>
     </div>
 </div>
 

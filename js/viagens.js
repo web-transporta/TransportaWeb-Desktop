@@ -12,32 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const idPartidaSelect = document.getElementById('id_partida');
     const idDestinoSelect = document.getElementById('id_destino');
     const idMotoristaSelect = document.getElementById('id_motorista');
-    const modalDetalhesViagem = document.getElementById('modalDetalhesViagem');
-    const modalTitulo = document.getElementById('modalTitulo');
-    const modalRemetente = document.getElementById('modalRemetente');
-    const modalDestinatario = document.getElementById('modalDestinatario');
-    const modalDataPartida = document.getElementById('modalDataPartida');
-    const modalDataChegada = document.getElementById('modalDataChegada');
-    const modalHorarioPartida = document.getElementById('modalHorarioPartida');
-    const modalStatusEntregue = document.getElementById('modalStatusEntregue');
-    const modalMotorista = document.getElementById('modalMotorista');
-    const modalVeiculo = document.getElementById('modalVeiculo');
-    const editarViagemBtn = document.getElementById('editarViagemBtn');
-    const excluirViagemBtn = document.getElementById('excluirViagemBtn');
-    const fecharModalBtn = document.getElementById('fecharModalBtn');
 
-    let viagemSelecionada = null;
-
-    // Função para verificar a existência de elementos no DOM
-    function verificarElementos(elementos) {
-        elementos.forEach((elemento, index) => {
-            if (!elemento) {
-                console.error(`Elemento não encontrado. Índice: ${index}`);
-            }
-        });
-    }
-
-    // Verificando os elementos
     verificarElementos([openModalBtn, modalBackground, closeModalBtn, modalForm, idVeiculoSelect, idPartidaSelect, idDestinoSelect, idMotoristaSelect]);
 
     try {
@@ -49,10 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         ]);
 
         preencherSelect(caminhoes, idVeiculoSelect, "modelo");
-        preencherSelect(partidas, idPartidaSelect, "cep");
-        preencherSelect(destinos, idDestinoSelect, "cep");
+        preencherSelect(partidas, idPartidaSelect, "cep"); 
+        preencherSelect(destinos, idDestinoSelect, "cep"); 
         preencherSelectMotoristas(motoristas, idMotoristaSelect);
-
+        
     } catch (error) {
         console.error("Erro ao carregar dados:", error);
     }
@@ -68,7 +43,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalForm.reset();
         });
 
-        // Fechar o modal ao clicar fora do conteúdo (na área de fundo)
         modalBackground.addEventListener('click', (e) => {
             if (e.target === modalBackground) {
                 modalBackground.style.display = 'none';
@@ -79,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalForm.addEventListener('submit', criarViagem);
     }
 
-    // Função para criar viagem
     async function criarViagem(event) {
         event.preventDefault();
 
@@ -133,78 +106,62 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // Função para mostrar os detalhes da viagem no modal
-    function abrirModalDetalhes(viagem) {
-        modalTitulo.textContent = `Viagem: ${viagem.id_viagem}`;
-        modalRemetente.textContent = `Remetente: ${viagem.remetente}`;
-        modalDestinatario.textContent = `Destinatário: ${viagem.destinatario}`;
-        modalDataPartida.textContent = `Data de Partida: ${viagem.dia_partida}`;
-        modalDataChegada.textContent = `Data de Chegada: ${viagem.dia_chegada}`;
-        modalHorarioPartida.textContent = `Horário de Partida: ${viagem.horario_partida}`;
-        modalStatusEntregue.textContent = `Status: ${viagem.status_entregue}`;
-        modalMotorista.textContent = `Motorista: ${viagem.id_motorista}`;
-        modalVeiculo.textContent = `Veículo: ${viagem.id_veiculo}`;
-
-        viagemSelecionada = viagem;
-        modalDetalhesViagem.style.display = 'flex';
+    function verificarElementos(elementos) {
+        elementos.forEach((elemento, index) => {
+            if (!elemento) {
+                console.error(`Elemento não encontrado. Índice: ${index}`);
+            }
+        });
     }
 
+    /*********************
+        MODAL DE DETALHES DA VIAGEM
+    **********************/
+    const modalDetalhes = document.getElementById('modalDetalhes');
+    const closeModalDetalhes = document.getElementById('closeModalDetalhes');
+
+    // Função para exibir detalhes da viagem no modal
+    const mostrarDetalhesViagem = (viagem) => {
+        const detalhesViagem = document.getElementById('detalhesViagem');
+        detalhesViagem.innerHTML = `
+            <p><strong>ID Viagem:</strong> ${viagem.id_viagem}</p>
+            <p><strong>Remetente:</strong> ${viagem.remetente}</p>
+            <p><strong>Destinatário:</strong> ${viagem.destinatario}</p>
+            <p><strong>Data de Partida:</strong> ${new Date(viagem.dia_partida).toLocaleDateString()}</p>
+            <p><strong>Horário de Partida:</strong> ${viagem.horario_partida}</p>
+            <p><strong>Status Entregue:</strong> ${viagem.status_entregue}</p>
+            <p><strong>ID Partida:</strong> ${viagem.id_partida}</p>
+            <p><strong>ID Destino:</strong> ${viagem.id_destino}</p>
+            <p><strong>ID Motorista:</strong> ${viagem.id_motorista}</p>
+            <p><strong>ID Veículo:</strong> ${viagem.id_veiculo}</p>
+        `;
+        modalDetalhes.style.display = 'block'; // Exibe o modal
+    };
+
     // Fechar o modal de detalhes
-    fecharModalBtn.addEventListener('click', () => {
-        modalDetalhesViagem.style.display = 'none';
-    });
+    closeModalDetalhes.onclick = () => {
+        modalDetalhes.style.display = 'none';
+    };
 
-    // Editar a viagem
-    editarViagemBtn.addEventListener('click', async () => {
-        if (viagemSelecionada) {
-            alert('Editar Viagem: ' + viagemSelecionada.id_viagem);
-            // Aqui você pode adicionar lógica para editar os dados da viagem (exibir um formulário de edição)
+    window.onclick = (event) => {
+        if (event.target === modalDetalhes) {
+            modalDetalhes.style.display = 'none';
         }
-    });
-
-    // Excluir a viagem
-    excluirViagemBtn.addEventListener('click', async () => {
-        if (viagemSelecionada) {
-            const confirmar = await Swal.fire({
-                title: 'Tem certeza?',
-                text: `Deseja excluir a viagem ${viagemSelecionada.id_viagem}?`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Excluir',
-                cancelButtonText: 'Cancelar'
-            });
-
-            if (confirmar.isConfirmed) {
-                try {
-                    const response = await deleteViagem(viagemSelecionada.id_viagem);
-                    if (response.status === 200) {
-                        await Swal.fire({
-                            title: 'Sucesso!',
-                            text: 'Viagem excluída com sucesso!',
-                            icon: 'success'
-                        });
-                        mostrarContainer(); // Atualiza a lista de viagens
-                    }
-                } catch (error) {
-                    await Swal.fire({
-                        title: 'Erro!',
-                        text: 'Não foi possível excluir a viagem.',
-                        icon: 'error'
-                    });
-                }
-            }
-        }
-    });
+    };
 
     /*********************
         CARDS DE VIAGENS
     **********************/
     const criarContainer = (viagem) => {
         const referenciar = document.createElement('button');
-        referenciar.className = 'trip-card';
+        referenciar.className = '';
+        referenciar.onclick = () => mostrarDetalhesViagem(viagem); // Adiciona o evento de clique
 
         const container = document.createElement('div');
-        container.className = 'trip-info';
+        container.className = 'trip-card';
+        const cardContent = document.createElement('div');
+        cardContent.className = 'trip-info';
+
         const id_viagem = document.createElement('h1');
         id_viagem.className = 'trip-title';
         id_viagem.textContent = viagem.id_viagem;
@@ -223,99 +180,75 @@ document.addEventListener("DOMContentLoaded", async () => {
         data_partida_paragraph.className = 'trip-data';
         data_partida_paragraph.textContent = `Data: ${formattedDate || 'N/A'}`;
 
+        cardContent.append(id_viagem, remetente, destinatario, data_partida_paragraph);
+
         const imageContainer = document.createElement('div');
         imageContainer.className = 'trip-image';
         const image = document.createElement('img');
         image.src = viagem.image || '../css/img/caixa.png.png';
         image.alt = 'Imagem do caminhão';
         image.className = 'trip-image-img';
+        imageContainer.appendChild(image);
 
-        container.append(id_viagem, remetente, destinatario, data_partida_paragraph, imageContainer);
+        container.append(cardContent, imageContainer);
         referenciar.appendChild(container);
-
-        // Abrir modal com detalhes da viagem
-        referenciar.addEventListener('click', () => {
-            abrirModalDetalhes(viagem);
-        });
-
         return referenciar;
     };
 
-    /*********************
-        EXIBIR VIAGENS
-    **********************/
     async function mostrarContainer() {
         const containerCards = document.getElementById('container-cards');
         containerCards.innerHTML = ''; // Limpa o container
-
+    
         const loadingMessage = document.createElement('div');
-        loadingMessage.className = 'loading-message'; 
+        loadingMessage.className = 'loading-message'; // Classe CSS para estilizar a mensagem de carregamento
         loadingMessage.textContent = 'Carregando viagens...';
-        containerCards.appendChild(loadingMessage);
-
-        const viagens = [
-            {
-                id_viagem: "12345",
-                dia_partida: "2024-11-06",
-                horario_partida: "08:00",
-                dia_chegada: "2024-11-07",
-                remetente: "Empresa A",
-                destinatario: "Cliente X",
-                status_entregue: "Em trânsito",
-                id_partida: "1",
-                id_destino: "2",
-                id_motorista: "1", 
-                id_veiculo: "3",
-                image: "../css/img/caixa.png.png"
-            },
-            {
-                id_viagem: "12345",
-                dia_partida: "2024-11-06",
-                horario_partida: "08:00",
-                dia_chegada: "2024-11-07",
-                remetente: "Empresa A",
-                destinatario: "Cliente X",
-                status_entregue: "Em trânsito",
-                id_partida: "1",
-                id_destino: "2",
-                id_motorista: "1", 
-                id_veiculo: "3",
-                image: "../css/img/caixa.png.png"
-            },
-            {
-                id_viagem: "12345",
-                dia_partida: "2024-11-06",
-                horario_partida: "08:00",
-                dia_chegada: "2024-11-07",
-                remetente: "Empresa A",
-                destinatario: "Cliente X",
-                status_entregue: "Em trânsito",
-                id_partida: "1",
-                id_destino: "2",
-                id_motorista: "1", 
-                id_veiculo: "3",
-                image: "../css/img/caixa.png.png"
-            }
-
-        ];
-
+    
+        // Estilizando a mensagem de carregamento
+        loadingMessage.style.position = 'absolute';
+        loadingMessage.style.top = '50%';
+        loadingMessage.style.left = '50%';
+        loadingMessage.style.transform = 'translate(-50%, -50%)';
+        loadingMessage.style.fontSize = '18px'; // Tamanho da fonte
+        loadingMessage.style.color = '#333'; // Cor do texto
+        loadingMessage.style.zIndex = '1000'; // Certifique-se de que fique acima de outros elementos
+    
+        containerCards.appendChild(loadingMessage); // Exibe a mensagem de carregamento
+    
         try {
+            const viagens = await getViagens();
+            containerCards.removeChild(loadingMessage); // Remove a mensagem de carregamento
+    
             viagens.forEach(viagem => {
                 const card = criarContainer(viagem);
                 containerCards.appendChild(card);
             });
         } catch (error) {
-            console.error('Erro ao carregar viagens:', error);
-            await Swal.fire({
-                title: 'Erro ao carregar viagens',
-                text: 'Ocorreu um erro ao carregar as viagens. Tente novamente mais tarde.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-        } finally {
-            containerCards.removeChild(loadingMessage);
+            console.error("Erro ao carregar viagens:", error);
+            containerCards.removeChild(loadingMessage); // Remove a mensagem de carregamento em caso de erro
+            const errorMessage = document.createElement('div');
+            errorMessage.textContent = 'Erro ao carregar as viagens. Tente novamente.';
+            containerCards.appendChild(errorMessage);
         }
     }
 
-    await mostrarContainer(); // Exibe as viagens ao carregar
+    // Chame a função para carregar as viagens ao iniciar
+    mostrarContainer();
 });
+
+function preencherSelect(transportes, selectElement, valueField) {
+    transportes.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.id || item[valueField];
+        option.textContent = item[valueField];
+        selectElement.appendChild(option);
+    });
+}
+
+function preencherSelectMotoristas(motoristas, selectElement) {
+    motoristas.forEach(motorista => {
+        const option = document.createElement('option');
+        option.value = motorista.id_motorista;
+        option.textContent = motorista.nome;
+        selectElement.appendChild(option);
+    });
+}

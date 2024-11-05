@@ -198,6 +198,25 @@ export async function getMotoristaNome(nome) {
         throw error; // Rejoga o erro para ser capturado onde a função é chamada
     }
 }
+export async function deleteViagem(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`; 
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE' // Método DELETE para excluir a viagem
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro ao excluir a viagem: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data; // Retorna a resposta do servidor após a exclusão
+    } catch (error) {
+        console.error("Erro ao excluir a viagem:", error); // Log do erro
+        throw error; // Lança o erro para ser tratado na chamada da função
+    }
+}
+
 
 
 
