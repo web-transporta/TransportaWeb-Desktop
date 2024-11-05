@@ -16,7 +16,6 @@ body {
 
 }
 
-
 .passos {  
     display: flex;  
     justify-content: center;  
@@ -29,7 +28,6 @@ body {
     width: 100%;  
     text-align: center;  
 }  
-
 
 .passo { 
     display: flex; 
@@ -163,7 +161,7 @@ body {
     left: 10px; 
     transform: translateY(-200%); 
     font-size: 20px; 
-    font-weight: 600; 
+    font-weight: 700;
     pointer-events: none; 
 } 
 
@@ -172,8 +170,8 @@ body {
     height: 40px; 
     outline: none; 
     font-size: 18px; 
-    border-bottom: 3px solid var(--vermelho);  
     border: 2px solid var(--branco);  
+    border-bottom: 1px solid var(--vermelho);  
     background: var(--cinza); 
     padding-left: 20px; 
     padding-top: 10px; 
@@ -206,18 +204,17 @@ button:hover {
 
 .desc-container { 
     position: fixed; 
-    width: 500px; 
     max-width: 600px; 
-    height: 900px; 
-    right: 20%;  
-    top: 54px; 
+    height: 831px;
+    width: 498px;
+    right: 13%;  
+    top: 5%; 
     background-color: var(--vermelho);  
-    padding: 40px;
     box-sizing: border-box; 
 }
 
 .desc-container h1 { 
-    font-size: 32px; 
+    font-size: 52px; 
     font-weight: 900; 
     color: var(--branco); 
     text-align: center;
@@ -225,20 +222,18 @@ button:hover {
 
 .desc-container p { 
     font-size: 25px; 
+    font-weight: 300;
     color: var(--branco); 
     text-align: center; 
-    margin: 20px; 
+    margin: 60px 50px 0px; 
 } 
 
-
-
 .desc-container img {
-    width: 100%;
-    height: auto; 
+    width: 468px;
+    height: 423px;
     max-height: 500px; 
     object-fit: cover; 
 }
-
 
 
 @media screen and (max-width: 1300px) {
