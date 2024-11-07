@@ -1,6 +1,6 @@
 let myName = "";
 let profileImageUrl = "";
-export let recipientId = ""; 
+export let recipientId = "";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCt8YFxzXXLpwrYhTmNJwLxrlDJmrv5xNE",
@@ -22,7 +22,7 @@ function sendMessage() {
 
     const myName = localStorage.getItem("myName") || "";
     const profileImageUrl = localStorage.getItem("profileImageUrl") || "";
-    const senderId = localStorage.getItem("userId"); 
+    const senderId = localStorage.getItem("userId");
     const sender = myName;
 
     firebase.database().ref("messages").push().set({
@@ -39,37 +39,45 @@ function sendMessage() {
 
 function loadMessages() {
     const chatContent = document.getElementById("chatContent");
-    chatContent.innerHTML = ""; 
 
-    firebase.database().ref("messages").on("child_added", function(snapshot) {
-        const messageData = snapshot.val();
-        
+    const currentUserId = localStorage.getItem("userId");
 
-        const currentUserId = localStorage.getItem("userId"); 
+    firebase.database().ref("messages").on("value", function(snapshot) {
+        chatContent.innerHTML = ""; 
 
-        const isMessageBetweenUsers = (messageData.receiverId === recipientId) 
-        
-        if (isMessageBetweenUsers) {
-           
+        const messages = [];
+        snapshot.forEach(childSnapshot => {
+            messages.push(childSnapshot.val());
+        });
+
+        const conversationKey = [currentUserId, recipientId].sort().join("-");
+        const currentConversation = messages.filter(messageData => {
+            const key = [messageData.senderId, messageData.receiverId].sort().join("-");
+            return key === conversationKey;
+        });
+
+        currentConversation.forEach(messageData => {
             const messageElement = document.createElement("div");
-            
-            messageElement.classList.add(messageData.senderId === currentUserId ? "my-message" : "other-message");
-        
+            const messageClass = messageData.senderId === currentUserId ? "my-message" : "other-message";
+            messageElement.classList.add(messageClass);
+
             messageElement.innerHTML = `
                 <div class="message-card">${messageData.message}</div>
                 <div class="profile-card" style="background-image: url(${messageData.profileImageUrl});"></div>
             `;
-        
+
             chatContent.appendChild(messageElement);
-            chatContent.scrollTop = chatContent.scrollHeight;  
-        }        
+        });
+
+       
+        chatContent.scrollTop = chatContent.scrollHeight;
     });
 }
 
 export function setRecipientId(newRecipientId) {
     recipientId = newRecipientId;
-    console.log("Recipient ID set to:", recipientId); 
-    loadMessages(); 
+    console.log("Recipient ID set to:", recipientId);
+    loadMessages();
 }
 
 document.querySelector(".button-message .send").addEventListener("click", function(e) {
