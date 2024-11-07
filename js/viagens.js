@@ -380,3 +380,86 @@ function preencherSelectCargas(cargas, selectElement) {
         selectElement.appendChild(option);
     });
 }
+
+
+
+// Lista global de IDs dos campos que podem ser editados
+const camposEdicao = [
+    'id_viagem', 'dia_partida', 'horario_partida', 'dia_chegada',
+    'remetente', 'destinatario', 'status_entregue',
+    'id_partida', 'id_destino', 'id_motorista', 'id_veiculo', 'id_tipo_carga'
+];
+
+// Função para habilitar edição
+function habilitarEdicao() {
+    camposEdicao.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        if (campo) {
+            campo.disabled = false; // Habilita o campo para edição
+        }
+    });
+
+    // Atualiza o botão de "Editar" para "Salvar" ao habilitar edição
+    const botaoEditar = document.getElementById('botaoEditar');
+    if (botaoEditar) {
+        botaoEditar.textContent = 'Salvar';
+        botaoEditar.onclick = salvarEdicao; // Altera função do botão para salvar a edição
+    }
+}
+
+// Função para salvar alterações feitas no modal
+async function salvarEdicao() {
+    // Obter dados dos campos atualizados para salvar as alterações
+    const viagemEditada = {
+        id_viagem: document.getElementById('id_viagem')?.value || '',
+        dia_partida: document.getElementById('dia_partida')?.value || '',
+        horario_partida: document.getElementById('horario_partida')?.value || '',
+        dia_chegada: document.getElementById('dia_chegada')?.value || '',
+        remetente: document.getElementById('remetente')?.value || '',
+        destinatario: document.getElementById('destinatario')?.value || '',
+        status_entregue: document.getElementById('status_entregue')?.value || '',
+        id_partida: document.getElementById('id_partida')?.value || '',
+        id_destino: document.getElementById('id_destino')?.value || '',
+        id_motorista: document.getElementById('id_motorista')?.value || null,
+        id_veiculo: document.getElementById('id_veiculo')?.value || '',
+        id_tipo_carga: document.getElementById('id_tipo_carga')?.value || ''
+    };
+
+    // Enviar os dados para o backend (adapte para a função de atualização que você usa)
+    try {
+        const response = await postViagem(viagemEditada); // Substitua postViagem por uma função de atualização, se houver
+        if (response.status === 200) {
+            Swal.fire({
+                title: 'Sucesso!',
+                text: 'As alterações foram salvas.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+            });
+        } else {
+            throw new Error('Erro ao salvar a edição.');
+        }
+    } catch (error) {
+        Swal.fire({
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao salvar as alterações. Tente novamente.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+        });
+    }
+
+    // Desativa a edição após salvar e restaura o botão de "Salvar" para "Editar"
+    camposEdicao.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        if (campo) {
+            campo.disabled = true; // Desabilita o campo novamente
+        }
+    });
+    const botaoEditar = document.getElementById('botaoEditar');
+    if (botaoEditar) {
+        botaoEditar.textContent = 'Editar';
+        botaoEditar.onclick = habilitarEdicao; // Restaura função original de "Editar"
+    }
+}
+
+// Certifique-se de que o botão de edição no modal de detalhes tenha o ID "botaoEditar"
+document.getElementById('botaoEditar').onclick = habilitarEdicao;
