@@ -1,4 +1,4 @@
-import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById } from "./funcoes.js";
+import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas } from "./funcoes.js";
 
 /*********************
         MODAL
@@ -12,21 +12,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     const idPartidaSelect = document.getElementById('id_partida');
     const idDestinoSelect = document.getElementById('id_destino');
     const idMotoristaSelect = document.getElementById('id_motorista');
+    const idCargaSelect = document.getElementById('id_carga');
 
-    verificarElementos([openModalBtn, modalBackground, closeModalBtn, modalForm, idVeiculoSelect, idPartidaSelect, idDestinoSelect, idMotoristaSelect]);
+
+    verificarElementos([openModalBtn, modalBackground, closeModalBtn, modalForm, idVeiculoSelect, idPartidaSelect, idDestinoSelect, idMotoristaSelect, idCargaSelect]);
 
     try {
-        const [caminhoes, partidas, destinos, motoristas] = await Promise.all([
+        const [caminhoes, partidas, destinos, motoristas, cargas] = await Promise.all([
             getVeiculos(),
             getPartida(),
             getDestino(),
-            getMotoristas()
+            getMotoristas(),
+            getCargas()
         ]);
 
         preencherSelect(caminhoes, idVeiculoSelect, "modelo");
         preencherSelect(partidas, idPartidaSelect, "cep");
         preencherSelect(destinos, idDestinoSelect, "cep");
         preencherSelectMotoristas(motoristas, idMotoristaSelect);
+        preencherSelectCargas(cargas, idCargaSelect);
 
     } catch (error) {
         console.error("Erro ao carregar dados:", error);
@@ -68,6 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             id_destino: idDestinoSelect?.value || '',
             id_motorista: idMotoristaSelect?.value || null,
             id_veiculo: idVeiculoSelect?.value || '',
+            id_tipo_carga: idCargaSelect?.value || ''
         };
 
         modalBackground.style.display = 'none';
@@ -136,12 +141,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             const destinoResponse = await getDestinoById(viagem.id_destino);
             const motoristaResponse = await getMotorista(viagem.id_motorista);
             const veiculoResponse = await getVeiculoById(viagem.id_veiculo);
+            const cargaResponse = await getCarga(viagem.id_tipo_carga);
+
     
             // Garantir que a estrutura da resposta seja a esperada
             const partida = partidaResponse && partidaResponse[0]; // Acessando o primeiro item
             const destino = destinoResponse && destinoResponse[0]; // Acessando o primeiro item
             const motorista = motoristaResponse && motoristaResponse[0]; // Acessando o primeiro item
             const veiculo = veiculoResponse && veiculoResponse[0]; // Acessando o primeiro item
+            const carga = cargaResponse && cargaResponse[0]; // Acessando o primeiro item
     
             // Preencher os dados no modal de detalhes
             const detalhesViagem = document.getElementById('detalhesViagem');
@@ -156,6 +164,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <p><strong>Destino (CEP):</strong> ${destino && destino.cep ? destino.cep : 'Não encontrado'}</p>
                 <p><strong>Motorista:</strong> ${motorista && motorista.nome ? motorista.nome : 'Não encontrado'}</p>
                 <p><strong>Veículo:</strong> ${veiculo && veiculo.modelo ? veiculo.modelo : 'Não encontrado'}</p>
+                <p><strong>Carga:</strong> ${carga && carga.descricao ? carga.descricao : 'Não encontrado'}</p>
+
             `;
     
             // Exibe o modal
@@ -359,6 +369,14 @@ function preencherSelectMotoristas(motoristas, selectElement) {
         const option = document.createElement('option');
         option.value = motorista.id_motorista;
         option.textContent = motorista.nome;
+        selectElement.appendChild(option);
+    });
+}
+function preencherSelectCargas(cargas, selectElement) {
+    cargas.forEach(carga => {
+        const option = document.createElement('option');
+        option.value = carga.id_tipo_carga;
+        option.textContent = carga.descricao;
         selectElement.appendChild(option);
     });
 }

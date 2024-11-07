@@ -103,6 +103,21 @@ export async function getMotorista(id) {
     const data = await response.json()
     return data.motorista    
 }
+export async function getEmpresas() {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/empresas`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.empresas || []; // Retorna o array de caminhões ou um array vazio
+        } else {
+            console.error("Erro ao obter caminhões:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Erro de rede ao obter caminhões:", error);
+        return []; // Retorna um array vazio em caso de erro
+    }
+}
 export async function getEmpresa() {
     const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresas/${id}` 
     const response = await fetch(url)
@@ -233,6 +248,28 @@ export async function deleteViagem(id) {
         console.error("Erro ao excluir a viagem:", error); // Log do erro
         throw error; // Lança o erro para ser tratado na chamada da função
     }
+}
+
+export async function getCargas() {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/cargas`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.empresas || []; // Retorna o array de caminhões ou um array vazio
+        } else {
+            console.error("Erro ao obter cargas:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Erro de rede ao obter cargas:", error);
+        return []; // Retorna um array vazio em caso de erro
+    }
+}
+export async function getCarga(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/carga/${id}` 
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.partida    
 }
 
 
