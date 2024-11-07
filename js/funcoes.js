@@ -155,21 +155,23 @@ export async function getDestino() {
         return []; // Retorna um array vazio em caso de erro
     }
 }
-export async function getMotoristas() {
-    try {
-        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/motoristas`);
-        if (response.ok) {
-            const data = await response.json();
-            return data.motoristas || []; // Retorna o array de caminhões ou um array vazio
-        } else {
-            console.error("Erro ao obter caminhões:", response.statusText);
-            return [];
-        }
-    } catch (error) {
-        console.error("Erro de rede ao obter caminhões:", error);
-        return []; // Retorna um array vazio em caso de erro
-    }
+
+export async function getMotoristas(){
+    const url = 'https://crud-03-09.onrender.com/v1/transportaweb/motoristas'
+    const respose = await fetch(url)
+    const data = await respose.json()
+    return data.motoristas
 }
+
+export async function getEmpresas(){
+    const url = 'https://crud-03-09.onrender.com/v1/transportaweb/empresas'
+    const respose = await fetch(url)
+    const data = await respose.json()
+    return data.empresas
+}
+
+
+
 export async function getViagemByNome(id_viagem) {
     try {
         const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/viagens/filtro?id_viagem=${encodeURIComponent(id_viagem)}`);
@@ -198,25 +200,6 @@ export async function getMotoristaNome(nome) {
         throw error; // Rejoga o erro para ser capturado onde a função é chamada
     }
 }
-export async function deleteViagem(id) {
-    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`; 
-    try {
-        const response = await fetch(url, {
-            method: 'DELETE' // Método DELETE para excluir a viagem
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro ao excluir a viagem: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        return data; // Retorna a resposta do servidor após a exclusão
-    } catch (error) {
-        console.error("Erro ao excluir a viagem:", error); // Log do erro
-        throw error; // Lança o erro para ser tratado na chamada da função
-    }
-}
-
 
 
 

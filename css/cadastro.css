@@ -8,13 +8,6 @@ body {
     align-items: center;  
 } 
 
-.seta-esquerda{
-    height: 45px;
-    width: auto;
-    margin-left: 10px;
-    margin-bottom: 650px;
-    
-    }
 .container {
     justify-content: center;
     align-items: center;
@@ -35,7 +28,6 @@ body {
     width: 100%;  
     text-align: center;  
 }  
-
 
 .passo { 
     display: flex; 
@@ -210,13 +202,6 @@ button:hover {
     margin-left: -950px;
 }
 
-.palavra{
-    font-size: 14px;
-    color: var(--vermelho);
-    justify-content: end;
-    font-weight: 600;
-
-}
 .desc-container { 
     position: fixed; 
     max-width: 600px; 

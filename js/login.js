@@ -2,8 +2,11 @@
 
 const empresa = document.getElementById('empresa');
 const funcionario = document.getElementById('funcionario');
+const userName = document.getElementById('email');
+const password = document.getElementById('senha');
+const loginButton = document.getElementById('signin');
 
-// Alterna seleção entre 'empresa' e 'funcionario'
+
 empresa.addEventListener('change', function() {
     if (empresa.checked) {
         funcionario.checked = false;
@@ -16,10 +19,6 @@ funcionario.addEventListener('change', function() {
     }
 });
 
-const userName = document.getElementById('email');
-const password = document.getElementById('senha');
-const loginButton = document.getElementById('signin');
-
 const validarLogin = async () => {
     const email = userName.value.trim();
     const senha = password.value.trim();
@@ -29,39 +28,33 @@ const validarLogin = async () => {
         return;
     }
 
-    // Determina a URL com base na seleção do usuário
     let url;
+    let userType;
     if (empresa.checked) {
         url = 'https://crud-03-09.onrender.com/v1/transportaweb/empresas';
+        userType = 'empresa';
     } else if (funcionario.checked) {
         url = 'https://crud-03-09.onrender.com/v1/transportaweb/motoristas';
+        userType = 'funcionario';
     } else {
-        alert('Ocorreu um erro: Você deve selecionar uma opção entre motorista e empresa para fazer login!!');
+        alert('Selecione uma opção entre motorista e empresa para fazer login!');
         return;
     }
 
     try {
         const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error('Erro ao buscar as informações');
-        }
-
         const data = await response.json();
-        console.log('Dados retornados:', data);
-
-        const usuarios = data.empresas || data.motoristas || []; // Ajustado para acessar motoristas
-        console.log('Usuários:', usuarios);
-
-        if (usuarios.length === 0) {
-            alert('Nenhum usuário encontrado.');
-            return; // Saia da função se não houver usuários
-        }
+        const usuarios = data.empresas || data.motoristas || [];
 
         let validaUser = false;
+
         usuarios.forEach(usuario => {
-            console.log(`Verificando usuário: ${usuario.nome} com senha: ${usuario.senha}`);
-            if (usuario.email === email && usuario.senha === senha) { // Ajuste conforme necessário
+            if (usuario.email === email && usuario.senha === senha) {
+                localStorage.setItem('userId', usuario.id);
+                localStorage.setItem("myName", usuario.nome);
+                localStorage.setItem("profileImageUrl", usuario.foto_url);
+                localStorage.setItem('userType', userType);
+
                 validaUser = true;
                 alert('Login efetuado com sucesso!');
                 window.location.href = '/html/paginaHome.html';
@@ -71,12 +64,10 @@ const validarLogin = async () => {
         if (!validaUser) {
             alert('Usuário não cadastrado no banco de dados');
         }
-
     } catch (error) {
         console.error('Erro no login:', error);
         alert('Erro ao tentar realizar login: ' + error.message);
     }
 };
 
-// Adiciona o evento de clique ao botão de login
 loginButton.addEventListener('click', validarLogin);
