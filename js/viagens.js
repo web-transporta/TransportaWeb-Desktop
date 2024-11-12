@@ -15,7 +15,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Verifica se o array contém ao menos um item e acessa o nome
         if (empresas.length > 0 && empresas[0].nome) {
-            document.getElementById('empresaNome').textContent = `-${empresas[0].nome}!`;
+            document.getElementById('empresaNome').textContent = `${empresas[0].nome}!`;
+
+            // Verifica se existe uma URL de imagem e se a chave 'foto_url' está presente
+            if (empresas[0].foto_url) {
+                const empresaImagem = document.getElementById('foto-url');
+                if (empresaImagem) { // Verifica se o elemento realmente existe
+                    empresaImagem.src = empresas[0].foto_url; // Define o src da imagem com a URL retornada
+                    empresaImagem.alt = empresas[0].nome; // Define o texto alternativo da imagem
+                } else {
+                    console.error('Elemento de imagem não encontrado.');
+                }
+            } else {
+                console.warn('Imagem não encontrada para a empresa:', empresas[0]);
+                document.getElementById('empresaImagem').src = '/path/to/default-image.jpg'; // Caminho da imagem padrão
+            }
         } else {
             console.warn('Estrutura inesperada ou nome ausente:', empresas);
             document.getElementById('empresaNome').textContent = 'Empresa não encontrada';
@@ -26,7 +40,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         alert('Erro ao carregar dados da empresa: ' + error.message);
     }
 });
-
 
 /*********************
         MODAL
@@ -87,7 +100,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function criarViagem(event) {
         event.preventDefault();
-
+    
+        // Recupera o ID da empresa do localStorage
+        
+        const idEmpresa = localStorage.getItem('id');
+        console.log(idEmpresa)
+        // Se o ID da empresa não estiver no localStorage, exibe um erro
+        if (!idEmpresa) {
+            Swal.fire({
+                title: 'Erro!',
+                text: 'ID da empresa não encontrado no localStorage.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+    
+        // Prepara os dados da nova viagem, incluindo o id_empresa
         const novaViagem = {
             id_viagem: document.getElementById('id_viagem')?.value || '',
             dia_partida: document.getElementById('dia_partida')?.value || '',
@@ -100,11 +129,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             id_destino: idDestinoSelect?.value || '',
             id_motorista: idMotoristaSelect?.value || null,
             id_veiculo: idVeiculoSelect?.value || '',
-            id_tipo_carga: idCargaSelect?.value || ''
+            id_tipo_carga: idCargaSelect?.value || '',
+            id_empresa: idEmpresa // Adiciona o ID da empresa ao objeto novaViagem
         };
-
+        console.log(novaViagem)
+    
         modalBackground.style.display = 'none';
-
+    
         const loadingAlert = Swal.fire({
             title: 'Carregando...',
             text: 'Aguarde enquanto processamos sua solicitação.',
@@ -112,11 +143,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             allowOutsideClick: false,
             didOpen: () => Swal.showLoading(),
         });
-
+    
         try {
             const response = await postViagem(novaViagem);
             await loadingAlert.close();
-
+    
             if (response.status === 200) {
                 await Swal.fire({
                     title: 'Sucesso!',
@@ -138,6 +169,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         }
     }
+    
 
     function verificarElementos(elementos) {
         elementos.forEach((elemento, index) => {
