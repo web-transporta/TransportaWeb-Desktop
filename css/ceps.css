@@ -1,93 +1,111 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .container {
-    background-color: white;
-    padding: 20px;
-    max-width: 600px;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    position: relative;
-  }
-  
-  .back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .header h1 {
-    font-size: 24px;
-    text-align: center;
-    margin: 0;
-    flex: 1;
-  }
-  
-  .logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-size: 16px;
-  }
-  
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .button:hover {
-    background-color: #c0392b;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Nunito;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Estilos para o cabeçalho fora do container */
+.header {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 80px;
+}
+
+.back-button {
+  text-decoration: none;
+  font-size: 50px;
+  color: #333;
+  margin-right: 80px;
+}
+
+.header h1 {
+  font-size: 20px;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0;
+  margin-right: 80px;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+/* Container Principal */
+.container {
+  width: 1000px;
+  background: #fafafa;
+  padding: 80px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 30px;
+}
+
+.cep-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+#cep {
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  gap: 10px;
+}
+
+.form-field {
+  flex: 1;
+}
+
+.add-cep-button {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-cep-button:hover {
+  background-color: #c82333;
+}
+
