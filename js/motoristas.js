@@ -1,8 +1,8 @@
 import { getMotoristas, getMotoristaNome } from "./funcoes.js"; // Adicione a função para remover motorista
 
-/*********************
+/****************************************
         CARDS DE MOTORISTAS
-**********************/
+*****************************************/
 const criarCardMotorista = (motorista) => {
     const cardContainer = document.createElement('div');
     cardContainer.className = 'motorista-card';
@@ -33,7 +33,7 @@ const criarCardMotorista = (motorista) => {
     // Criar o botão de remover
     const removeButton = document.createElement('button');
     removeButton.className = 'remove-button';
-    removeButton.textContent = 'Remover da Empresa';
+    removeButton.textContent = 'Remover da Equipe';
     removeButton.onclick = async () => {
         const confirmed = await Swal.fire({
             title: 'Você tem certeza?',
