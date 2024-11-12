@@ -1,4 +1,32 @@
-import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas } from "./funcoes.js";
+import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas, getEmpresaViagens } from "./funcoes.js";
+
+window.addEventListener('DOMContentLoaded', async () => {
+    const id = localStorage.getItem('id'); // Recupera o ID da empresa do localStorage
+
+    if (!id) {
+        alert('ID da empresa não encontrado. Por favor, faça login novamente.');
+        window.location.href = '/html/login.html'; // Redireciona para a página de login se o ID não estiver presente
+        return;
+    }
+
+    try {
+        const empresas = await getEmpresa(id); // `empresas` é o array retornado
+        console.log('Dados da empresa:', empresas); // Inspeciona a estrutura do objeto
+
+        // Verifica se o array contém ao menos um item e acessa o nome
+        if (empresas.length > 0 && empresas[0].nome) {
+            document.getElementById('empresaNome').textContent = `-${empresas[0].nome}!`;
+        } else {
+            console.warn('Estrutura inesperada ou nome ausente:', empresas);
+            document.getElementById('empresaNome').textContent = 'Empresa não encontrada';
+        }
+
+    } catch (error) {
+        console.error('Erro ao buscar a empresa:', error);
+        alert('Erro ao carregar dados da empresa: ' + error.message);
+    }
+});
+
 
 /*********************
         MODAL
@@ -242,6 +270,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         
 
     async function mostrarContainer() {
+
+        const id = localStorage.getItem('id');
         const containerCards = document.getElementById('container-cards');
         containerCards.innerHTML = ''; // Limpa o container
 
@@ -261,7 +291,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         containerCards.appendChild(loadingMessage); // Exibe a mensagem de carregamento
 
         try {
-            const viagens = await getViagens();
+            const viagens = await getEmpresaViagens(id);
             containerCards.removeChild(loadingMessage); // Remove a mensagem de carregamento
 
             viagens.forEach(viagem => {
@@ -454,7 +484,7 @@ async function salvarEdicao() {
             campo.disabled = true; // Desabilita o campo novamente
         }
     });
-    const botaoEditar = document.getElementById('botaoEditar');
+    const botaoEditar = document.getElementById('editarViagemBtn');
     if (botaoEditar) {
         botaoEditar.textContent = 'Editar';
         botaoEditar.onclick = habilitarEdicao; // Restaura função original de "Editar"
@@ -462,4 +492,4 @@ async function salvarEdicao() {
 }
 
 // Certifique-se de que o botão de edição no modal de detalhes tenha o ID "botaoEditar"
-document.getElementById('botaoEditar').onclick = habilitarEdicao;
+document.getElementById('editarViagemBtn').onclick = habilitarEdicao;

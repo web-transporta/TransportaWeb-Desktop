@@ -118,8 +118,8 @@ export async function getEmpresas() {
         return []; // Retorna um array vazio em caso de erro
     }
 }
-export async function getEmpresa() {
-    const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresas/${id}` 
+export async function getEmpresa(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresa/${id}` 
     const response = await fetch(url)
     const data = await response.json()
     return data.empresa    
@@ -271,7 +271,12 @@ export async function getCarga(id) {
     const data = await response.json()
     return data.partida    
 }
-
+export async function getEmpresaViagens(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresaviagem/${id}` 
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.empresa_viagem    
+}
 
 
 

@@ -36,7 +36,7 @@ const validarLogin = async () => {
     } else if (funcionario.checked) {
         url = 'https://crud-03-09.onrender.com/v1/transportaweb/motoristas';
     } else {
-        alert('Ocorreu um erro: Você deve selecionar uma opção entre motorista e empresa para fazer login!!');
+        alert('Você deve selecionar uma opção entre motorista e empresa para fazer login!');
         return;
     }
 
@@ -50,20 +50,25 @@ const validarLogin = async () => {
         const data = await response.json();
         console.log('Dados retornados:', data);
 
-        const usuarios = data.empresas || data.motoristas || []; // Ajustado para acessar motoristas
+        const usuarios = data.empresas || data.motoristas || [];
         console.log('Usuários:', usuarios);
 
         if (usuarios.length === 0) {
             alert('Nenhum usuário encontrado.');
-            return; // Saia da função se não houver usuários
+            return;
         }
 
         let validaUser = false;
         usuarios.forEach(usuario => {
             console.log(`Verificando usuário: ${usuario.nome} com senha: ${usuario.senha}`);
-            if (usuario.email === email && usuario.senha === senha) { // Ajuste conforme necessário
+            if (usuario.email === email && usuario.senha === senha) {
                 validaUser = true;
                 alert('Login efetuado com sucesso!');
+                
+                // Armazena o id do usuário no localStorage
+                localStorage.setItem('id', usuario.id);
+
+                // Redireciona para a página inicial
                 window.location.href = '/html/paginaHome.html';
             }
         });
