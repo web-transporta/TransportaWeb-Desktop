@@ -277,6 +277,14 @@ export async function getEmpresaViagens(id) {
     const data = await response.json()
     return data.empresa_viagem    
 }
+export async function getMotoristasEquipe(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/motoristaequipe/${id}` 
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.equipe    
+}
+
+
 
 
 

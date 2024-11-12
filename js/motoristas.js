@@ -1,4 +1,4 @@
-import { getMotoristas, getMotoristaNome, getEmpresa } from "./funcoes.js"; // Adicione a função para remover motorista
+import { getMotoristas, getMotoristaNome, getEmpresa, getMotoristasEquipe } from "./funcoes.js"; // Adicione a função para remover motorista
 
 window.addEventListener('DOMContentLoaded', async () => {
     const id = localStorage.getItem('id'); // Recupera o ID da empresa do localStorage
@@ -62,7 +62,7 @@ const criarCardMotorista = (motorista) => {
 
     const nomeMotorista = document.createElement('h2');
     nomeMotorista.className = 'motorista-nome';
-    nomeMotorista.textContent = motorista.nome;
+    nomeMotorista.textContent = motorista.nome_motorista;
 
     const cpfMotorista = document.createElement('p');
     cpfMotorista.className = 'motorista-cpf';
@@ -119,9 +119,9 @@ const criarCardMotorista = (motorista) => {
     return cardContainer;
 };
 
-// Função para mostrar motoristas
+/// Função para mostrar motoristas
 async function mostrarMotoristas() {
-    const containerCards = document.getElementById('container-cards'); 
+    const containerCards = document.getElementById('container-cards');
     containerCards.innerHTML = ''; // Limpa o container antes de adicionar novos cards
 
     const loadingSpinner = document.createElement('div');
@@ -129,8 +129,17 @@ async function mostrarMotoristas() {
     loadingSpinner.textContent = 'Carregando motoristas...';
     containerCards.appendChild(loadingSpinner); // Exibe o indicador de carregamento
 
+    const id = localStorage.getItem('id'); // Recupera o ID da empresa
+
+    if (!id) {
+        alert('ID da empresa não encontrado. Por favor, faça login novamente.');
+        window.location.href = '/html/login.html'; // Redireciona para a página de login se o ID não estiver presente
+        return;
+    }
+
     try {
-        const motoristas = await getMotoristas(); 
+        // Usa getMotoristasEquipe(id) passando o ID da empresa
+        const motoristas = await getMotoristasEquipe(id); 
         console.log("Motoristas carregados:", motoristas); // Verifique os motoristas carregados
         motoristas.forEach(motorista => {
             const card = criarCardMotorista(motorista);
