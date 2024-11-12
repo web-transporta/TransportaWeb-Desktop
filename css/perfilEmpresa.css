@@ -9,6 +9,18 @@ body {
   overflow: auto;  
   background-color: #fafafa;
 }
+.voltar{
+   width: 100px;
+   height: 80px;
+}
+
+.voltar img{
+   width: 30px;
+   height: 30px;
+   margin: 20px;
+}
+
+
 .container-t {
    display: flex; 
    align-items: center; 
@@ -19,6 +31,7 @@ body {
    border-radius: 30px;
    background-color: white;
 }
+
 .img {
    margin-left: 50px;
    border-radius: 100%;
