@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="../js/ceps.js" defer></script>
+    <title>Endereços dos CEPs</title>
+    <link rel="stylesheet" href="../css/ceps.css">
+</head>
+<body>
+
+<!-- Botão de Voltar e Logo fora do Container -->
+<div class="header">
+    <a href="./paginaHome.html" class="back-button">⬅</a>
+    <h1>ENDEREÇOS DOS CEPS</h1>
+    <img src="../css/img/LOGO.png" alt="Logo" class="logo">
+</div>
+ 
+<!-- Container Principal -->
+<div class="container">
+    <form class="cep-form">
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" maxlength="9" placeholder="Digite o CEP">
+        
+            <!-- Adicione outras opções de CEP conforme necessário -->
+        </select>
+
+        <div class="form-group">
+            <div class="form-field">
+                <label for="rua">Rua:</label>
+                <input type="text" id="rua" name="rua" value="" disabled>
+            </div>
+            <div class="form-field">
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" value="" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-field">
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" value="" disabled>
+            </div>
+            <div class="form-field">
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" value="" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pais">País:</label>
+            <input type="text" id="pais" name="pais" value="" disabled>
+        </div>
+
+        <button type="submit" class="add-cep-button">ADICIONAR NOVO CEP</button>
+    </form>
+</div>
+
+</body>
+</html>
