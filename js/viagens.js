@@ -1,4 +1,4 @@
-import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas, getEmpresaViagens } from "./funcoes.js";
+import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas, getEmpresaViagens, putViagem } from "./funcoes.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
     const id = localStorage.getItem('id'); // Recupera o ID da empresa do localStorage
@@ -190,79 +190,217 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    /*********************
-        MODAL DE DETALHES DA VIAGEMa
-    **********************/
-    const modalDetalhes = document.getElementById('modalDetalhes');
-    const closeModalDetalhes = document.getElementById('closeModalDetalhes');
-    async function mostrarDetalhesViagem(id_viagem) {
-        try {
-            // Requisição para buscar os detalhes da viagem pelo id_viagem
-            const viagemArray = await getViagemByNome(id_viagem);
-            
-            // A resposta é um array, então vamos pegar o primeiro item
-            const viagem = viagemArray && viagemArray[0];
-    
-            if (!viagem) {
-                throw new Error('Viagem não encontrada');
-            }
-    
-            // Requisições para obter detalhes de partida, destino, motorista e veículo
-            const partidaResponse = await getPartidaById(viagem.id_partida);
-            const destinoResponse = await getDestinoById(viagem.id_destino);
-            const motoristaResponse = await getMotorista(viagem.id_motorista);
-            const veiculoResponse = await getVeiculoById(viagem.id_veiculo);
-            const cargaResponse = await getCarga(viagem.id_tipo_carga);
+/*********************
+    MODAL DE DETALHES DA VIAGEM
+**********************/
+const modalDetalhes = document.getElementById('modalDetalhes');
+const closeModalDetalhes = document.getElementById('closeModalDetalhes');
 
-    
-            // Garantir que a estrutura da resposta seja a esperada
-            const partida = partidaResponse && partidaResponse[0]; // Acessando o primeiro item
-            const destino = destinoResponse && destinoResponse[0]; // Acessando o primeiro item
-            const motorista = motoristaResponse && motoristaResponse[0]; // Acessando o primeiro item
-            const veiculo = veiculoResponse && veiculoResponse[0]; // Acessando o primeiro item
-            const carga = cargaResponse && cargaResponse[0]; // Acessando o primeiro item
-    
-            // Preencher os dados no modal de detalhes
-            const detalhesViagem = document.getElementById('detalhesViagem');
-            detalhesViagem.innerHTML = `
-                <p><strong>ID Viagem:</strong> ${viagem.id_viagem}</p>
-                <p><strong>Remetente:</strong> ${viagem.remetente}</p>
-                <p><strong>Destinatário:</strong> ${viagem.destinatario}</p>
-                <p><strong>Data de Partida:</strong> ${new Date(viagem.dia_partida).toLocaleDateString()}</p>
-                <p><strong>Horário de Partida:</strong> ${new Date(viagem.horario_partida).toLocaleTimeString()}</p>
-                <p><strong>Status Entregue:</strong> ${viagem.status_entregue ? 'Entregue' : 'Não Entregue'}</p>
-                <p><strong>Partida (CEP):</strong> ${partida && partida.cep ? partida.cep : 'Não encontrado'}</p>
-                <p><strong>Destino (CEP):</strong> ${destino && destino.cep ? destino.cep : 'Não encontrado'}</p>
-                <p><strong>Motorista:</strong> ${motorista && motorista.nome ? motorista.nome : 'Não encontrado'}</p>
-                <p><strong>Veículo:</strong> ${veiculo && veiculo.modelo ? veiculo.modelo : 'Não encontrado'}</p>
-                <p><strong>Carga:</strong> ${carga && carga.descricao ? carga.descricao : 'Não encontrado'}</p>
+async function mostrarDetalhesViagem(id_viagem) {
+    try {
+        // Requisição para buscar os detalhes da viagem pelo id_viagem
+        const viagemArray = await getViagemByNome(id_viagem);
 
-            `;
+        // A resposta é um array, então vamos pegar o primeiro item
+        const viagem = viagemArray && viagemArray[0];
+
+        if (!viagem) {
+            throw new Error('Viagem não encontrada');
+        }
+
+        // Verificar se o ID da viagem está correto
+        console.log('ID da viagem:', viagem.id_viagem);
+
+        // Requisições para obter detalhes de partida, destino, motorista e veículo
+        const partidaResponse = await getPartidaById(viagem.id_partida);
+        const destinoResponse = await getDestinoById(viagem.id_destino);
+        const motoristaResponse = await getMotorista(viagem.id_motorista);
+        const veiculoResponse = await getVeiculoById(viagem.id_veiculo);
+        const cargaResponse = await getCarga(viagem.id_tipo_carga);
+
+        // Garantir que a estrutura da resposta seja a esperada
+        const partida = partidaResponse && partidaResponse[0];
+        const destino = destinoResponse && destinoResponse[0];
+        const motorista = motoristaResponse && motoristaResponse[0];
+        const veiculo = veiculoResponse && veiculoResponse[0];
+        const carga = cargaResponse && cargaResponse[0];
+
+        // Função para formatar a data para o formato yyyy-MM-dd
+        function formatarDataParaDateInput(data) {
+            const [dia, mes, ano] = data.split('/');
+            return `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+        }
+
+        // Preencher os dados no modal de detalhes
+        const detalhesViagem = document.getElementById('detalhesViagem');
+        detalhesViagem.innerHTML = `
+            <p><strong>ID Viagem:</strong> <input type="text" id="id_viagem" value="${viagem.id_viagem}" disabled></p>
+            <p><strong>Remetente:</strong> <input type="text" id="remetente" value="${viagem.remetente}" disabled></p>
+            <p><strong>Destinatário:</strong> <input type="text" id="destinatario" value="${viagem.destinatario}" disabled></p>
+            <p><strong>Data de Partida:</strong> <input type="date" id="dia_partida" value="${formatarDataParaDateInput(new Date(viagem.dia_partida).toLocaleDateString())}" disabled></p>
+            <p><strong>Horário de Partida:</strong> <input type="time" id="horario_partida" value="${new Date(viagem.horario_partida).toLocaleTimeString()}" disabled></p>
+            <p><strong>Status Entregue:</strong> <input type="checkbox" id="status_entregue" ${viagem.status_entregue ? 'checked' : ''} disabled></p>
+            <p><strong>Partida (CEP):</strong> ${partida && partida.cep ? partida.cep : 'Não encontrado'}</p>
+            <p><strong>Destino (CEP):</strong> ${destino && destino.cep ? destino.cep : 'Não encontrado'}</p>
+            <p><strong>Motorista:</strong> ${motorista && motorista.nome ? motorista.nome : 'Não encontrado'}</p>
+            <p><strong>Veículo:</strong> ${veiculo && veiculo.modelo ? veiculo.modelo : 'Não encontrado'}</p>
+            <p><strong>Carga:</strong> ${carga && carga.descricao ? carga.descricao : 'Não encontrado'}</p>
+        `;
+
+        // Exibe o modal
+        modalDetalhes.style.display = 'flex';
+
+    } catch (error) {
+        console.error("Erro ao carregar a viagem:", error);
+        Swal.fire({
+            title: 'Erro!',
+            text: 'Não foi possível carregar os detalhes da viagem. Tente novamente.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+        });
+    }
+}
+
+// Fechar o modal de detalhes
+closeModalDetalhes.onclick = () => {
+    modalDetalhes.style.display = 'none';
+};
+
+window.onclick = (event) => {
+    if (event.target === modalDetalhes) {
+        modalDetalhes.style.display = 'none';
+    }
+};
+
+/*********************
+    FUNÇÕES DE EDIÇÃO E EXCLUSÃO
+**********************/
+// Lista global de IDs dos campos que podem ser editados
+const camposEdicao = [
+    'id_viagem', 'dia_partida', 'horario_partida', 'dia_chegada',
+    'remetente', 'destinatario', 'status_entregue',
+    'id_partida', 'id_destino', 'id_motorista', 'id_veiculo', 'id_carga'
+];
+
+// Função para habilitar edição
+function habilitarEdicao() {
+    console.log("Função habilitarEdicao chamada");
+
+    camposEdicao.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        if (campo) {
+            console.log(`Habilitando o campo: ${campoId}`);
+            campo.disabled = false; // Habilita o campo para edição
+        } else {
+            console.log(`Campo não encontrado: ${campoId}`);
+        }
+    });
+
+    // Atualiza o botão de "Editar" para "Salvar" ao habilitar edição
+    const botaoEditar = document.getElementById('editarViagemBtn');
+    if (botaoEditar) {
+        console.log("Botão Editar alterado para Salvar");
+        botaoEditar.textContent = 'Salvar';
+        botaoEditar.onclick = salvarEdicao; // Altera função do botão para salvar a edição
+    }
+}
+async function salvarEdicao() {
+    // Obter dados dos campos atualizados para salvar as alterações
+    const idViagem = document.getElementById('id_viagem')?.value || '';
     
-            // Exibe o modal
-            modalDetalhes.style.display = 'flex'; // Torna o modal visível
+    // Verificar se o ID da viagem está presente
+    console.log('ID da viagem para salvar:', idViagem);
     
-        } catch (error) {
-            console.error("Erro ao carregar a viagem:", error);
+    if (!idViagem) {
+        Swal.fire({
+            title: 'Erro!',
+            text: 'ID da viagem não encontrado.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+        });
+        return;
+    }
+
+    const viagemEditada = {
+        id_viagem: idViagem,
+        dia_partida: document.getElementById('dia_partida')?.value || '',
+        horario_partida: document.getElementById('horario_partida')?.value || '',
+        dia_chegada: document.getElementById('dia_chegada')?.value || '',
+        remetente: document.getElementById('remetente')?.value || '',
+        destinatario: document.getElementById('destinatario')?.value || '',
+        status_entregue: document.getElementById('status_entregue')?.checked || false,
+        id_partida: document.getElementById('id_partida')?.value || '',
+        id_destino: document.getElementById('id_destino')?.value || '',
+        id_motorista: document.getElementById('id_motorista')?.value || '',
+        id_veiculo: document.getElementById('id_veiculo')?.value || '',
+        id_carga: document.getElementById('id_carga')?.value || ''
+    };
+
+    // Enviar os dados para o backend
+    try {
+        const response = await putViagem(viagemEditada); // Chama a função de PUT para salvar a viagem editada
+        if (response.status === 200) {
             Swal.fire({
-                title: 'Erro!',
-                text: 'Não foi possível carregar os detalhes da viagem. Tente novamente.',
-                icon: 'error',
+                title: 'Sucesso!',
+                text: 'As alterações foram salvas.',
+                icon: 'success',
                 confirmButtonText: 'OK',
             });
+        } else {
+            throw new Error('Erro ao salvar a edição.');
         }
+    } catch (error) {
+        Swal.fire({
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao salvar as alterações. Tente novamente.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+        });
     }
-    
-    // Fechar o modal de detalhes
-    closeModalDetalhes.onclick = () => {
-        modalDetalhes.style.display = 'none'; // Esconde o modal
-    };
 
-    window.onclick = (event) => {
-        if (event.target === modalDetalhes) {
-            modalDetalhes.style.display = 'none'; // Fecha o modal se clicar fora
+    // Desativa a edição após salvar e restaura o botão de "Salvar" para "Editar"
+    camposEdicao.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        if (campo) {
+            campo.disabled = true; // Desabilita o campo novamente
         }
-    };
+    });
+
+    const botaoEditar = document.getElementById('editarViagemBtn');
+    if (botaoEditar) {
+        botaoEditar.textContent = 'Editar';
+        botaoEditar.onclick = habilitarEdicao; // Restaura a função original de "Editar"
+    }
+}
+
+// Certifique-se de que o botão de edição no modal de detalhes tenha o ID "editarViagemBtn"
+document.getElementById('editarViagemBtn').onclick = habilitarEdicao;
+
+// Função de Excluir Viagem (Caso necessário)
+async function excluirViagem(idViagem) {
+    try {
+        const response = await deleteViagem(idViagem); // Substitua deleteViagem pela função de exclusão que você usa
+        if (response.status === 200) {
+            Swal.fire({
+                title: 'Sucesso!',
+                text: 'Viagem excluída com sucesso.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+            });
+            // Fechar o modal ou redirecionar para outra página, se necessário
+            modalDetalhes.style.display = 'none';
+        } else {
+            throw new Error('Erro ao excluir a viagem.');
+        }
+    } catch (error) {
+        Swal.fire({
+            title: 'Erro!',
+            text: 'Não foi possível excluir a viagem. Tente novamente.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+        });
+    }
+}
 
     /*********************
         CARDS DE VIAGENS
@@ -455,84 +593,84 @@ function preencherSelectCargas(cargas, selectElement) {
 }
 
 
+// // Lista global de IDs dos campos que podem ser editados
+// const camposEdicao = [
+//     'id_viagem', 'dia_partida', 'horario_partida', 'dia_chegada',
+//     'remetente', 'destinatario', 'status_entregue',
+//     'id_partida', 'id_destino', 'id_motorista', 'id_veiculo', 'id_carga'
+// ];
 
-// Lista global de IDs dos campos que podem ser editados
-const camposEdicao = [
-    'id_viagem', 'dia_partida', 'horario_partida', 'dia_chegada',
-    'remetente', 'destinatario', 'status_entregue',
-    'id_partida', 'id_destino', 'id_motorista', 'id_veiculo', 'id_tipo_carga'
-];
+// // Função para habilitar edição
+// function habilitarEdicao() {
+//     camposEdicao.forEach(campoId => {
+//         const campo = document.getElementById(campoId);
+//         if (campo) {
+//             campo.disabled = false; // Habilita o campo para edição
+//         }
+//     });
 
-// Função para habilitar edição
-function habilitarEdicao() {
-    camposEdicao.forEach(campoId => {
-        const campo = document.getElementById(campoId);
-        if (campo) {
-            campo.disabled = false; // Habilita o campo para edição
-        }
-    });
+//     // Atualiza o botão de "Editar" para "Salvar" ao habilitar edição
+//     const botaoEditar = document.getElementById('editarViagemBtn');
+//     if (botaoEditar) {
+//         botaoEditar.textContent = 'Salvar';
+//         botaoEditar.onclick = salvarEdicao; // Altera função do botão para salvar a edição
+//     }
+// }
 
-    // Atualiza o botão de "Editar" para "Salvar" ao habilitar edição
-    const botaoEditar = document.getElementById('botaoEditar');
-    if (botaoEditar) {
-        botaoEditar.textContent = 'Salvar';
-        botaoEditar.onclick = salvarEdicao; // Altera função do botão para salvar a edição
-    }
-}
+// // Função para salvar alterações feitas no modal
+// async function salvarEdicao() {
+//     // Obter dados dos campos atualizados para salvar as alterações
+//     const viagemEditada = {
+//         id_viagem: document.getElementById('id_viagem')?.value || '',
+//         dia_partida: document.getElementById('dia_partida')?.value || '',
+//         horario_partida: document.getElementById('horario_partida')?.value || '',
+//         dia_chegada: document.getElementById('dia_chegada')?.value || '',
+//         remetente: document.getElementById('remetente')?.value || '',
+//         destinatario: document.getElementById('destinatario')?.value || '',
+//         status_entregue: document.getElementById('status_entregue')?.value || '',
+//         id_partida: document.getElementById('id_partida')?.value || '',
+//         id_destino: document.getElementById('id_destino')?.value || '',
+//         id_motorista: document.getElementById('id_motorista')?.value || null,
+//         id_veiculo: document.getElementById('id_veiculo')?.value || '',
+//         id_carga: document.getElementById('id_carga')?.value || ''
+//     };
 
-// Função para salvar alterações feitas no modal
-async function salvarEdicao() {
-    // Obter dados dos campos atualizados para salvar as alterações
-    const viagemEditada = {
-        id_viagem: document.getElementById('id_viagem')?.value || '',
-        dia_partida: document.getElementById('dia_partida')?.value || '',
-        horario_partida: document.getElementById('horario_partida')?.value || '',
-        dia_chegada: document.getElementById('dia_chegada')?.value || '',
-        remetente: document.getElementById('remetente')?.value || '',
-        destinatario: document.getElementById('destinatario')?.value || '',
-        status_entregue: document.getElementById('status_entregue')?.value || '',
-        id_partida: document.getElementById('id_partida')?.value || '',
-        id_destino: document.getElementById('id_destino')?.value || '',
-        id_motorista: document.getElementById('id_motorista')?.value || null,
-        id_veiculo: document.getElementById('id_veiculo')?.value || '',
-        id_tipo_carga: document.getElementById('id_tipo_carga')?.value || ''
-    };
+//     // Enviar os dados para o backend (adapte para a função de atualização que você usa)
+//     try {
+//         const response = await postViagem(viagemEditada); // Substitua postViagem por uma função de atualização, se houver
+//         if (response.status === 200) {
+//             Swal.fire({
+//                 title: 'Sucesso!',
+//                 text: 'As alterações foram salvas.',
+//                 icon: 'success',
+//                 confirmButtonText: 'OK',
+//             });
+//         } else {
+//             throw new Error('Erro ao salvar a edição.');
+//         }
+//     } catch (error) {
+//         Swal.fire({
+//             title: 'Erro!',
+//             text: 'Ocorreu um erro ao salvar as alterações. Tente novamente.',
+//             icon: 'error',
+//             confirmButtonText: 'OK',
+//         });
+//     }
 
-    // Enviar os dados para o backend (adapte para a função de atualização que você usa)
-    try {
-        const response = await postViagem(viagemEditada); // Substitua postViagem por uma função de atualização, se houver
-        if (response.status === 200) {
-            Swal.fire({
-                title: 'Sucesso!',
-                text: 'As alterações foram salvas.',
-                icon: 'success',
-                confirmButtonText: 'OK',
-            });
-        } else {
-            throw new Error('Erro ao salvar a edição.');
-        }
-    } catch (error) {
-        Swal.fire({
-            title: 'Erro!',
-            text: 'Ocorreu um erro ao salvar as alterações. Tente novamente.',
-            icon: 'error',
-            confirmButtonText: 'OK',
-        });
-    }
+//     // Desativa a edição após salvar e restaura o botão de "Salvar" para "Editar"
+//     camposEdicao.forEach(campoId => {
+//         const campo = document.getElementById(campoId);
+//         if (campo) {
+//             campo.disabled = true; // Desabilita o campo novamente
+//         }
+//     });
 
-    // Desativa a edição após salvar e restaura o botão de "Salvar" para "Editar"
-    camposEdicao.forEach(campoId => {
-        const campo = document.getElementById(campoId);
-        if (campo) {
-            campo.disabled = true; // Desabilita o campo novamente
-        }
-    });
-    const botaoEditar = document.getElementById('editarViagemBtn');
-    if (botaoEditar) {
-        botaoEditar.textContent = 'Editar';
-        botaoEditar.onclick = habilitarEdicao; // Restaura função original de "Editar"
-    }
-}
+//     const botaoEditar = document.getElementById('editarViagemBtn');
+//     if (botaoEditar) {
+//         botaoEditar.textContent = 'Editar';
+//         botaoEditar.onclick = habilitarEdicao; // Restaura função original de "Editar"
+//     }
+// }
 
-// Certifique-se de que o botão de edição no modal de detalhes tenha o ID "botaoEditar"
-document.getElementById('editarViagemBtn').onclick = habilitarEdicao;
+// // Certifique-se de que o botão de edição no modal de detalhes tenha o ID "editarViagemBtn"
+// document.getElementById('editarViagemBtn').onclick = habilitarEdicao;

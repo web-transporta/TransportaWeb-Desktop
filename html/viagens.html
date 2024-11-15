@@ -125,17 +125,68 @@
         <div class="container-cards" id="container-cards">
         
         </div>
-     <!-- Modal de detalhes da viagem -->
+  <!-- Modal de detalhes da viagem -->
 <div id="modalDetalhes" class="modal-background" style="display:none;">
     <div class="modal-contentt">
         <span id="closeModalDetalhes" class="close">&times;</span>
         <h2>Detalhes da Viagem</h2>
-        <div id="detalhesViagem"></div>
+        <div id="detalhesViagem">
+            <div class="form-group">
+                <input type="text" id="id_viagem" name="id_viagem" placeholder="Ex.: 712-939-VCD" disabled>
+            </div>
+            <div class="form-group">
+                <input type="date" id="dia_partida" name="dia_partida" disabled>
+            </div>
+            <div class="form-group">
+                <input type="text" id="horario_partida" name="horario_partida" disabled>
+            </div>
+            <div class="form-group">
+                <input type="date" id="dia_chegada" name="dia_chegada">
+            </div>
+            <div class="form-group">
+                <input type="text" id="remetente" name="remetente" placeholder="Ex.: Empresa Épsilon" disabled>
+            </div>
+            <div class="form-group">
+                <input type="text" id="destinatario" name="destinatario" placeholder="Ex.: Cliente E" disabled>
+            </div>
+            <div class="form-group">
+                <select id="status_entregue" name="status_entregue" disabled>
+                    <option value="0">Não Entregue</option>
+                    <option value="1">Entregue</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_partida" name="id_partida" disabled>
+                    <option value="selecione">Selecione uma partida</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_destino" name="id_destino" disabled>
+                    <option value="selecione">Selecione um destino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_motorista" name="id_motorista" disabled>
+                    <option value="selecione">Selecione um motorista</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_veiculo" name="id_veiculo" disabled>
+                    <option value="selecione">Selecione um caminhão</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_carga" name="id_carga" disabled>
+                    <option value="selecione">Selecione um tipo de carga</option>
+                </select>
+            </div>
+            
+        </div>
         
         <!-- Botões de editar e excluir -->
         <button id="editarViagemBtn">Editar</button>
-        <button id="salvarViagemBtn"></button>
-        <button id="deleteButton">Excluir</button>
+        <button id="salvarViagemBtn" style="display:none;">Salvar</button> <!-- Inicialmente oculto -->
+        <button id="excluirViagemBtn">Excluir</button>
     </div>
 </div>
 
