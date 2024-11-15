@@ -102,14 +102,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         event.preventDefault();
     
         // Recupera o ID da empresa do localStorage
-        
         const idEmpresa = localStorage.getItem('id');
-        console.log(idEmpresa)
+        console.log(idEmpresa);
         // Se o ID da empresa não estiver no localStorage, exibe um erro
         if (!idEmpresa) {
             Swal.fire({
                 title: 'Erro!',
                 text: 'ID da empresa não encontrado no localStorage.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+    
+        // Verifica se o motorista foi selecionado corretamente
+        const id_motorista = idMotoristaSelect?.value || null;
+        if (!id_motorista) {
+            Swal.fire({
+                title: 'Erro!',
+                text: 'Por favor, selecione um motorista.',
                 icon: 'error',
                 confirmButtonText: 'OK',
             });
@@ -127,12 +138,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             status_entregue: document.getElementById('status_entregue')?.value || '',
             id_partida: idPartidaSelect?.value || '',
             id_destino: idDestinoSelect?.value || '',
-            id_motorista: idMotoristaSelect?.value || null,
+            id_motorista: id_motorista, // Garantindo que o valor do motorista seja válido
             id_veiculo: idVeiculoSelect?.value || '',
             id_tipo_carga: idCargaSelect?.value || '',
             id_empresa: idEmpresa // Adiciona o ID da empresa ao objeto novaViagem
         };
-        console.log(novaViagem)
+        console.log(novaViagem);
     
         modalBackground.style.display = 'none';
     
@@ -429,7 +440,7 @@ function preencherSelect(transportes, selectElement, valueField) {
 function preencherSelectMotoristas(motoristas, selectElement) {
     motoristas.forEach(motorista => {
         const option = document.createElement('option');
-        option.value = motorista.id_motorista;
+        option.value = motorista.id;
         option.textContent = motorista.nome;
         selectElement.appendChild(option);
     });
