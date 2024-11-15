@@ -272,11 +272,23 @@ export async function getCarga(id) {
     return data.partida    
 }
 export async function getEmpresaViagens(id) {
-    const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresaviagem/${id}` 
-    const response = await fetch(url)
-    const data = await response.json()
-    return data.empresa_viagem    
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresaviagem/${id}`;
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data.empresa_viagem; // Retorna o array ou objeto esperado
+    } catch (error) {
+        console.error('Erro ao buscar viagens:', error);
+        throw error; // Relança o erro para tratamento externo
+    }
 }
+
 export async function getMotoristasEquipe(id) {
     const url = `https://crud-03-09.onrender.com/v1/transportaweb/motoristaequipe/${id}` 
     const response = await fetch(url)
