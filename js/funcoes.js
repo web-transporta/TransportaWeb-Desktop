@@ -54,11 +54,17 @@ export async function postMotorista(insert) {
 }
 
 export async function getViagens() {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagens`; 
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+        console.error('Erro ao buscar viagens:', response.statusText);
+        return []; // Retorna um array vazio em caso de falha
+    }
 
-    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagens` 
-    const response = await fetch(url)
-    const data = await response.json()
-    return data.viagens    
+    const data = await response.json();
+    console.log('Dados recebidos da API:', data); // Verifique o que a API retorna
+    return data.viagens; // Verifique se 'viagens' é realmente a chave que contém os dados
 }
 
 export async function getViagem(id) {

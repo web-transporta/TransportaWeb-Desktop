@@ -261,7 +261,7 @@ async function mostrarDetalhesViagem(id_viagem) {
     }
 }
 
-// Fechar o modal de detalhes
+// Fechar o modal de detalhes 
 closeModalDetalhes.onclick = () => {
     modalDetalhes.style.display = 'none';
 };
