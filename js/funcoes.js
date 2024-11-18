@@ -67,6 +67,20 @@ export async function getViagens() {
     return data.viagens; // Verifique se 'viagens' é realmente a chave que contém os dados
 }
 
+export async function getMotoristasSemEquipe() {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/motoristasfree`; 
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+        console.error('Erro ao buscar viagens:', response.statusText);
+        return []; // Retorna um array vazio em caso de falha
+    }
+
+    const data = await response.json();
+    console.log('Dados recebidos da API:', data); // Verifique o que a API retorna
+    return data.motoristas; // Verifique se 'viagens' é realmente a chave que contém os dados
+}
+
 export async function getViagem(id) {
     const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`
     console.log(url);

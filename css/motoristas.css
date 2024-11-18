@@ -360,5 +360,46 @@ body {
 .remove-button:hover {
     background-color: #c0392b; /* Cor de fundo ao passar o mouse */
 }
-
-
+.opcaofree {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Reduzi o espaço entre os elementos */
+    font-family: Arial, sans-serif;
+  }
+  
+  .opcaofree p {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .container {
+    position: relative;
+    width: 80px; /* Ajustei a largura do trilho */
+    height: 35px; /* Ajustei a altura do trilho */
+    background-color: #ddd;
+    border-radius: 18px; /* Arredondamento do trilho */
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .left {
+    transform: translateX(5px); /* Posição inicial do botão */
+  }
+  
+  .right {
+    transform: translateX(45px); /* Posição do botão ao alternar */
+  }
+  
