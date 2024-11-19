@@ -298,7 +298,7 @@ body {
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
     width: 400px; /* Largura fixa dos cards */
-    height: 300px; /* Altura fixa para acomodar a imagem e informações */
+    height: 250px; /* Altura fixa para acomodar a imagem e informações */
     overflow: hidden; /* Evitar que o conteúdo transborde */
     transition: transform 0.3s; /* Transição suave */
     display: flex; /* Usar flexbox para organizar o conteúdo */
@@ -312,7 +312,6 @@ body {
 /* Conteúdo do card */
 .motorista-info {
     padding-left: 12px;
-    padding-top: 10px;
     display: flex;
     flex-direction: column; /* Empilha os elementos verticalmente */
     justify-content: space-between; /* Distribui espaço entre os elementos */
@@ -361,5 +360,46 @@ body {
 .remove-button:hover {
     background-color: #c0392b; /* Cor de fundo ao passar o mouse */
 }
-
-
+.opcaofree {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Reduzi o espaço entre os elementos */
+    font-family: Arial, sans-serif;
+  }
+  
+  .opcaofree p {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .container {
+    position: relative;
+    width: 80px; /* Ajustei a largura do trilho */
+    height: 35px; /* Ajustei a altura do trilho */
+    background-color: #ddd;
+    border-radius: 18px; /* Arredondamento do trilho */
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .left {
+    transform: translateX(5px); /* Posição inicial do botão */
+  }
+  
+  .right {
+    transform: translateX(45px); /* Posição do botão ao alternar */
+  }
+  
