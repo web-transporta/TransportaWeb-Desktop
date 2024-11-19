@@ -76,7 +76,7 @@ body {
 }
 
 .button.test {
-    background-color: #BB4848;
+    background-color: #D92727;
     color: #ffffff;
     width: 200px;
     height: 50px;
@@ -104,7 +104,7 @@ body {
 }
 
 .background-header {
-    background-image: url('/img/fundo\ quem\ somos.png');
+    background-image: url('../css/img/fundo\ quem\ somos.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -183,7 +183,7 @@ body {
 }
 
 .footer {
-    background-color: #BB4848;
+    background-color: #D92727;
     padding: 1rem;
     border-top: 2px solid #c7c7c7;
 }

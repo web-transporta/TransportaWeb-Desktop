@@ -5,15 +5,22 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Perfil motorista </title>
    <script type="module" src="../js/perfilM.js" defer></script>
-   <link rel="stylesheet" href="../css/perfil-motorista.css">
+   <link rel="stylesheet" href="../css/perfilEmpresa.css">
    <link rel="stylesheet" href="../css/root.css">
 </head>
 <body>
+    <div class="voltar">
+        <a href="../html/paginaHome.html">
+            <img src="../css/img/seta branca.png" alt="Voltar à página principal">
+        </a>
+    </div>
+
    <div class="container-t">
        <div class="img"></div>
        <button class="trocar-foto">Trocar foto de perfil</button>
        <button class="remover">Remover</button>
    </div>
+
 
    <div class="container-b">
     <form action="#">
@@ -31,36 +38,18 @@
                 <input type="tel" id="telefone" placeholder="" required>
             </div>
             <div class="inputbox">
-                <span class="detalhes">Quantidade de viagens:</span>
+                <span class="detalhes">CNPJ:</span>
                 <input type="number" placeholder="" required>
             </div>
             <div class="inputbox">
-                <span class="detalhes">Status:</span>
-                <select id="" class="botao-opcao">
-                    <option>Escolher</option>
-                    <option>Disponível</option>
-                    <option>Indisponível</option>
-                </select>
-            </div>
-            <div class="inputbox">
-                <span class="detalhes">Data do aniversário:</span>
-                <input type="date" id="data">
-            </div>
-            <div class="inputbox">
-                <span class="detalhes">CPF:</span>
-                <input type="number" id="cpf" placeholder="" required>
-            </div>
-            <div class="inputbox">
-                <span class="detalhes">Avaliação:</span>
-                <input type="number">
-            </div>
-            <div class="inputbox">
-                <span class="detalhes">Modelo do caminhão</span>
+                <span class="detalhes">Razão Social:</span>
                 <input type="text" placeholder="" required>
             </div>
             <div class="botoes">
-                <button class="editar">Editar perfil</button>
-                <button class="excluir">Excluir perfil</button>
+                <button class="botao">editar perfil</button>
+                <button class="botao">Cep</button>
+                <button class="botao">Excluir perfil</button>
+
             </div>
         </div>
     </form>

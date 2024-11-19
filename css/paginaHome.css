@@ -24,7 +24,7 @@ body {
 }
 
 .profile-container span {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -59,7 +59,7 @@ body {
     border-radius: 25px;
     width: 150px;
     height: 40px;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     font-family: nunito;
     font-weight: 700;
@@ -70,11 +70,11 @@ body {
 }
 
 .motoristas, .historico, .perfil {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .home {
-    font-size: 18px;
+    font-size: 16px;
     color: red;
     text-decoration: underline;
 }
@@ -165,5 +165,5 @@ body {
 }
 
 .card h2{
-    font-size: 18px;
+    font-size: 14px;
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -68,4 +69,76 @@
     </section>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+    <script src="../js/funcoes.js" type="module" defer></script>
+    <script src="../js/chat.js" type="module" defer></script>
+    <script src="../js/contatos.js" type="module" defer></script>
+    <link rel="stylesheet" href="../css/chat.css">
+</head>
+
+<body>
+    <div class="seta-voltar">
+        <a href="../html/paginaHome.html">
+            <img src="../css/img/seta branca.png" alt="Voltar à página principal">
+        </a>
+    </div>
+    
+    <section class="side-bar" id="sideBar">
+        <div class="message-icon">
+            <!-- <img src="./img/balao-de-fala.png" alt="message"> -->
+        </div>
+        <div class="user-icon" id="userIcon"></div>
+    </section>
+
+    <section class="nav-bar" id="navBar">
+        <p>Contatos</p>
+        <div class="search-bar" id="searchBar">
+            <input type="text" placeholder="Pesquisar contato...">
+            <div class="search-icon">
+                <img src="../css/img/lupa-arredondada.png" alt="icon">
+            </div>
+        </div>
+
+        <h1>Mensagens</h1>
+
+        <div class="contacts"></div>
+    </section>
+    <section class="chat-area" id="chatArea">
+
+        <div class="header-chat" id="headerChat">
+            <div class="header-text">
+                <div class="receiver-img" id="receiverImg"></div>
+                <div class="receiver-name" id="receiverName"></div>
+            </div>
+            <a href="https://www.hostinger.com.br/tutoriais/wp-content/uploads/sites/12/2018/06/erro-404-no-chrome.webp"><button class="button">Visitar perfil</button></a>
+        </div>
+
+
+        <div class="chat-content" id="chatContent"></div>
+        <div class="send-message">
+            <div class="input-area">
+                <input type="text" placeholder="Envie uma mensagem...">
+                <div class="button-message" id="buttonMessage">
+                    <button class="send">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+>>>>>>> upstream/main
 </html>

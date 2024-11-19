@@ -12,10 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 600px;
- margin-top: 150px;
+    margin-top: 150px;
 
 }
-
 
 .passos {  
     display: flex;  
@@ -24,12 +23,11 @@ body {
     margin-bottom: 30px;  
     position: absolute; 
     top: 80px; 
-    left: -350px; 
+    left: -230px; 
     margin-left: -100px;
     width: 100%;  
     text-align: center;  
 }  
-
 
 .passo { 
     display: flex; 
@@ -77,9 +75,9 @@ body {
     width: 30px; 
     height: 30px; 
     border-radius: 50%; 
-    border: 2px solid #D92727; /* Adiciona a borda vermelha */ 
-    color: #D92727; /* Cor do texto */ 
-    background-color: red; /* Fundo transparente */ 
+    border: 2px solid  var(--vermelho); /* Adiciona a borda vermelha */ 
+    color:  var(--vermelho); /* Cor do texto */ 
+    background-color:  var(--vermelho); /* Fundo transparente */ 
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -109,7 +107,7 @@ body {
     width: 50px; 
     height: 50px; 
     border-radius: 50%; 
-    border: 2px solid #ff0000; /* Adiciona a borda vermelha */ 
+    border: 2px solid  var(--vermelho); /* Adiciona a borda vermelha */ 
     background-color:rgba(9, 255, 0, 0);
     display: flex; 
     justify-content: center; 
@@ -163,7 +161,7 @@ body {
     left: 10px; 
     transform: translateY(-200%); 
     font-size: 20px; 
-    font-weight: 600; 
+    font-weight: 700;
     pointer-events: none; 
 } 
 
@@ -172,8 +170,8 @@ body {
     height: 40px; 
     outline: none; 
     font-size: 18px; 
-    border-bottom: 3px solid var(--vermelho);  
     border: 2px solid var(--branco);  
+    border-bottom: 1px solid var(--vermelho);  
     background: var(--cinza); 
     padding-left: 20px; 
     padding-top: 10px; 
@@ -186,7 +184,7 @@ button {
     font-family: var(--titulo); 
     color: var(--vermelho); 
     font-size: 30px; 
-    font-weight: 600; 
+    font-weight: 800; 
     background-color: transparent; 
     border: 2px solid var(--vermelho); 
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1); 
@@ -206,18 +204,17 @@ button:hover {
 
 .desc-container { 
     position: fixed; 
-    width: 500px; 
     max-width: 600px; 
-    height: 840px; 
-    right: 10%;  
-    top: 54px; 
+    height: 831px;
+    width: 498px;
+    right: 13%;  
+    top: 5%; 
     background-color: var(--vermelho);  
-    padding: 40px;
     box-sizing: border-box; 
 }
 
 .desc-container h1 { 
-    font-size: 32px; 
+    font-size: 52px; 
     font-weight: 900; 
     color: var(--branco); 
     text-align: center;
@@ -225,20 +222,18 @@ button:hover {
 
 .desc-container p { 
     font-size: 25px; 
+    font-weight: 300;
     color: var(--branco); 
     text-align: center; 
-    margin: 20px; 
+    margin: 60px 50px 0px; 
 } 
 
-
-
 .desc-container img {
-    width: 100%;
-    height: auto; 
+    width: 468px;
+    height: 423px;
     max-height: 500px; 
     object-fit: cover; 
 }
-
 
 
 @media screen and (max-width: 1300px) {

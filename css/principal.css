@@ -1,7 +1,7 @@
 /* 
 Nome: Leonardo Torquato de Andrade
 TransportaWeb
-Data: 19/09/2024
+Data: 03/10/2024
 */
 
 body {
@@ -14,7 +14,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #ffffff;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .logo {
@@ -103,7 +104,7 @@ body {
 }
 
 .background-header {
-    background-image: url('../css/img/BACKGROUND-LIMPO.PNG');
+    background-image: url('../css/img/fundo_com_letras.PNG');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -114,69 +115,71 @@ body {
     box-sizing: border-box;
 }
 
-.background-header a {
-    font-family: "Poppins", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-    color: #ffffff;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    margin-left: 10vh;
-}
-
-.container {
-    position: relative;
-    height: 100vh;
-    background-image: url('../css/img/BACKGROUND-LIMPO.PNG');
-    background-size: cover;
-    background-position: center;
-    font-family: "Poppins", sans-serif;
-    font-weight: 1000;
-    font-style: normal;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+.info-section {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-start;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.info-item,
+.info-item2,
+.info-item3 {
     text-align: center;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-     font-style: normal;
+    flex: 1 1 45%; 
+    margin: 1rem; 
+    padding: 2rem; 
+    box-sizing: border-box; 
 }
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.info-item img,
+.info-item2 img,
+.info-item3 img {
+    max-width: 80px; 
+    height: auto;  
 }
 
-p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+.info-item h2,
+.info-item2 h2,
+.info-item3 h2 {
+    color:#D92727;
+    font-size: 24px;
+    margin-bottom: 10px; 
+    align-items: center;
 }
 
-.contact-box {
-    background-color: #D92727;
-    padding: 20px;
-    border-radius: 8px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    border: 2px solid #ffffff; 
+.info-item p,
+.info-item2 p,
+.info-item3 p {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+    line-height: 1.5;
+    text-align: center;
 }
 
+.info-item3 {
+    flex: 1 1 100%;
+    margin: 1rem; 
+    padding: 2rem; 
+}
 
-.contact-box p {
-    margin: 0.5rem 0;
-    font-size: 1.25rem;
+.info-item3 p {
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+@media (max-width: 768px) {
+    .info-item,
+    .info-item2,
+    .info-item3 {
+        flex: 1 1 100%; 
+        max-width: 100%; 
+        margin: 0.5rem; 
+        padding: 1rem; 
+    }
 }
 
 .footer {
@@ -201,3 +204,43 @@ p {
 }
 
 
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    .info-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-item {
+        max-width: 100%;
+        margin-bottom: 20px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .info-item h2 {
+        font-size: 18px;
+    }
+
+    .info-item p {
+        font-size: 16px;
+    }
+
+    .button {
+        font-size: 0.9rem;
+    }
+}
