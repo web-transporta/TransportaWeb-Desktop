@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Empresa</title>
-    <script type="module" src="../js/cadastro-empresa1.js" defer></script>
+    <script type="module" src="../js/cadastro-empresa2.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/root.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cadastro.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head> 
 
@@ -33,8 +34,9 @@
                 <div class="forms">
                     <form action="" id="form">
                         <div class="inputbox">
-                    <input type="text" id="cep" placeholder="Digite seu CEP">
-                    <label for="cep">CEP:</label>
+                    <input type="text" id="numero_telefone" placeholder="Digite seu número">
+                    <label for="cep">Número de telefone:</label>
+                    <span id="numeroError" style="color: red; display: none;"></span>
                 </div>
 
                 <div class="inputbox">
@@ -45,15 +47,17 @@
                 <div class="inputbox">
                     <input type="email" id="email" placeholder="Digite seu e-mail">
                     <label for="email">Email:</label>
+                    <span id="emailError" style="color: red; display: none;"></span>
                 </div>
 
                 <div class="inputbox">
-                    <input type="text" id="senha" placeholder="Digite sua senha">
+                    <input type="password" id="senha" placeholder="Digite sua senha">
                     <label for="senha">Senha:</label>
+                    <span id="senhaError" style="color: red; display: none;"></span>
                 </div>
 
                 <div>
-                    <button id="next" type="button"> Cadastrar >
+                    <button id="next2" type="button"> Cadastrar >
                         
                     </button>
                         <p>Já possui uma conta?   

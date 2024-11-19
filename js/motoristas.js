@@ -97,10 +97,12 @@ const carregarMotoristas = async () => {
         // Verifica o estado do botão (esquerda ou direita)
         if (toggleBtn.classList.contains('left')) {
             console.log('Carregando motoristas da equipe...');
-            motoristas = await getMotoristasEquipe(id);
+            motoristas = await getMotoristasSemEquipe();
         } else {
             console.log('Carregando todos os motoristas...');
-            motoristas = await getMotoristasSemEquipe();
+            motoristas = await getMotoristasEquipe(id);
+
+
         }
 
         console.log('Motoristas carregados:', motoristas);
