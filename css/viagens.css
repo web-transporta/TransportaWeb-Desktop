@@ -131,7 +131,7 @@ body {
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
     z-index: 1001; /* Acima do fundo do modal */
-    max-width: 500px; /* Largura máxima do modal */
+    max-width: 700px; /* Largura máxima do modal */
     width: 100%; /* Largura total do modal */
 }
 
@@ -299,7 +299,7 @@ body {
     background-color: white; /* Cor de fundo do modal */
     border-radius: 8px; /* Bordas arredondadas */
     padding: 20px; /* Espaçamento interno */
-    width: 400px; /* Largura do modal */
+    width: 200px; /* Largura do modal */
     max-width: 90%; /* Para responsividade */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra do modal */
     animation: modalFadeIn 0.3s; /* Animação de fade in ao abrir */
