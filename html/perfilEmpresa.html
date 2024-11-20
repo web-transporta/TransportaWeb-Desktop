@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Perfil motorista </title>
-   <script type="module" src="../js/perfilM.js" defer></script>
+   <script type="module" src="../js/perfilE.js" defer></script>
    <link rel="stylesheet" href="../css/perfilEmpresa.css">
    <link rel="stylesheet" href="../css/root.css">
 </head>
@@ -16,7 +16,7 @@
     </div>
 
    <div class="container-t">
-       <div class="img"></div>
+       <div class="img"> <img src="" id="foto_url" alt=""></div>
        <button class="trocar-foto">Trocar foto de perfil</button>
        <button class="remover">Remover</button>
    </div>
@@ -27,29 +27,28 @@
         <div class="detalhes-usuario">
             <div class="inputbox">
                 <span class="detalhes">Nome:</span>
-                <input type="text" id="nome" placeholder="" required>
+                <input type="text" id="nome" placeholder="Nome" required disabled>
             </div>
             <div class="inputbox">
                 <span class="detalhes">Email:</span>
-                <input type="email" id="email" placeholder="" required>
+                <input type="email" id="email" placeholder="Email" required disabled >
             </div>
             <div class="inputbox">
                 <span class="detalhes">Telefone:</span>
-                <input type="tel" id="telefone" placeholder="" required>
+                <input type="tel" id="telefone" placeholder="Telefone" required disabled>
             </div>
             <div class="inputbox">
                 <span class="detalhes">CNPJ:</span>
-                <input type="number" placeholder="" required>
+                <input type="text" id="cnpj" placeholder="CNPJ" required disabled>
             </div>
             <div class="inputbox">
                 <span class="detalhes">Razão Social:</span>
-                <input type="text" placeholder="" required>
+                <input type="text" id="razaoSocial" placeholder="Razão Social" required disabled>
             </div>
             <div class="botoes">
-                <button class="botao">editar perfil</button>
-                <button class="botao">Cep</button>
+                <button class="botao">Editar perfil</button>
+                <button class="botao">CEP</button>
                 <button class="botao">Excluir perfil</button>
-
             </div>
         </div>
     </form>

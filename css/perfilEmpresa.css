@@ -19,6 +19,19 @@ body {
    height: 30px;
    margin: 20px;
 }
+.img {
+   position: relative;
+   width: 100%;
+   height: 200px; /* ou o tamanho desejado */
+   overflow: hidden; /* Isso evitará que a imagem saia da div */
+}
+
+.img img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover; /* Isso garante que a imagem preencha a área sem distorcer */
+   object-position: center; /* Centraliza a imagem */
+}
 
 
 .container-t {
@@ -37,7 +50,6 @@ body {
    border-radius: 100%;
    width: 120px;
    height: 120px;
-   background-color: rgb(216, 216, 216);
 }
 .trocar-foto, .remover, .botao {
    width: 230px;
