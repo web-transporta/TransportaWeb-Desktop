@@ -11,15 +11,15 @@ if (cadastro1) {
 // Certifique-se de que os elementos estão sendo acessados corretamente antes de usar os valores
 const numero_telefone = document.getElementById('numero_telefone');
 const numeroError = document.getElementById('numeroError'); // Elemento para a mensagem de erro do telefone
-const img_perfil = document.getElementById('img_perfil');
+const foto_url = document.getElementById('img');
 const email = document.getElementById('email');
 const emailError = document.getElementById('emailError'); // Elemento para a mensagem de erro do email
 const senha = document.getElementById('senha');
 const senhaError = document.getElementById('senhaError'); // Elemento para a mensagem de erro da senha
 const button = document.getElementById('next2');
-
+    
 // Verificar se todos os elementos foram encontrados
-if (!numero_telefone || !img_perfil || !email || !senha || !button) {
+if (!numero_telefone || !foto_url || !email || !senha || !button) {
     console.error('Um ou mais elementos não foram encontrados no DOM.');
 } else {
     const validarNumeroTelefone = (numero) => {
@@ -37,12 +37,12 @@ if (!numero_telefone || !img_perfil || !email || !senha || !button) {
         event.preventDefault();
 
         const numero_telefoneInput = numero_telefone.value;
-        const imgInput = img_perfil.value;
+        const imgInput = foto_url.value;
         const emailInput = email.value;
         const senhaInput = senha.value;
 
         console.log('numero_telefone:', numero_telefoneInput);
-        console.log('img_perfil:', imgInput);
+        console.log('foto_url:', imgInput);
         console.log('email:', emailInput);
         console.log('senha:', senhaInput);
 
@@ -77,7 +77,7 @@ if (!numero_telefone || !img_perfil || !email || !senha || !button) {
         }
 
         cadastro1.numero_telefone = numero_telefoneInput;
-        cadastro1.img_perfil = imgInput;
+        cadastro1.foto_url = imgInput;
         cadastro1.email = emailInput;
         cadastro1.senha = senhaInput;
 

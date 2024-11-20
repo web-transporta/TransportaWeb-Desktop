@@ -216,11 +216,14 @@ body {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #f0f0f0;
+    background-color: #e2e2e2;
     color: #333;
     outline: none;
-}
 
+}
+.pesquisa input{
+    background-color: red;
+}
 /* Container para os cards de viagem */
 .container-cards {
     display: grid;
