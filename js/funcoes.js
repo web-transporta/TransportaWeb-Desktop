@@ -82,12 +82,31 @@ export async function getMotoristasSemEquipe() {
 }
 
 export async function getViagem(id) {
-    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`;
     console.log(url);
-    const response = await fetch(url)
-    const data = await response.json()
-    return data.viagem[0]
+
+    try {
+        const response = await fetch(url);
+
+        // Verifique se a resposta é válida
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        // Verifique se o JSON possui o campo esperado
+        if (data && data.motorista && Array.isArray(data.motorista) && data.motorista.length > 0) {
+            return data.motorista[0]; // Retorna o primeiro item do array
+        } else {
+            throw new Error('Dados inválidos ou viagem não encontrada');
+        }
+    } catch (error) {
+        console.error('Erro ao buscar viagem:', error);
+        throw error; // Propaga o erro para quem chamou
+    }
 }
+
 export async function postViagem(insert) {
     try {
         // Faz a requisição para a API
