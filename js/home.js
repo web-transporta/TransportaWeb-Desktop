@@ -42,3 +42,24 @@ window.addEventListener('DOMContentLoaded', async () => {
         alert('Erro ao carregar dados da empresa: ' + error.message);
     }
 });
+// Captura os elementos do botão de alerta e do modal
+const alertButton = document.getElementById('alertButton');
+const alertModal = document.getElementById('alertModal');  // Modal renomeado
+const closeModal = document.getElementById('closeModal');  // Fechar o modal
+
+// Função para abrir o modal ao clicar no botão de alerta
+alertButton.onclick = function() {
+    alertModal.style.display = "block"; // Exibe o modal
+}
+
+// Função para fechar o modal ao clicar no botão de fechar (X)
+closeModal.onclick = function() {
+    alertModal.style.display = "none"; // Oculta o modal
+}
+
+// Fecha o modal se o usuário clicar fora da área de conteúdo do modal
+window.onclick = function(event) {
+    if (event.target == alertModal) {
+        alertModal.style.display = "none"; // Oculta o modal
+    }
+}
