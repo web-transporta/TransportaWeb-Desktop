@@ -17,6 +17,7 @@
     <script src="../js/home.js" defer type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/grafico.js" defer type="module"></script>
+    <script src="../js/viagens.js" defer type="module"></script>
 </head>
 
 
@@ -35,8 +36,12 @@
                 <a href="./motoristas.html">Motoristas</a>
                 <a href="./ceps.html">Ceps</a>
                 <a href="./perfilEmpresa.html">Perfil</a>
+                <a href="./chat.html">Chat</a>
             </ul>
-            <a href="./chat.html"><button class="botao-chat">Chat</button></a>
+            <button class="botao-chat" onclick="criarViagem(event)">
+                <img src="../css/img/localizacao.png" alt="localizacao" height="25">
+                Nova Viagem
+            </button>            
         </div>
     </header>
 
