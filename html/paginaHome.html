@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <title>TransportaWeb</title>
     <link rel="stylesheet" href="../css/paginaHome.css">
     <link rel="stylesheet" href="../css/root.css">
@@ -45,7 +47,9 @@
                 <h1 class="tittle">
                     Transforme Sua Operação Logística com Tecnologia de Ponta
                 </h1>
-                <p class="text">A Transporta Web é a plataforma que traz inovação e eficiência para sua gestão logística. Com soluções avançadas, oferecemos uma maneira simples e inteligente de otimizar o gerenciamento da sua frota e tomar decisões mais assertivas.</p>
+                <p class="text">A Transporta Web é a plataforma que traz inovação e eficiência para sua gestão
+                    logística. Com soluções avançadas, oferecemos uma maneira simples e inteligente de otimizar o
+                    gerenciamento da sua frota e tomar decisões mais assertivas.</p>
             </div>
 
 
@@ -54,25 +58,67 @@
             </div>
         </div>
 
+        <div class="dashboard-container">
+            <div class="cards">
+                <div class="all-trips-card">
 
-        <div class="chart-container">
-            <canvas id="viagensChart"></canvas>
+                    <div class="text-trips">
+                        <div class="title-trips">Total de viagens realizadas:</div>
+                        <div class="all-trips">100</div>
+                    </div>
+
+                    <div class="image-trips">
+                        <img src="../css/img/estatistica.png" alt="estatistica">
+                    </div>
+                </div>
+                <div class="card-insert">
+                    <div class="text-area">
+                        <div class="title-card">
+                            Cadastre seus veículos
+                        </div>
+                        <div class="text-card">
+                            Tenha controle total de todos os veículos da sua empresa em um só lugar!
+                        </div>
+                        <div class="button-area-transition">
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">Continuar</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <img src="../css/img/caixacaindo.png" alt="carrinhodemao" height="250">
+                    </div>
+                </div>
+            </div>
+            <div class="grafico">
+                <div class="chart-container">
+                    <canvas id="viagensChart"></canvas>
+                </div>
+            </div>
+        </div>
+
         </div>
 
 
-        <div class="card">
+
+
+
+        <!-- <div class="card">
             <div class="card-header">
                 <h3>Total de Viagens Realizadas</h3>
             </div>
             <div class="card-body">
                 <p id="totalViagens">Carregando...</p>
             </div>
-        </div>
+        </div> -->
 
 
-       
+
     </main>
 </body>
 
 
-</html>    
+</html>

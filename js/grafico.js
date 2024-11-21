@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 label: 'Viagens Realizadas',
                 data: viagensPorMes,
                 backgroundColor: [
-                    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
-                    '#FF9F40', '#FFCD56', '#4BC0C0', '#FF6384', '#36A2EB',
-                    '#9966FF', '#FF9F40'
+                    '#FFAEAE', '#FF8888', '#FF6666', '#FF3737', '#F20000',
+                    '#CC0000', '#AE0000', '#770000', '#F42932', '#E42427',
+                    '#BB1914', '#AD140C'
                 ],
                 borderColor: '#fff',
                 borderWidth: 2
