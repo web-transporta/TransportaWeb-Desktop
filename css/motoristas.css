@@ -73,14 +73,15 @@ body {
 }
 
 .control-section {
+    height: 200px;
+    width: 85vh;
     background-color: #d32f2f;
     color: white;
     padding: 40px;
     text-align: left;
     display: flex;
     align-items: center;
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left:27.5%;
     margin-top: 5px;
     justify-content: space-between;
 }
@@ -92,6 +93,7 @@ body {
 .control-section h1 {
     font-size: 24px;
     margin-bottom: 20px;
+    font-weight: 800;
 }
 .control-section p {
     font-size: 16px;
@@ -99,7 +101,11 @@ body {
 }
 
 .illustration img {
-    width: 200px;
+    width: 400px;
+    height: auto;
+    padding-top: 12px;
+   margin-right: -40px;
+
 }
 
 /* Estilos para o fundo do modal */
@@ -212,8 +218,7 @@ body {
     width: 40%;
     padding: 10px;
     border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
+    background-color: #d8d8d8;
     color: #333;
     outline: none;
 }
@@ -289,21 +294,24 @@ body {
     flex-wrap: wrap;
     gap: 20px; /* Espaçamento entre os cards */
     justify-content: center;
+
 }
 
 /* Estilo dos cards */
 .motorista-card {
     background-color: #F5F5F5; /* Fundo branco para os cards */
-    border: 1px solid #e74c3c; /* Bordas sutis */
+    border: 1px solid #b1b1b1; /* Bordas sutis */
     color: black;
-    border-radius: 8px; /* Bordas arredondadas */
+    border-radius: 20px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
-    width: 400px; /* Largura fixa dos cards */
-    height: 250px; /* Altura fixa para acomodar a imagem e informações */
+    width: 300px; /* Largura fixa dos cards */
+    height: 300px; /* Altura fixa para acomodar a imagem e informações */
     overflow: hidden; /* Evitar que o conteúdo transborde */
     transition: transform 0.3s; /* Transição suave */
     display: flex; /* Usar flexbox para organizar o conteúdo */
+    padding-top: 10px;
     flex-direction: column; /* Organizar o conteúdo na vertical */
+    text-align: center;
 }
 
 .motorista-card:hover {
@@ -316,11 +324,10 @@ body {
     display: flex;
     flex-direction: column; /* Empilha os elementos verticalmente */
     justify-content: space-between; /* Distribui espaço entre os elementos */
-    height: 100%; /* Garante que o card ocupe a altura total */
 }
 .motorista-image {
-    width: 80px; /* Tamanho do container da imagem */
-    height: 80px; /* Manter altura igual à largura para formato circular */
+    width: 90px; /* Tamanho do container da imagem */
+    height: 90px; /* Manter altura igual à largura para formato circular */
     overflow: hidden; /* Esconde qualquer parte da imagem que transborde */
     border-radius: 50%; /* Faz o container circular */
     margin: 0 auto; /* Centraliza a imagem */
@@ -338,7 +345,7 @@ body {
 .motorista-cpf,
 .motorista-telefone {
     font-size: 0.9em; /* Tamanho da fonte para CPF e Telefone */
-    color: #555; /* Cor mais clara */
+    color: #000000; /* Cor mais clara */
     margin: 5px 0; /* Margem entre os elementos */
 }
 .button-container {
@@ -361,64 +368,79 @@ body {
 .remove-button:hover {
     background-color: #c0392b; /* Cor de fundo ao passar o mouse */
 }
+
 .opcaofree {
+    width: 250px; /* Aumenta o espaço para acomodar as palavras e o botão */
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0); /* Fundo transparente */
+    border: 1px solid #000000; /* Borda de 2px com cor azul */
+    border-radius: 30px; /* Bordas arredondadas */
     margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px; /* Espaço entre os elementos */
     font-family: Arial, sans-serif;
-    background-color: #aa0c0c;
-    position: absolute; /* Para permitir o centralização absoluta */
-    top: 50%; /* Posiciona a div verticalmente no meio da tela */
-    left: 50%; /* Posiciona a div horizontalmente no meio da tela */
-    transform: translate(-50%, -50%); /* Ajuste para garantir que o centro da div seja realmente o meio da tela */
-    padding: 20px;
-    border-radius: 50px;
+    position: absolute;
+    top: 47%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    position: relative;
+    width: 100%; /* Ajusta para ocupar todo o espaço disponível */
+    height: 50px;
+    display: flex;
+    justify-content: space-between; /* Espaça as palavras e o botão */
+    align-items: center;
 }
 
 .opcaofree p {
     margin: 0;
     font-size: 18px;
-    color: #fff;
+    color: #000;
+    z-index: 2; /* Garante que o texto fique acima da linha */
+    position: relative; /* Para alinhamento adequado */
 }
 
-.container {
-    position: relative;
-    width: 100px; /* Largura ajustada para dar mais espaço ao botão */
-    height: 50px; /* A altura agora é maior para acomodar o botão de forma mais espaçosa */
-    background-color: #ddd;
-    border-radius: 25px; /* Deixando o trilho com bordas arredondadas */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background-color 0.3s; /* Transição suave ao trocar o estado */
-    padding: 0px 5px; /* Espaçamento entre o botão e a borda do trilho */
+.left {
+    text-align: left; /* Alinha o texto à esquerda */
+    padding-left: 15px;
+}
+
+.right {
+    text-align: right; /* Alinha o texto à direita */
+    padding-right: 15px;
+
+}
+.divisao{
+    width: 1px;
+    height: 45px;
+    background-color: #000;
+    border: none;
 }
 
 .toggle-btn {
     position: absolute;
-    width: 120px; /* Botão maior para facilitar a interação */
-    height: 40px; /* Mantém a forma circular */
-    border-radius: 20px;
-    background-color: #a80000c4; /* Cor do botão mais chamativa */
-    border: none;
+    padding: 0;
+    width: 110px;
+    height: 30px;
+    left: 10px;
+    background-color: #ffffffcb;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Animação suave ao mover o botão e mudar a cor */
-    margin: 5px; /* Adiciona uma margem ao redor do botão */
+    border: none;
+    border-top-left-radius: 30px; /* Arredonda o canto superior esquerdo */
+    border-bottom-left-radius: 30px; /* Arredonda o canto inferior esquerdo */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 3; /* Coloca o botão acima de tudo */
 }
 
+
 .toggle-btn.left {
-    transform: translateX(-55px); /* Posição inicial à esquerda */
+    transform: translateX(120px); /* Posição inicial à esquerda */
 }
 
 .toggle-btn.right {
-    transform: translateX(55px); /* Posição do botão à direita */
+    transform: translateX(0px); /* Posição à direita */
 }
 
-/* Efeito de hover para o botão */
-
-
-.toggle-btn:focus {
-    outline: none; /* Remove o contorno padrão de foco */
-}
