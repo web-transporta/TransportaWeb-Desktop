@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fotoUrlImg = document.getElementById("foto_url"); // Referência à tag <img>
 
     // Obtém o ID da empresa do localStorage
-    const empresaId = localStorage.getItem("id");
+    const empresaId = localStorage.getItem("userId");
 
     if (!empresaId) {
         console.error("ID da empresa não encontrado no localStorage.");

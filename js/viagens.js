@@ -1,7 +1,7 @@
 import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas, getEmpresaViagens, putViagem } from "./funcoes.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
-    const id = localStorage.getItem('id'); // Recupera o ID da empresa do localStorage
+    const id = localStorage.getItem('userId'); // Recupera o ID da empresa do localStorage
 
     if (!id) {
         alert('ID da empresa não encontrado. Por favor, faça login novamente.');

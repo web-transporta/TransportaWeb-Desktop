@@ -2,6 +2,7 @@ let myName = "";
 let profileImageUrl = "";
 export let recipientId = "";
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyCt8YFxzXXLpwrYhTmNJwLxrlDJmrv5xNE",
     authDomain: "chattransportaweb.firebaseapp.com",
@@ -12,18 +13,28 @@ const firebaseConfig = {
     appId: "1:12425063178:web:c92888cbeb7ae8628728f3"
 };
 
+
 firebase.initializeApp(firebaseConfig);
+
 
 function sendMessage() {
     const messageInput = document.querySelector(".input-area input[type='text']");
     const message = messageInput.value.trim();
 
+
     if (message === "") return;
+
 
     const myName = localStorage.getItem("myName") || "";
     const profileImageUrl = localStorage.getItem("profileImageUrl") || "";
     const senderId = localStorage.getItem("userId");
     const sender = myName;
+
+
+    // Obter horário atual formatado
+    const timestamp = new Date();
+    const time = timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 
     firebase.database().ref("messages").push().set({
         sender,
@@ -31,24 +42,30 @@ function sendMessage() {
         receiverId: recipientId,
         message,
         profileImageUrl,
-        timestamp: Date.now()
+        time // Armazena o horário formatado
     });
+
 
     messageInput.value = "";
 }
 
+
 function loadMessages() {
     const chatContent = document.getElementById("chatContent");
 
+
     const currentUserId = localStorage.getItem("userId");
 
+
     firebase.database().ref("messages").on("value", function(snapshot) {
-        chatContent.innerHTML = ""; 
+        chatContent.innerHTML = "";
+
 
         const messages = [];
         snapshot.forEach(childSnapshot => {
             messages.push(childSnapshot.val());
         });
+
 
         const conversationKey = [currentUserId, recipientId].sort().join("-");
         const currentConversation = messages.filter(messageData => {
@@ -56,23 +73,29 @@ function loadMessages() {
             return key === conversationKey;
         });
 
+
         currentConversation.forEach(messageData => {
             const messageElement = document.createElement("div");
             const messageClass = messageData.senderId === currentUserId ? "my-message" : "other-message";
             messageElement.classList.add(messageClass);
 
+
+            // Estrutura de mensagem com horário
             messageElement.innerHTML = `
                 <div class="message-card">${messageData.message}</div>
                 <div class="profile-card" style="background-image: url(${messageData.profileImageUrl});"></div>
+                <div class="time">${messageData.time}</div>
             `;
+
 
             chatContent.appendChild(messageElement);
         });
 
-       
+
         chatContent.scrollTop = chatContent.scrollHeight;
     });
 }
+
 
 export function setRecipientId(newRecipientId) {
     recipientId = newRecipientId;
@@ -80,10 +103,12 @@ export function setRecipientId(newRecipientId) {
     loadMessages();
 }
 
+
 document.querySelector(".button-message .send").addEventListener("click", function(e) {
     e.preventDefault();
     sendMessage();
 });
+
 
 document.querySelector(".input-area input[type='text']").addEventListener("keypress", function(e) {
     if (e.key === "Enter") {

@@ -1,3 +1,6 @@
+'use strict';
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const empresa = document.getElementById('empresa');
     const funcionario = document.getElementById('funcionario');
@@ -5,22 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = document.getElementById('senha');
     const loginButton = document.getElementById('signin');
 
-    // Alterna seleção entre 'empresa' e 'funcionario'
-    empresa.addEventListener('change', function() {
+
+
+
+    empresa.addEventListener('change', function () {
         if (empresa.checked) {
             funcionario.checked = false;
         }
     });
 
-    funcionario.addEventListener('change', function() {
+
+    funcionario.addEventListener('change', function () {
         if (funcionario.checked) {
             empresa.checked = false;
         }
     });
 
+
     const validarLogin = async () => {
         const email = userName.value.trim();
         const senha = password.value.trim();
+
 
         if (email === '' || senha === '') {
             Swal.fire({
@@ -32,11 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+
         let url;
+        let userType;
         if (empresa.checked) {
             url = 'https://crud-03-09.onrender.com/v1/transportaweb/empresas';
+            userType = 'empresa';
         } else if (funcionario.checked) {
             url = 'https://crud-03-09.onrender.com/v1/transportaweb/motoristas';
+            userType = 'funcionario';
         } else {
             Swal.fire({
                 icon: 'info',
@@ -47,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+
         try {
             Swal.fire({
                 title: 'Aguarde...',
@@ -55,14 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 didOpen: () => Swal.showLoading()
             });
 
+
             const response = await fetch(url);
+
 
             if (!response.ok) {
                 throw new Error('Erro ao buscar as informações');
             }
 
+
             const data = await response.json();
             const usuarios = data.empresas || data.motoristas || [];
+
 
             if (usuarios.length === 0) {
                 Swal.fire({
@@ -74,21 +91,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+
             let validaUser = false;
             usuarios.forEach(usuario => {
                 if (usuario.email === email && usuario.senha === senha) {
                     validaUser = true;
+
+
+                    localStorage.setItem('userId', usuario.id);
+                    localStorage.setItem('myName', usuario.nome);
+                    localStorage.setItem('profileImageUrl', usuario.foto_url || '');
+                    localStorage.setItem('userType', userType);
+
+
                     Swal.fire({
                         icon: 'success',
                         title: 'Login efetuado',
                         text: 'Login realizado com sucesso!',
                         confirmButtonColor: '#3085d6'
                     }).then(() => {
-                        localStorage.setItem('id', usuario.id);
-                        window.location.href = '/html/paginaHome.html';
+                        window.location.href = '../html/paginaHome.html';
                     });
                 }
             });
+
 
             if (!validaUser) {
                 Swal.fire({
@@ -99,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -108,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     };
+
 
     loginButton.addEventListener('click', validarLogin);
 });

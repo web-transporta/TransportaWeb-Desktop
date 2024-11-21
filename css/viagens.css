@@ -3,53 +3,6 @@ body {
     font-family: Nunito, sans-serif; /* Adicionado sans-serif como fallback */
 }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-.profile-container {
-    display: flex;
-    align-items: center;
-}
-
-.profile-container img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-} 
-
-.profile-container span {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.profile-container .name {
-    color: red;
-}
-
-.button-group {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.button {
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-}
-
 #openModal {
     background-color: #D92727;
     margin-right: 20px;

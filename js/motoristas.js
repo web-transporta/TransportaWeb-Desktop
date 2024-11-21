@@ -1,11 +1,11 @@
 import { getMotoristas, getMotoristaNome, getEmpresa, getMotoristasEquipe, getMotoristasSemEquipe } from "./funcoes.js"; 
 
 window.addEventListener('DOMContentLoaded', async () => {
-    const id = localStorage.getItem('id'); // Recupera o ID da empresa do localStorage
+    const id = localStorage.getItem('userId');
 
     if (!id) {
         alert('ID da empresa não encontrado. Por favor, faça login novamente.');
-        window.location.href = '/html/login.html'; // Redireciona para a página de login se o ID não estiver presente
+        window.location.href = '/html/login.html'; 
         return;
     }
 
@@ -82,14 +82,6 @@ const carregarMotoristas = async () => {
     loadingSpinner.className = 'loading-spinner';
     loadingSpinner.textContent = 'Carregando motoristas...';
     containerCards.appendChild(loadingSpinner);
-
-    const id = localStorage.getItem('id'); 
-
-    if (!id) {
-        alert('ID da empresa não encontrado. Por favor, faça login novamente.');
-        window.location.href = '/html/login.html';
-        return;
-    }
 
     try {
         let motoristas;

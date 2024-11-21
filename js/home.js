@@ -3,11 +3,11 @@
 import { getEmpresa } from "./funcoes.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
-    const id = localStorage.getItem('id'); // Recupera o ID da empresa do localStorage
+    const id = localStorage.getItem('userId'); 
 
     if (!id) {
         alert('ID da empresa não encontrado. Por favor, faça login novamente.');
-        window.location.href = '/html/login.html'; // Redireciona para a página de login se o ID não estiver presente
+        window.location.href = '/html/login.html'; 
         return;
     }
 
