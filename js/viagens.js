@@ -190,88 +190,67 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-/*********************
-    MODAL DE DETALHES DA VIAGEM
-**********************/
-const modalDetalhes = document.getElementById('modalDetalhes');
-const closeModalDetalhes = document.getElementById('closeModalDetalhes');
-
-async function mostrarDetalhesViagem(id_viagem) {
-    try {
-        // Requisição para buscar os detalhes da viagem pelo id_viagem
-        const viagemArray = await getViagemByNome(id_viagem);
-
-        // A resposta é um array, então vamos pegar o primeiro item
-        const viagem = viagemArray && viagemArray[0];
-
-        if (!viagem) {
-            throw new Error('Viagem não encontrada');
+    async function mostrarDetalhesViagem(id_viagem) {
+        try {
+            // Requisição para buscar os detalhes da viagem pelo id_viagem
+            const resposta = await getViagemByNome(id_viagem);
+            console.log('Resposta da API:', resposta);
+            
+            if (!resposta || resposta.length === 0) {
+                throw new Error('Viagem não encontrada');
+            }
+    
+            const viagem = resposta[0];  // Acessar o primeiro item do array
+            
+            // Verificar se o ID da viagem está correto
+            console.log('ID da viagem:', viagem.id_viagem);
+            
+            // Função para formatar a data para o formato yyyy-MM-dd
+            function formatarDataParaDateInput(data) {
+                const [ano, mes, dia] = data.split('T')[0].split('-');
+                return `${ano}-${mes}-${dia}`;
+            }
+    
+            // Preencher os dados no modal de detalhes
+            const detalhesViagem = document.getElementById('detalhesViagem');
+            detalhesViagem.innerHTML = `
+                <p><strong>ID Viagem:</strong> <input type="text" id="id_viagem" value="${viagem.id_viagem}" disabled></p>
+                <p><strong>Remetente:</strong> <input type="text" id="remetente" value="${viagem.remetente}" disabled></p>
+                <p><strong>Destinatário:</strong> <input type="text" id="destinatario" value="${viagem.destinatario}" disabled></p>
+                <p><strong>Data de Partida:</strong> <input type="date" id="dia_partida" value="${formatarDataParaDateInput(viagem.dia_partida)}" disabled></p>
+                <p><strong>Horário de Partida:</strong> <input type="time" id="horario_partida" value="${new Date(viagem.horario_partida).toISOString().substr(11, 5)}" disabled></p>
+                <p><strong>Status Entregue:</strong> <input type="checkbox" id="status_entregue" ${viagem.status_entregue ? 'checked' : ''} disabled></p>
+                <p><strong>Partida (CEP):</strong> ${viagem.partida_cep || 'Não encontrado'}</p>
+                <p><strong>Destino (CEP):</strong> ${viagem.destino_cep || 'Não encontrado'}</p>
+                <p><strong>Motorista:</strong> ${viagem.motorista_nome || 'Não encontrado'}</p>
+                <p><strong>Veículo:</strong> ${viagem.veiculo_modelo || 'Não encontrado'}</p>
+                <p><strong>Carga:</strong> ${viagem.tipo_carga_nome || 'Não encontrado'}</p>
+            `;
+    
+            // Exibe o modal
+            modalDetalhes.style.display = 'flex';
+    
+        } catch (error) {
+            console.error("Erro ao carregar a viagem:", error);
+            Swal.fire({
+                title: 'Erro!',
+                text: 'Não foi possível carregar os detalhes da viagem. Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
         }
-
-        // Verificar se o ID da viagem está correto
-        console.log('ID da viagem:', viagem.id_viagem);
-
-        // Requisições para obter detalhes de partida, destino, motorista e veículo
-        const partidaResponse = await getPartidaById(viagem.id_partida);
-        const destinoResponse = await getDestinoById(viagem.id_destino);
-        const motoristaResponse = await getMotorista(viagem.id_motorista);
-        const veiculoResponse = await getVeiculoById(viagem.id_veiculo);
-        const cargaResponse = await getCarga(viagem.id_tipo_carga);
-
-        // Garantir que a estrutura da resposta seja a esperada
-        const partida = partidaResponse && partidaResponse[0];
-        const destino = destinoResponse && destinoResponse[0];
-        const motorista = motoristaResponse && motoristaResponse[0];
-        const veiculo = veiculoResponse && veiculoResponse[0];
-        const carga = cargaResponse && cargaResponse[0];
-
-        // Função para formatar a data para o formato yyyy-MM-dd
-        function formatarDataParaDateInput(data) {
-            const [dia, mes, ano] = data.split('/');
-            return `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
-        }
-
-        // Preencher os dados no modal de detalhes
-        const detalhesViagem = document.getElementById('detalhesViagem');
-        detalhesViagem.innerHTML = `
-            <p><strong>ID Viagem:</strong> <input type="text" id="id_viagem" value="${viagem.id_viagem}" disabled></p>
-            <p><strong>Remetente:</strong> <input type="text" id="remetente" value="${viagem.remetente}" disabled></p>
-            <p><strong>Destinatário:</strong> <input type="text" id="destinatario" value="${viagem.destinatario}" disabled></p>
-            <p><strong>Data de Partida:</strong> <input type="date" id="dia_partida" value="${formatarDataParaDateInput(new Date(viagem.dia_partida).toLocaleDateString())}" disabled></p>
-            <p><strong>Horário de Partida:</strong> <input type="time" id="horario_partida" value="${new Date(viagem.horario_partida).toLocaleTimeString()}" disabled></p>
-            <p><strong>Status Entregue:</strong> <input type="checkbox" id="status_entregue" ${viagem.status_entregue ? 'checked' : ''} disabled></p>
-            <p><strong>Partida (CEP):</strong> ${partida && partida.cep ? partida.cep : 'Não encontrado'}</p>
-            <p><strong>Destino (CEP):</strong> ${destino && destino.cep ? destino.cep : 'Não encontrado'}</p>
-            <p><strong>Motorista:</strong> ${motorista && motorista.nome ? motorista.nome : 'Não encontrado'}</p>
-            <p><strong>Veículo:</strong> ${veiculo && veiculo.modelo ? veiculo.modelo : 'Não encontrado'}</p>
-            <p><strong>Carga:</strong> ${carga && carga.descricao ? carga.descricao : 'Não encontrado'}</p>
-        `;
-
-        // Exibe o modal
-        modalDetalhes.style.display = 'flex';
-
-    } catch (error) {
-        console.error("Erro ao carregar a viagem:", error);
-        Swal.fire({
-            title: 'Erro!',
-            text: 'Não foi possível carregar os detalhes da viagem. Tente novamente.',
-            icon: 'error',
-            confirmButtonText: 'OK',
-        });
     }
-}
-
-// Fechar o modal de detalhes 
-closeModalDetalhes.onclick = () => {
-    modalDetalhes.style.display = 'none';
-};
-
-window.onclick = (event) => {
-    if (event.target === modalDetalhes) {
+    // Fechar o modal de detalhes 
+    closeModalDetalhes.onclick = () => {
         modalDetalhes.style.display = 'none';
-    }
-};
-
+    };
+    
+    window.onclick = (event) => {
+        if (event.target === modalDetalhes) {
+            modalDetalhes.style.display = 'none';
+        }
+    };
+    
 /*********************
     FUNÇÕES DE EDIÇÃO E EXCLUSÃO
 **********************/
