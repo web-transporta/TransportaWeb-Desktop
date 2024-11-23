@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Perfil motorista </title>
    <script type="module" src="../js/perfilE.js" defer></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <link rel="stylesheet" href="../css/perfilEmpresa.css">
    <link rel="stylesheet" href="../css/root.css">
 </head>
@@ -35,7 +36,7 @@
             </div>
             <div class="inputbox">
                 <span class="detalhes">Telefone:</span>
-                <input type="tel" id="telefone" placeholder="Telefone" required disabled>
+                <input type="tel" id="numero_telefone" placeholder="Telefone" required disabled>
             </div>
             <div class="inputbox">
                 <span class="detalhes">CNPJ:</span>
@@ -46,9 +47,9 @@
                 <input type="text" id="razaoSocial" placeholder="Razão Social" required disabled>
             </div>
             <div class="botoes">
-                <button class="botao">Editar perfil</button>
+                <button class="botaoEditar">Editar perfil</button>
                 <button class="botao">CEP</button>
-                <button class="botao">Excluir perfil</button>
+                <button class="botaoExcluir">Excluir perfil</button>
             </div>
         </div>
     </form>

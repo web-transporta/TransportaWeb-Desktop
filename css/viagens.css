@@ -26,36 +26,34 @@ body {
     text-decoration: underline;
 }
 
-
 /* Estilo para o fundo do modal */
 #modalBackground,
 #detalhesModalBackground {
-    display: none; /* Oculto por padrão */
-    position: fixed; /* Fixo em relação à janela */
-    top: 0; /* Para ficar no topo da tela */
-    left: 0; /* Para ficar à esquerda da tela */
-    width: 100%; /* Ocupa toda a largura */
-    height: 100%; /* Ocupa toda a altura */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com transparência */
-    z-index: 1000; /* Acima de outros elementos */
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilo para o modal */
-/* Centraliza o modal na tela */
 #modalDetalhes {
-    display: flex; /* Usar Flexbox para centralizar */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    position: fixed; /* Fixa o modal na tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
-    z-index: 9999; /* Garante que o modal fique no topo */
-    padding: 20px; /* Espaçamento nas bordas da tela */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    padding: 20px;
 }
 
 .modal-contentt {
@@ -64,36 +62,33 @@ body {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    max-width: 800px; /* Largura máxima */
-    width: 500px; /* Responsivo */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao redor do modal */
-    overflow-y: auto; /* Permite rolagem se o conteúdo for maior que o modal */
+    max-width: 800px;
+    width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
 }
 
-/* Se você quiser também centralizar os parágrafos e outros elementos do conteúdo */
 .modal-contentt p {
-    text-align: center; /* Deixe o texto alinhado à esquerda (ajustável caso queira centralizado também) */
-    margin: 10px 0; /* Espaçamento entre os parágrafos */
+    text-align: center;
+    margin: 10px 0;
 }
-
 
 .modal,
 .detalhesModal {
-    background-color: #fff; /* Fundo branco */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
-    z-index: 1001; /* Acima do fundo do modal */
-    max-width: 700px; /* Largura máxima do modal */
-    width: 100%; /* Largura total do modal */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    max-width: 700px;
+    width: 100%;
 }
 
 /* Botão de fechar */
 #detalhesFecharModal,
 #closeModal {
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    cursor: pointer;
 }
-
 
 .modal h2 {
     text-align: center;
@@ -172,30 +167,30 @@ body {
     background-color: #e2e2e2;
     color: #333;
     outline: none;
-
 }
-.pesquisa input{
+
+.pesquisa input {
     background-color: red;
 }
+
 /* Container para os cards de viagem */
 .container-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* TrÃªs colunas */
-    gap: 20px; /* EspaÃ§amento entre os cards */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     padding: 20px;
     z-index: 1;
 }
 
-/* Estilos para os cards de viagem */
 .trip-card {
     background-color: rgb(255, 255, 255);
     padding: 15px;
-    border: 2px solid #D92727; /* Contorno vermelho */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra do card */
-    display: flex; /* Muda para flexbox */
-    align-items: center; /* Centraliza verticalmente */
-    height: 220px; /* Aumenta a altura fixa para os cards */
+    border: 2px solid #D92727;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    height: 220px;
     position: relative;
     z-index: 1;
     cursor: pointer;
@@ -203,38 +198,37 @@ body {
 }
 
 .trip-info {
-    flex: 1; /* Permite que a informaÃ§Ã£o do card ocupe o espaÃ§o disponÃ­vel */
-    text-align: center; /* Centraliza o texto dentro do card */
-    padding: 10px; /* Aumentar padding para espaÃ§ar o texto da borda */
+    flex: 1;
+    text-align: center;
+    padding: 10px;
 }
 
 .trip-image {
-    flex-shrink: 0; /* Impede que a imagem encolha */
-    margin-left: 10px; /* EspaÃ§amento Ã  esquerda da imagem */
+    flex-shrink: 0;
+    margin-left: 10px;
 }
 
 .trip-image-img {
-    width: 100px; /* Largura da imagem */
-    height: auto; /* MantÃ©m a proporÃ§Ã£o da imagem */
-    border-radius: 4px; /* Bordas arredondadas */
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
 }
 
-/* Estilos para o status da viagem */
 .status {
-    padding: 5px 10px; /* EspaÃ§amento interno */
-    border-radius: 4px; /* Bordas arredondadas */
-    color: white; /* Cor do texto */
-    display: inline-block; /* Permite o tamanho do fundo ao redor do texto */
-    text-align: center; /* Centraliza o texto */
-    font-weight: bold; /* Texto em negrito */
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
 }
 
 .entregue {
-    background-color: #4CAF50; /* Verde para entregas */
+    background-color: #4CAF50;
 }
 
 .nao-entregue {
-    background-color: #D92727; /* Vermelho para nÃ£o entregues */
+    background-color: #D92727;
 }
 
 /* Estilos para o modal de detalhes da viagem */
@@ -244,27 +238,27 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo semitransparente */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    z-index: 1000; /* Para garantir que fique acima de outros elementos */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .modal-content {
-    background-color: white; /* Cor de fundo do modal */
-    border-radius: 8px; /* Bordas arredondadas */
-    padding: 20px; /* Espaçamento interno */
-    width: 200px; /* Largura do modal */
-    max-width: 90%; /* Para responsividade */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra do modal */
-    animation: modalFadeIn 0.3s; /* Animação de fade in ao abrir */
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 200px;
+    max-width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s;
 }
 
 @keyframes modalFadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px); /* Animação de entrada para cima */
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -273,45 +267,46 @@ body {
 }
 
 .close {
-    color: #aaa; /* Cor do botão de fechar */
-    float: right; /* Posiciona o botão à direita */
-    font-size: 28px; /* Tamanho da fonte */
-    font-weight: bold; /* Negrito */
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black; /* Cor ao passar o mouse */
-    text-decoration: none; /* Sem sublinhado */
-    cursor: pointer; /* Cursor em forma de ponteiro */
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 h2 {
-    margin: 0 0 20px 0; /* Margem inferior para o título */
+    margin: 0 0 20px 0;
 }
 
 #detalhesViagem {
-    font-size: 16px; /* Tamanho da fonte para detalhes */
-    line-height: 1.5; /* Espaçamento entre linhas */
+    font-size: 16px;
+    line-height: 1.5;
 }
+
 /* Estilo para o botão "Editar" */
 #editButton {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50;
     color: white;
 }
 
 #editButton:hover {
-    background-color: #45a049; /* Tom mais escuro quando o mouse passa */
-    transform: translateY(-2px); /* Efeito de elevação */
+    background-color: #45a049;
+    transform: translateY(-2px);
 }
 
 /* Estilo para o botão "Excluir" */
 #deleteButton {
-    background-color: #e74c3c; /* Vermelho */
+    background-color: #e74c3c;
     color: white;
 }
 
 #deleteButton:hover {
-    background-color: #c0392b; /* Tom mais escuro quando o mouse passa */
-    transform: translateY(-2px); /* Efeito de elevação */
+    background-color: #c0392b;
+    transform: translateY(-2px);
 }
