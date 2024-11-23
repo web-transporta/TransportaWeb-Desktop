@@ -133,7 +133,23 @@ form .detalhes-usuario .inputbox {
    transform: translateY(-0.125em); 
 } 
 
+.botaoEditar { 
+   margin-right: 50px;
+}
+.botaoEditar:hover, .excluir:hover {
+   color: var(--branco); 
+   background-color: var(--preto); 
+   transform: translateY(-0.125em); 
+} 
 
+.botaoExcluir { 
+   margin-right: 50px;
+}
+.botaoExcluir:hover, .excluir:hover {
+   color: var(--branco); 
+   background-color: var(--preto); 
+   transform: translateY(-0.125em); 
+} 
 
 @media screen and (max-width: 1692px) {
    .botao, .excluir { width: 210px; }

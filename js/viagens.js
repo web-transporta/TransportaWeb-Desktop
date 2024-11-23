@@ -1,4 +1,4 @@
-import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas, getEmpresaViagens, putViagem } from "./funcoes.js";
+import { getViagens, postViagem, getVeiculos, getPartida, getDestino, getMotoristas, getViagemByNome, editPerfilEmpresa, getMotorista, getViagem, getPartidaById, getDestinoById, getVeiculoById, getCarga,getCargas, getEmpresa,getEmpresas, getEmpresaViagens, putViagem } from "./funcoes.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
     const id = localStorage.getItem('userId'); // Recupera o ID da empresa do localStorage
@@ -253,7 +253,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     
 /*********************
     FUNÇÕES DE EDIÇÃO E EXCLUSÃO
-**********************/
+*********************/
+/*********************
+    FUNÇÕES DE EDIÇÃO E EXCLUSÃO
+*********************/
+
 // Lista global de IDs dos campos que podem ser editados
 const camposEdicao = [
     'id_viagem', 'dia_partida', 'horario_partida', 'dia_chegada',
@@ -261,7 +265,18 @@ const camposEdicao = [
     'id_partida', 'id_destino', 'id_motorista', 'id_veiculo', 'id_carga'
 ];
 
-// Função para habilitar edição
+// Função para habilitar edição de um campo específico ao ser clicado
+function habilitarCampoEdicao(campoId) {
+    const campo = document.getElementById(campoId);
+    if (campo) {
+        campo.disabled = false; // Habilita o campo para edição
+        console.log(`Campo ${campoId} habilitado para edição.`);
+    } else {
+        console.log(`Campo não encontrado: ${campoId}`);
+    }
+}
+
+// Função para habilitar edição dos campos quando clicar no botão "Editar"
 function habilitarEdicao() {
     console.log("Função habilitarEdicao chamada");
 
@@ -283,22 +298,25 @@ function habilitarEdicao() {
         botaoEditar.onclick = salvarEdicao; // Altera função do botão para salvar a edição
     }
 }
+
+// Função para salvar as edições feitas
 async function salvarEdicao() {
-    // Obter dados dos campos atualizados para salvar as alterações
     const idViagem = document.getElementById('id_viagem')?.value || '';
-    
-    // Verificar se o ID da viagem está presente
-    console.log('ID da viagem para salvar:', idViagem);
-    
+
+    // Verificar se o ID da viagem está correto
     if (!idViagem) {
         Swal.fire({
             title: 'Erro!',
-            text: 'ID da viagem não encontrado.',
+            text: 'ID da viagem não encontrado ou inválido.',
             icon: 'error',
             confirmButtonText: 'OK',
         });
+        console.error('ID da viagem não encontrado ou inválido');
         return;
     }
+
+    // Log para depuração
+    console.log('ID da viagem para salvar:', idViagem);
 
     const viagemEditada = {
         id_viagem: idViagem,
@@ -315,6 +333,9 @@ async function salvarEdicao() {
         id_carga: document.getElementById('id_carga')?.value || ''
     };
 
+    // Verificação de dados antes de enviar
+    console.log('Dados da viagem editada:', viagemEditada);
+
     // Enviar os dados para o backend
     try {
         const response = await putViagem(viagemEditada); // Chama a função de PUT para salvar a viagem editada
@@ -325,10 +346,12 @@ async function salvarEdicao() {
                 icon: 'success',
                 confirmButtonText: 'OK',
             });
+            console.log('Viagem editada com sucesso!');
         } else {
             throw new Error('Erro ao salvar a edição.');
         }
     } catch (error) {
+        console.error('Erro ao salvar edição:', error);
         Swal.fire({
             title: 'Erro!',
             text: 'Ocorreu um erro ao salvar as alterações. Tente novamente.',
@@ -352,8 +375,17 @@ async function salvarEdicao() {
     }
 }
 
+// Adicionando listeners para habilitar edição nos campos ao clicar
+camposEdicao.forEach(campoId => {
+    const campo = document.getElementById(campoId);
+    if (campo) {
+        campo.addEventListener('click', () => habilitarCampoEdicao(campoId));
+    }
+});
+
 // Certifique-se de que o botão de edição no modal de detalhes tenha o ID "editarViagemBtn"
 document.getElementById('editarViagemBtn').onclick = habilitarEdicao;
+
 
 // Função de Excluir Viagem (Caso necessário)
 async function excluirViagem(idViagem) {

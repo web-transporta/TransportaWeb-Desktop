@@ -342,9 +342,29 @@ export async function getMotoristasEquipe(id) {
     const data = await response.json()
     return data.equipe    
 }
+export async function editPerfilEmpresa(id, dadosAtualizados) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresa/${id}`;
 
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dadosAtualizados), // Envia os dados atualizados do motorista
+        });
 
+        if (!response.ok) {
+            const errorDetails = await response.json(); // Obtém detalhes do erro
+            throw new Error(`Erro ao atualizar o perfil da empresa: ${errorDetails.message || response.statusText}`);
+        }
 
+        return await response.json(); // Retorna a resposta do backend
+    } catch (error) {
+        console.error('Erro no backend:', error);
+        throw new Error('Erro ao atualizar o perfil da empresa.');
+    }
+}
 
 
 
