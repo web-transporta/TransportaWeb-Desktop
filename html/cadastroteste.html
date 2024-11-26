@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Empresa</title>
+    <script type="module" src="../js/cadastro-empresa.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/root.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <div class="container">
+        <section class="passos">
+            <div class="passo">
+                <div class="passo-circulo"></div>
+                <div class="passo-borda"></div>
+            </div>
+            <div class="passo2">
+                <div class="passo-circulo"></div>
+                <div class="passo-borda"></div>
+            </div>
+        </section>
+
+        <div id="formStep1">
+            <!-- Primeira parte do cadastro -->
+            <div class="forms">
+                <form id="form">
+                    <div class="inputbox">
+                        <input type="text" placeholder="Insira um nome" id="nome" required>
+                        <label for="nome">Nome Completo:</label>
+                        <span id="nomeError" style="color: red; display: none;"></span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Insira sua razão social" id="razaoSocial" required>
+                        <label for="razaoSocial">Razão Social:</label>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Insira o CEP:" id="cep" required>
+                        <label for="cep">CEP:</label>
+                        <span id="cepError" style="color: red; display: none;"></span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Insira o CNPJ:" id="cnpj" required>
+                        <label for="cnpj">CNPJ:</label>
+                        <span id="cnpjError" style="color: red; display: none;"></span>
+                    </div>
+                    <div>
+                        <button type="button" id="next" onclick="nextStep()">Continuar ></button>
+                        <p>Já possui uma conta?
+                            <a href="../html/login.html" class="palavra">Login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="formStep2" style="display: none;">
+            <!-- Segunda parte do cadastro -->
+            <div class="forms">
+                <form id="form2">
+                    <div class="inputbox">
+                        <input type="text" id="numero_telefone" placeholder="Digite seu número">
+                        <label for="numero_telefone">Número de telefone:</label>
+                        <span id="numeroError" style="color: red; display: none;"></span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="file" id="img">
+                        <label for="img">Imagem de Perfil:</label>
+                    </div>
+                    <div class="inputbox">
+                        <input type="email" id="email" placeholder="Digite seu e-mail">
+                        <label for="email">Email:</label>
+                        <span id="emailError" style="color: red; display: none;"></span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="password" id="senha" placeholder="Digite sua senha">
+                        <label for="senha">Senha:</label>
+                        <span id="senhaError" style="color: red; display: none;"></span>
+                    </div>
+                    <div>
+                        <button type="button" id="next2" onclick="finishRegistration()">Cadastrar ></button>
+                        <p>Já possui uma conta?
+                            <a href="../html/login.html" class="palavra">Login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="desc-container">
+            <h1 id="descTitle">Crie uma conta!</h1>
+            <p id="descText">Com a Transporta Web, você pode gerenciar toda a operação de transporte, melhorar a comunicação entre a empresa e o motorista, e acompanhar o progresso em tempo integral.</p>
+            <img src="../css/img/cadastro.png">
+        </div>
+    </div>
+
+    <script>
+        function nextStep() {
+            // Validations and showing the second step form
+            const nome = document.getElementById('nome');
+            const nomeError = document.getElementById('nomeError');
+            const razaoSocial = document.getElementById('razaoSocial');
+            const cep = document.getElementById('cep');
+            const cepError = document.getElementById('cepError');
+            const cnpj = document.getElementById('cnpj');
+            const cnpjError = document.getElementById('cnpjError');
+            
+            const nomeInput = nome.value;
+            const razaoInput = razaoSocial.value;
+            const cepInput = cep.value;
+            const cnpjInput = cnpj.value;
+
+            // Clear previous error messages
+            nomeError.style.display = 'none';
+            nomeError.textContent = '';
+            cepError.style.display = 'none';
+            cepError.textContent = '';
+            cnpjError.style.display = 'none';
+            cnpjError.textContent = '';
+
+            // Validate fields
+            if (!nomeInput || !razaoInput || !cepInput || !cnpjInput) {
+                console.error('Todos os campos são obrigatórios.');
+                return;
+            }
+
+            // Validate Name
+            const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+            if (!regexNome.test(nomeInput)) {
+                nomeError.textContent = 'Nome inválido. Deve conter apenas letras e espaços.';
+                nomeError.style.display = 'block';
+                return;
+            }
+
+            // Validate CEP
+            const regexCEP = /^\d{5}-\d{3}$/;
+            if (!regexCEP.test(cepInput)) {
+                cepError.textContent = 'CEP inválido. Use o formato "00000-000".';
+                cepError.style.display = 'block';
+                return;
+            }
+
+            // Validate CNPJ
+            const regexCNPJ = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+            if (!regexCNPJ.test(cnpjInput)) {
+                cnpjError.textContent = 'CNPJ inválido. Use o formato "00.000.000/0001-00".';
+                cnpjError.style.display = 'block';
+                return;
+            }
+
+            // Save data in localStorage
+            const insert = {
+                nome: nomeInput,
+                razaoSocial: razaoInput,
+                cep: cepInput,
+                cnpj: cnpjInput,
+            };
+            localStorage.setItem('cadastro1', JSON.stringify(insert));
+
+            // Transition to the second step
+            document.getElementById('formStep1').style.display = 'none';
+            document.getElementById('formStep2').style.display = 'block';
+            document.getElementById('descTitle').innerText = 'Finalizando...';
+            document.getElementById('descText').innerText = 'Com a Transporta Web, você pode gerenciar toda a operação de transporte, melhorar a comunicação entre a empresa e o motorista, e acompanhar o progresso em tempo integral.';
+        }
+
+        function finishRegistration() {
+            const numero_telefone = document.getElementById('numero_telefone').value;
+            const img = document.getElementById('img').files[0];
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            // Add more validation if necessary
+
+            // Add the second step information to localStorage
+            const cadastro1 = JSON.parse(localStorage.getItem('cadastro1'));
+            cadastro1.numero_telefone = numero_telefone;
+            cadastro1.foto_url = img ? URL.createObjectURL(img) : '';
+            cadastro1.email = email;
+            cadastro1.senha = senha;
+
+            localStorage.setItem('cadastro1', JSON.stringify(cadastro1));
+
+            // Show success message
+            Swal.fire({
+                title: 'Cadastro Concluído!',
+                text: 'Sua empresa foi cadastrada com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                // Redirect to login page
+                window.location.href = '../html/login.html';
+            });
+        }
+    </script>
+
+</body>
+</html>

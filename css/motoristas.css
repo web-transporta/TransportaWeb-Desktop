@@ -74,17 +74,18 @@ body {
 
 .control-section {
     height: 200px;
-    width: 85vh;
+    width: 85vh; /* Ajuste a largura conforme necessário, você pode trocar por um valor fixo como '600px' */
     background-color: #d32f2f;
     color: white;
     padding: 40px;
     text-align: left;
     display: flex;
-    align-items: center;
-    margin-left:27.5%;
-    margin-top: 5px;
-    justify-content: space-between;
+    align-items: center;    /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin: 0 auto;         /* Isso garante que a .control-section seja centralizada horizontalmente na página */
 }
+
+
 .control-section .text{
     display: flex;
     flex-direction: column;
@@ -375,15 +376,14 @@ body {
     background-color: rgba(0, 0, 0, 0); /* Fundo transparente */
     border: 1px solid #000000; /* Borda de 2px com cor azul */
     border-radius: 30px; /* Bordas arredondadas */
-    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: Arial, sans-serif;
     position: absolute;
-    top: 47%; /* Centraliza verticalmente */
+    margin: auto 0px;
     left: 50%; /* Centraliza horizontalmente */
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -100%);
 }
 
 .container {
