@@ -171,8 +171,8 @@ main{
 }
 
 .grafico{
-    width: 89%;
-    background-color: rgba(0, 0, 0, 0.123);
+    width: 1800px;
+    background-color: rgba(0, 0, 0, 0.051);
     display: flex;
     justify-content: center;
     border-radius: 5px;
