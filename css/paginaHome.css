@@ -5,7 +5,6 @@ body {
     overflow-x: hidden;
     text-decoration: none;
 }
-
 main{
     display: flex;
     flex-direction: column;
@@ -25,23 +24,19 @@ main{
     font-weight: 700;
 }
 
-
 #openModal:hover {
     background-color: #aa0c0c;
 }
 
-
 .motoristas, .historico, .perfil {
     font-size: 16px;
 }
-
 
 .home {
     font-size: 16px;
     color: red;
     text-decoration: underline;
 }
-
 
 .desc-container {
     width: 1300px;
@@ -55,14 +50,12 @@ main{
     border-radius: 20px;
 }
 
-
 .desc-container h1 {
     font-size: 32px;
     font-weight: 600;
     color: var(--branco);
     padding-bottom: 10px;
 }
-
 
 .line {
     width: 80%;
@@ -72,14 +65,12 @@ main{
     margin-top: -34px;
 }
 
-
 .desc-container p {
     font-size: 23px;
     color: var(--branco);
     margin: 20px 0;
     font-weight: 200;
 }
-
 
 .container-cards {
     display: flex;
@@ -89,7 +80,6 @@ main{
     max-width: 100%;
     gap: 50px;
 }
-
 
 .card {
     display: flex;
@@ -106,13 +96,11 @@ main{
     margin: 15px 5px;
 }
 
-
 .card img {
     width: 40%;
     height: auto;
     border-radius: 5px;
 }
-
 
 .button-access {
     display: flex;
@@ -131,16 +119,113 @@ main{
     font-size: 16px;
 }
 
-
 .button-access:hover {
     background-color: #cacaca;
 }
 
-
 .card h2{
     font-size: 14px;
 } */
+/* Botão de Notificações */
+.botao-notificacoes {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    margin-left: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.botao-notificacoes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+/* Modal de Notificações */
+.notification-modal {
+    display: none;
+    position: absolute;
+    top: 80px; /* Alinhado abaixo do botão */
+    right: 0;
+    width: 500px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 100;
+}
+.notification-modal .modal-header {
+    gap: 150px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: #f44336;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.notification-modal .modal-body {
+    padding: 15px;
+}
+.notification-modal .action-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+.notification-modal .action-btn.accept {
+    background: #4CAF50;
+    color: white;
+}
+.notification-modal .action-btn.deny {
+    background: #f44336;
+    color: white;
+}
+.notification-modal .action-btn.details {
+    background: #2196F3;
+    color: white;
+}
+.close-modal {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
 
+.notification-list {
+    list-style: none;
+    padding: 0;
+}
+.notification-list li {
+    margin-bottom: 15px;
+}
+.notification-list button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.notification-list button.accept {
+    background-color: #4CAF50;
+    color: #fff;
+}
+.notification-list button.decline {
+    background-color: #F44336;
+    color: #fff;
+}
+.notification-list button.details {
+    background-color: #2196F3;
+    color: #fff;
+}
 
 .message-container {
     display: flex;
@@ -150,26 +235,22 @@ main{
     justify-content: center;
     gap: 280px;
 }
-
 .message {
     display: flex;
     flex-direction: column;
     width: 800px;
 }
-
 .tittle {
     font-family: var(--titulo);
     font-weight: 900;
     font-size: 38px;
 }
 
-
 .text {
     font-family: var(--texto);
     font-size: 24px;
     color: #393939;
 }
-
 .grafico{
     width: 89%;
     background-color: rgba(0, 0, 0, 0.123);
@@ -187,12 +268,10 @@ main{
     justify-content: center;
     margin: 20px auto;
 }
-
 canvas {
     max-width: 100%;
     height: auto;
 }
-
 .card {
     background-color: #1b1b1b;
     border-radius: 12px;
@@ -205,24 +284,20 @@ canvas {
     display: inline-block;
     text-align: center;
 }
-
 .card-header h3 {
     font-size: 18px;
     margin-bottom: 15px;
 }
-
 .card-body {
     font-size: 22px;
     font-weight: bold;
 }
-
 .card-body p {
     margin: 0;
     font-size: 24px;
     color: #FF9F40;
     /* Cor para destacar o número */
 }
-
 .dashboard-container {
     display: flex;
     flex-direction: column;
@@ -230,14 +305,12 @@ canvas {
     gap: 50px;
     align-items: center;
 }
-
 .cards {
     display: flex;
     padding-inline: 20px;
     justify-content: center;
     gap: 50px;
 }
-
 .all-trips-card {
     background: rgb(233,101,101);
     background: linear-gradient(90deg, rgb(233, 78, 78) 23%, rgb(214, 28, 28) 100%);
@@ -248,7 +321,6 @@ canvas {
     padding: 30px;
     justify-content: space-between;
 }
-
 .text-trips{
     display: flex;
     flex-direction: column;
@@ -258,7 +330,6 @@ canvas {
     font-size: 30px;
     justify-content: space-between;
 }
-
 .all-trips{
     font-size: 80px;
 }
@@ -266,7 +337,6 @@ canvas {
     display: flex;
     align-items: end;
 }
-
 .card-insert {
     background-color: var(--branco);
     width: 900px;
@@ -278,15 +348,12 @@ canvas {
     justify-content: space-between;
     border: solid 2px var(--vermelho);
 }
-
 .text-area {
     display: flex;
     flex-direction: column;
     width: 500px;
     gap: 50px;
-
 }
-
 .title-card {
     color: var(--vermelho);
     font-family: var(--titulo);
@@ -296,14 +363,12 @@ canvas {
     justify-content: baseline;
     border-radius: 5px;
 }
-
 .text-card {
     color: var(--vermelho);
     font-family: var(--texto);
     font-weight: 300;
     font-size: 24px;
 }
-
 button {
     position: relative;
     display: inline-block;
@@ -318,12 +383,10 @@ button {
     font-family: var(--titulo);
     font-weight: 900;
 }
-
 button.learn-more {
     width: 12rem;
     height: auto;
 }
-
 button.learn-more .circle {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: relative;
@@ -334,7 +397,6 @@ button.learn-more .circle {
     background: var(--vermelho);
     border-radius: 1.625rem;
 }
-
 button.learn-more .circle .icon {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: absolute;
@@ -343,7 +405,6 @@ button.learn-more .circle .icon {
     margin: auto;
     background: var(--branco);
 }
-
 button.learn-more .circle .icon.arrow {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     left: 0.625rem;
@@ -351,7 +412,6 @@ button.learn-more .circle .icon.arrow {
     height: 0.125rem;
     background: none;
 }
-
 button.learn-more .circle .icon.arrow::before {
     position: absolute;
     content: "";
@@ -363,7 +423,6 @@ button.learn-more .circle .icon.arrow::before {
     border-right: 0.125rem solid var(--branco);
     transform: rotate(45deg);
 }
-
 button.learn-more .button-text {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: absolute;
@@ -380,16 +439,13 @@ button.learn-more .button-text {
     font-weight: 900;
     font-size: 24px;
 }
-
 button:hover .circle {
     width: 110%;
 }
-
 button:hover .circle .icon.arrow {
     background: var(--vermelho);
     transform: translate(1rem, 0);
 }
-
 button:hover .button-text {
     color: var(--branco);
 }
