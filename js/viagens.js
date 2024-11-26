@@ -418,7 +418,7 @@ async function excluirViagem(idViagem) {
     **********************/
         const criarContainer = (viagem) => {
             const referenciar = document.createElement('button');
-            referenciar.className = '';
+            referenciar.className = 'botao';
             // Passa o id_viagem ao clicar no card
             referenciar.onclick = () => mostrarDetalhesViagem(viagem.id_viagem); // Passando o id_viagem para a função
         
@@ -463,7 +463,7 @@ async function excluirViagem(idViagem) {
 
     async function mostrarContainer() {
 
-        const id = localStorage.getItem('id');
+        const id = localStorage.getItem('userId');
         const containerCards = document.getElementById('container-cards');
         containerCards.innerHTML = ''; // Limpa o container
 
