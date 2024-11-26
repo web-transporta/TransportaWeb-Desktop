@@ -176,21 +176,22 @@ body {
 /* Container para os cards de viagem */
 .container-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    padding: 20px;
+    padding: 100px;
     z-index: 1;
 }
 
 .botao{
     border: 0px;
     height: 220px;
+    background-color: rgba(0, 136, 255, 0);
+    
 
 }
 .trip-card {
     background-color: #FFF9F0;
-    padding: 15px;
-    border: 2px solid #D92727;
+    border: 0px solid ;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -211,13 +212,18 @@ body {
 .trip-image {
     flex-shrink: 0;
     margin-left: 10px;
+    
 }
 
 .trip-image-img {
-    width: 100px;
+    width: 250px;
+    margin-bottom: 50px;
     height: auto;
-    border-radius: 4px;
+
+
 }
+
+
 
 .status {
     padding: 5px 10px;

@@ -207,6 +207,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             
             // Função para formatar a data para o formato yyyy-MM-dd
             function formatarDataParaDateInput(data) {
+
                 const [ano, mes, dia] = data.split('T')[0].split('-');
                 return `${ano}-${mes}-${dia}`;
             }
@@ -429,7 +430,7 @@ async function excluirViagem(idViagem) {
         
             const id_viagem = document.createElement('h1');
             id_viagem.className = 'trip-title';
-            id_viagem.textContent = viagem.id_viagem;
+            id_viagem.textContent = "# " + viagem.id_viagem;
         
             const remetente = document.createElement('p');
             remetente.className = 'trip-remetente';
@@ -444,13 +445,20 @@ async function excluirViagem(idViagem) {
             const data_partida_paragraph = document.createElement('p');
             data_partida_paragraph.className = 'trip-data';
             data_partida_paragraph.textContent = `Data: ${formattedDate || 'N/A'}`;
+
+            const data_chegada = new Date(viagem.dia_chegada);
+            const formattedDate2 = data_chegada.toISOString().split('T')[0];
+            const data_chegada_paragraph = document.createElement('p');
+            data_chegada_paragraph.className = 'trip-data';
+            data_chegada_paragraph.textContent = `Data: ${formattedDate2 || 'N/A'}`;
+
         
-            cardContent.append(id_viagem, remetente, destinatario, data_partida_paragraph);
+            cardContent.append(id_viagem, remetente, destinatario, data_partida_paragraph, data_chegada_paragraph);
         
             const imageContainer = document.createElement('div');
             imageContainer.className = 'trip-image';
             const image = document.createElement('img');
-            image.src = viagem.image || '../css/img/caixa.png.png';
+            image.src = viagem.image || '../css/img/caixaV.png';
             image.alt = 'Imagem do caminhão';
             image.className = 'trip-image-img';
             imageContainer.appendChild(image);
