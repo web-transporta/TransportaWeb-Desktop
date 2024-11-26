@@ -60,8 +60,8 @@ const criarCardMotorista = (motorista) => {
     nomeMotorista.textContent = motorista.nome || motorista.nome_motorista; // Trata ambas as opções
 
     const cpfMotorista = document.createElement('p');
-    cpfMotorista.className = 'motorista-cpf';
-    cpfMotorista.textContent = `CPF: ${motorista.cpf}`;
+    cpfMotorista.className = 'motorista-email';
+    cpfMotorista.textContent = `E-mail: ${motorista.email}`;
 
     const telefoneMotorista = document.createElement('p');
     telefoneMotorista.className = 'motorista-telefone';
