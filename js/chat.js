@@ -4,14 +4,14 @@ export let recipientId = "";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCt8YFxzXXLpwrYhTmNJwLxrlDJmrv5xNE",
-    authDomain: "chattransportaweb.firebaseapp.com",
-    databaseURL: "https://chattransportaweb-default-rtdb.firebaseio.com/",
-    projectId: "chattransportaweb",
-    storageBucket: "chattransportaweb.appspot.com",
-    messagingSenderId: "12425063178",
-    appId: "1:12425063178:web:c92888cbeb7ae8628728f3"
-};
+    apiKey: "AIzaSyBjgxgNsKlSunM9xO1RyayI4t1ZsszM_zU",
+    authDomain: "chat-transportaweb.firebaseapp.com",
+    databaseURL: "https://chat-transportaweb-default-rtdb.firebaseio.com",
+    projectId: "chat-transportaweb",
+    storageBucket: "chat-transportaweb.firebasestorage.app",
+    messagingSenderId: "750911371591",
+    appId: "1:750911371591:web:43f46696736eac9bc4b462"
+  };
 
 
 firebase.initializeApp(firebaseConfig);

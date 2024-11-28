@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/paginaHome.css">
     <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/notificacao.css">
     <script src="../js/home.js" defer type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/grafico.js" defer type="module"></script>
@@ -32,33 +33,75 @@
                 <a href="./perfilEmpresa.html">Perfil</a>
                 <a href="./chat.html">Chat</a>
             </ul>
-            <button class="botao-chat" id="openModal" onclick="criarViagem(event)">
-                <img src="../css/img/localizacao.png" alt="localizacao" height="25">
-                Nova Viagem
-            </button>
-            <!-- Botão de Notificações -->
-            <button class="botao-notificacoes" id="openNotificationModal">
-                <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="55">
-            </button>
+            <div class="buttons-area">
+                <button class="botao-chat" id="openModal" onclick="criarViagem(event)">
+                    <img src="../css/img/localizacao.png" alt="localizacao" height="25">
+                    Nova Viagem
+                </button>
+                <button class="botao-notificacoes" id="openNotificationModal">
+                    <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="45">
+                </button>
+            </div>
         </div>
     </header>
-    <!-- Modal de Notificações -->
+
+
+
+
     <div class="notification-modal" id="notificationModal">
         <div class="modal-header">
             <button class="close-modal" id="closeNotificationModal">&times;</button>
             <h2>Notificações</h2>
         </div>
         <div class="modal-body">
-            <p>João Silva de Santos deseja fazer parte da sua organização. 
-                <button class="action-btn accept">Aceitar</button> 
-                <button class="action-btn deny">Negar</button>
-            </p>
-            <p>João Silva de Santos aceitou uma corrida. 
-                <button class="action-btn details">Ver detalhes</button>
-            </p>
-            <p>João Silva de Santos mandou uma mensagem.</p>
+
+
+            <div class="mensagem-card" id="mensagemCardOrganizacao">
+                <div class="img-perfil" id="imgPerfil"></div>
+                <div class="content-message" id="contentMessage">
+                    <p id="message-notf">João Silva de Santos deseja fazer parte da sua organização.</p>
+                    <div class="buttons-message" id="buttonArea">
+                        <button class="action-btn accept">Aceitar</button>
+                        <button class="action-btn deny">Negar</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="mensagem-card" id="mensagemCardAceitarCorrida">
+                <div class="img-perfil" id="imgPerfil"></div>
+                <div class="content-message" id="contentMessage">
+                    <p id="message-notf">João Silva de Santos aceitou uma corrida.</p>
+                    <div class="buttons-message" id="buttonArea">
+                        <button class="action-btn details">Ver detalhes</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mensagem-card" id="mensagemCardEnviouMensagem">
+                <div class="img-perfil" id="imgPerfil"></div>
+                <div class="content-message" id="contentMessage">
+                    <p id="message-notf">João Silva de Santos mandou uma mensagem.</p>
+                </div>
+            </div>
+
+
+           
+
+
         </div>
     </div>
+
+
+
+
+
+
+
+
     <main>
         <div class="message-container">
             <div class="message">
@@ -101,7 +144,7 @@
                                     <span class="button-text">Continuar</span>
                                 </button>
                             </div>
-                        </a> 
+                        </a>
                     </div>
                     <div class="image-card">
                         <img src="../css/img/caixacaindo.png" alt="carrinhodemao" height="250">
@@ -136,3 +179,4 @@
     </script>
 </body>
 </html>
+

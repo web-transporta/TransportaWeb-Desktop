@@ -7,15 +7,21 @@
 }
 
 
+
+
 .profile-container span {
     font-size: 14px;
     font-weight: bold;
 }
 
 
+
+
 .profile-container .name {
     color: red;
 }
+
+
 
 
 header{
@@ -32,16 +38,20 @@ header{
 }
 .content-area{
     display: flex;
-    gap: 70px;
+    gap: 50px;
     align-items: center;
 }
+
+
 
 
 .navbar{
     display: flex;
-    gap: 70px;
+    gap: 60px;
     align-items: center;
 }
+
+
 
 
 ul.navbar > a{
@@ -74,7 +84,6 @@ ul.navbar > a:hover::after{
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-
 
 .botao-chat{
     width: 200px;
