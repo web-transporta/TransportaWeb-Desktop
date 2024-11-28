@@ -315,11 +315,11 @@ body {
     border-radius: 20px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
     width: 300px; /* Largura fixa dos cards */
-    height: 350px; /* Aumenta a altura para acomodar as informações */
+    height: 300px; /* Aumenta a altura para acomodar as informações */
     overflow: hidden; /* Evitar que o conteúdo transborde */
     transition: transform 0.3s; /* Transição suave */
     display: flex; /* Usar flexbox para organizar o conteúdo */
-    padding-top: 40px;
+    padding-top: 20px;
     flex-direction: column; /* Organizar o conteúdo na vertical */
     text-align: center;
     margin-top: 50px;
@@ -360,12 +360,15 @@ body {
 .motorista-email::before {
     content: "E-mail: "; /* Adiciona o título "E-mail:" antes do conteúdo */
     font-weight: bold; /* Aplica o negrito apenas ao título */
+    color: #000;
 }
 
 /* Estilo para o título "Telefone" */
 .motorista-telefone::before {
     content: "Telefone: "; /* Adiciona o título "Telefone:" antes do conteúdo */
     font-weight: bold; /* Aplica o negrito apenas ao título */
+    color: #000;
+
 }
 
 /* Estilo para o conteúdo do e-mail e telefone */
