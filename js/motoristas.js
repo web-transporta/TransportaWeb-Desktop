@@ -1,40 +1,45 @@
 import { getMotoristas, getMotoristaNome, getEmpresa, getMotoristasEquipe, getMotoristasSemEquipe } from "./funcoes.js"; 
 
+// Garantir que o código só seja executado depois que o DOM estiver totalmente carregado
 window.addEventListener('DOMContentLoaded', async () => {
-    const id = localStorage.getItem('userId');
-
-    if (!id) {
-        alert('ID da empresa não encontrado. Por favor, faça login novamente.');
-        window.location.href = '/html/login.html'; 
-        return;
-    }
-
     try {
-        const empresas = await getEmpresa(id); 
-        console.log('Dados da empresa:', empresas);
-
-        if (empresas.length > 0 && empresas[0].nome) {
-            document.getElementById('empresaNome').textContent = `${empresas[0].nome}!`;
-
-            if (empresas[0].foto_url) {
-                const empresaImagem = document.getElementById('foto-url');
-                if (empresaImagem) {
-                    empresaImagem.src = empresas[0].foto_url;
-                    empresaImagem.alt = empresas[0].nome;
-                } else {
-                    console.error('Elemento de imagem não encontrado.');
-                }
-            } else {
-                console.warn('Imagem não encontrada para a empresa:', empresas[0]);
-                document.getElementById('empresaImagem').src = '/path/to/default-image.jpg';
-            }
-        } else {
-            console.warn('Estrutura inesperada ou nome ausente:', empresas);
-            document.getElementById('empresaNome').textContent = 'Empresa não encontrada';
+        const id = localStorage.getItem('userId');
+        if (!id) {
+            alert('ID da empresa não encontrado. Por favor, faça login novamente.');
+            window.location.href = '/html/login.html'; 
+            return;
         }
 
+        // Buscar dados da empresa
+        const empresas = await getEmpresa(id);
+        if (!empresas || empresas.length === 0) {
+            alert('Empresa não encontrada!');
+            return;
+        }
+
+        // Atualizar informações da empresa na interface
+        const empresa = empresas[0];
+        console.log('Dados da empresa:', empresa);
+        document.getElementById('empresaNome').textContent = `${empresa.nome}!`;
+
+        if (empresa.foto_url) {
+            const empresaImagem = document.getElementById('foto-url');
+            if (empresaImagem) {
+                empresaImagem.src = empresa.foto_url;
+                empresaImagem.alt = empresa.nome;
+            } else {
+                console.error('Elemento de imagem não encontrado.');
+            }
+        } else {
+            console.warn('Imagem não encontrada para a empresa:', empresa);
+            document.getElementById('empresaImagem').src = '/path/to/default-image.jpg';
+        }
+
+        // Carregar motoristas ao carregar a página
+        await carregarMotoristas(id); 
+
     } catch (error) {
-        console.error('Erro ao buscar a empresa:', error);
+        console.error('Erro ao carregar dados da empresa:', error);
         alert('Erro ao carregar dados da empresa: ' + error.message);
     }
 });
@@ -57,25 +62,37 @@ const criarCardMotorista = (motorista) => {
 
     const nomeMotorista = document.createElement('h2');
     nomeMotorista.className = 'motorista-nome';
-    nomeMotorista.textContent = motorista.nome || motorista.nome_motorista; // Trata ambas as opções
+    nomeMotorista.textContent = motorista.nome || motorista.nome_motorista;
 
     const cpfMotorista = document.createElement('p');
     cpfMotorista.className = 'motorista-email';
-    cpfMotorista.textContent = `E-mail: ${motorista.email}`;
+    cpfMotorista.textContent = ` ${motorista.email || 'N/A'}`;
 
     const telefoneMotorista = document.createElement('p');
     telefoneMotorista.className = 'motorista-telefone';
-    telefoneMotorista.textContent = `Telefone: ${motorista.telefone}`;
+    telefoneMotorista.textContent = motorista.telefone || 'Telefone não disponível';
 
     cardContent.append(imageContainer, nomeMotorista, cpfMotorista, telefoneMotorista);
+
+    // Botão não funcional no final do card
+    const botao = document.createElement('button');
+    botao.className = 'botao-nao-funcional';
+    botao.textContent = 'Botão Não Funcional';
+    cardContent.appendChild(botao);
+
     cardContainer.append(cardContent);
 
     return cardContainer;
 };
 
 // Função para carregar motoristas com base no estado do botão
-const carregarMotoristas = async () => {
+const carregarMotoristas = async (id) => {
     const containerCards = document.getElementById('container-cards');
+    if (!containerCards) {
+        console.error('Elemento container-cards não encontrado!');
+        return;
+    }
+
     containerCards.innerHTML = ''; // Limpa o container antes de adicionar novos cards
 
     const loadingSpinner = document.createElement('div');
@@ -84,43 +101,29 @@ const carregarMotoristas = async () => {
     containerCards.appendChild(loadingSpinner);
 
     try {
-        let motoristas;
+        // Aqui, decidimos carregar motoristas com ou sem equipe
+        let motoristas = [];
 
-        // Verifica o estado do botão (esquerda ou direita)
-        if (toggleBtn.classList.contains('left')) {
-            console.log('Carregando motoristas da equipe...');
-            motoristas = await getMotoristasSemEquipe();
-        } else {
-            console.log('Carregando todos os motoristas...');
-            motoristas = await getMotoristasEquipe(id);
+        // No caso de um botão de alternância (toggle), você pode usar um flag para alternar
+        // Neste exemplo, estamos apenas carregando todos os motoristas
+        motoristas = await getMotoristas(id); 
 
-
+        if (!motoristas || motoristas.length === 0) {
+            containerCards.innerHTML = '<p>Nenhum motorista encontrado.</p>';
+            return;
         }
 
         console.log('Motoristas carregados:', motoristas);
-
         motoristas.forEach(motorista => {
             const card = criarCardMotorista(motorista);
             containerCards.appendChild(card);
         });
     } catch (error) {
         console.error('Erro ao carregar motoristas:', error);
+        containerCards.innerHTML = '<p>Erro ao carregar motoristas. Tente novamente mais tarde.</p>';
     } finally {
         containerCards.removeChild(loadingSpinner);
     }
 };
 
-// Configuração do botão toggle
-const toggleBtn = document.querySelector('.toggle-btn');
 
-toggleBtn.addEventListener('click', async () => {
-    toggleBtn.classList.toggle('left');
-    toggleBtn.classList.toggle('right');
-
-    await carregarMotoristas(); 
-});
-
-// Carregar motoristas ao carregar a página
-document.addEventListener('DOMContentLoaded', async () => {
-    await carregarMotoristas(); 
-});
