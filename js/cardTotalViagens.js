@@ -1,5 +1,5 @@
-'use strict'
-import { getViagemEmpresa} from "./funcoes.js";
+'use strict';
+import { getViagemEmpresa } from "./funcoes.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
     const id = localStorage.getItem('userId');
@@ -11,10 +11,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const id = localStorage.getItem('userId'); 
         const viagens = await getViagemEmpresa(id);
 
-        const totalViagens = viagens.length;
+        // Verifica se existem viagens e define o total corretamente
+        const totalViagens = viagens && viagens.length > 0 ? viagens.length : 0;
 
         const cardsContainer = document.querySelector('.all-trips-card');
 
