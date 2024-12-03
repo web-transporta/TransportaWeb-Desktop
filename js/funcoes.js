@@ -154,12 +154,28 @@ export async function putViagem(insert) {
     }
 }
 
-
 export async function getMotorista(id) {
-    const url = `https://crud-03-09.onrender.com/v1/transportaweb/motorista/${id}` 
-    const response = await fetch(url)
-    const data = await response.json()
-    return data.motorista    
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/motorista/${id}`;
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar o motorista com ID ${id}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        // Verifica se o motorista existe dentro do array
+        if (data.motorista && data.motorista.length > 0) {
+            return data.motorista[0];  // Retorna o primeiro motorista no array
+        } else {
+            throw new Error('Motorista não encontrado!');
+        }
+    } catch (error) {
+        console.error('Erro na requisição:', error);
+        throw error;  // Re-throw o erro para ser tratado no código de chamada
+    }
 }
 export async function getEmpresas() {
     try {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+    <title>TransportaWeb</title>
+    <link rel="stylesheet" href="../css/paginaHome.css">
+    <link rel="stylesheet" href="../css/root.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/detalhesMotorista.css">
+    <script src="../js/detalhesMotorista.js" defer type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="profile-container">
+            <img src="" id="foto-url" alt="Foto de Perfil">
+            <span>Bem-vindo,<br><span class="name" id="empresaNome"></span></span>
+        </div>
+        <div class="content-area">
+            <ul class="navbar">
+                <a href="./paginaHome.html">Home</a>
+                <a href="./viagens.html">Viagens</a>
+                <a href="./motoristas.html">Motoristas</a>
+                <a href="./ceps.html">Ceps</a>
+                <a href="./perfilEmpresa.html">Perfil</a>
+                <a href="./chat.html">Chat</a>
+            </ul>
+            <button class="botao-chat" id="openModal" onclick="criarViagem(event)">
+                <img src="../css/img/localizacao.png" alt="localizacao" height="25">
+                Nova Viagem
+            </button>
+            <!-- Botão de Notificações -->
+            <button class="botao-notificacoes" id="openNotificationModal">
+                <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="55">
+            </button>
+        </div>
+    </header>
+    <main class="container">
+        <section class="profile">
+            <img src="" alt="Foto do motorista" class="driver-photo" id="motoristaFoto">
+            <h1 id="motoristaNome"></h1>
+            <p id="motoristaTelefone"></p>
+            <p id="motoristaEmail"></p>
+        </section>
+
+        <button class="add-team">
+            <span>Adicionar na equipe</span>
+        </button>
+    </main>
+</body>
+</html>
