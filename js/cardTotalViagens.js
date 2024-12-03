@@ -1,6 +1,5 @@
-'use strict';
-
-import { getViagemEmpresa } from "./funcoes.js";
+'use strict'
+import { getViagemEmpresa} from "./funcoes.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
     const id = localStorage.getItem('userId');
@@ -12,8 +11,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
+        const id = localStorage.getItem('userId'); 
         const viagens = await getViagemEmpresa(id);
-        const totalViagens = viagens?.total || 0;
+
+        const totalViagens = viagens.length;
 
         const cardsContainer = document.querySelector('.all-trips-card');
 
@@ -30,7 +31,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             cardsContainer.innerHTML = cardHTML; 
         } else {
-            console.error('Elemento ".cards" não encontrado no DOM.');
+            console.error('Elemento ".all-trips-card" não encontrado no DOM.');
         }
     } catch (error) {
         console.error('Erro ao buscar o total de viagens:', error);
