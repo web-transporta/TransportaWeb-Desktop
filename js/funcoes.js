@@ -88,6 +88,17 @@ export async function getViagem(id) {
     const data = await response.json()
     return data.viagem[0]
 }
+
+export async function getViagemEmpresa(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/empresaviagem/${id}`
+    console.log(url);
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.empresa_viagem[0]
+}
+
+
+
 export async function postViagem(insert) {
     try {
         // Faz a requisição para a API

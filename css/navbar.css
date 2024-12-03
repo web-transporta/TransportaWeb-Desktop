@@ -85,7 +85,32 @@ ul.navbar > a:hover::after{
     transform-origin: bottom left;
 }
 
-.botao-chat{
+.botao-perfil{
+    width: 150px;
+    height: 40px;
+    background-color: var(--vermelho);
+    color: var(--branco);
+    font-family: var(--titulo);
+    font-weight: 800;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    gap: 5px;
+}
+
+
+.botao-perfil:hover{
+    transform: translateY(-2px);
+}
+
+
+.botao-viagem{
     width: 200px;
     height: 40px;
     background-color: var(--vermelho);
@@ -102,6 +127,40 @@ ul.navbar > a:hover::after{
     justify-content: center;
     text-decoration: none;
     gap: 5px;
+}
+
+
+.botao-viagem:hover{
+    transform: translateY(-2px);
+}
+
+.notificacao-botao{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.botao-chat{
+    width: 170px;
+    height: 40px;
+    background-color: var(--vermelho);
+    color: var(--branco);
+    font-family: var(--titulo);
+    font-weight: 800;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    gap: 10px;
 }
 
 

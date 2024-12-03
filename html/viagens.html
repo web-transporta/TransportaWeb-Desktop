@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/viagens.css">
     <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/notificacao.css">
     <script src="../js/funcoes.js" type="module" defer></script>
     <script src="../js/viagens.js" type="module" defer></script>
 </head>
@@ -24,13 +25,23 @@
         <div class="content-area">
             <ul class="navbar">
                 <a href="./paginaHome.html">Home</a>
+                <a href="./equipe.html">Equipe</a>
                 <a href="./viagens.html">Viagens</a>
                 <a href="./motoristas.html">Motoristas</a>
                 <a href="./ceps.html">Ceps</a>
-                <a href="./perfilEmpresa.html">Perfil</a>
+                <a href="./chat.html">Chat</a>
             </ul>
-            <a href="./chat.html"><button class="botao-chat">Chat</button></a>
-            <button class="botao-chat" id="openModal">Viagem</button>
+            <div class="notificacao-botao">
+                <div class="buttons-area">
+                    <button class="botao-viagem" id="botao-viagem">
+                        <img src="../css/img/localizacao.png" alt="localizacao" height="25">
+                        Nova Viagem
+                    </button>
+                </div>
+                <button class="botao-notificacoes" id="openNotificationModal">
+                    <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="45">
+                </button>
+            </div> 
         </div>
     </header>
     <div class="pesquisa">

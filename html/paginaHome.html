@@ -16,6 +16,7 @@
     <script src="../js/home.js" defer type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/grafico.js" defer type="module"></script>
+    <script src="../js/cardTotalViagens.js" defer type="module"></script>
     <script src="../js/viagens.js" defer type="module"></script>
 </head>
 <body>
@@ -27,21 +28,25 @@
         <div class="content-area">
             <ul class="navbar">
                 <a href="./paginaHome.html">Home</a>
+                <a href="./equipe.html">Equipe</a>
                 <a href="./viagens.html">Viagens</a>
                 <a href="./motoristas.html">Motoristas</a>
                 <a href="./ceps.html">Ceps</a>
-                <a href="./perfilEmpresa.html">Perfil</a>
                 <a href="./chat.html">Chat</a>
             </ul>
-            <div class="buttons-area">
-                <button class="botao-chat" id="openModal" onclick="criarViagem(event)">
-                    <img src="../css/img/localizacao.png" alt="localizacao" height="25">
-                    Nova Viagem
-                </button>
+            <div class="notificacao-botao">
+                <div class="buttons-area">
+                    <a href="./perfilEmpresa.html">
+                        <button class="botao-perfil">
+                            <img src="../css/img/pessoa.png" alt="perfil" height="25">
+                            Perfil
+                        </button>
+                    </a>
+                </div>
                 <button class="botao-notificacoes" id="openNotificationModal">
                     <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="45">
                 </button>
-            </div>
+            </div> 
         </div>
     </header>
 
@@ -118,15 +123,7 @@
         </div>
         <div class="dashboard-container">
             <div class="cards">
-                <div class="all-trips-card">
-                    <div class="text-trips">
-                        <div class="title-trips">Total de viagens realizadas:</div>
-                        <div class="all-trips">100</div>
-                    </div>
-                    <div class="image-trips">
-                        <img src="../css/img/estatistica.png" alt="estatistica">
-                    </div>
-                </div>
+                <div class="all-trips-card"></div>
                 <div class="card-insert">
                     <div class="text-area">
                         <div class="title-card">

@@ -1,9 +1,7 @@
 import { getViagens } from './funcoes.js';
 
-
 document.addEventListener('DOMContentLoaded', async () => {
     const viagens = await getViagens();
-
 
     // Contabiliza as viagens por mês
     const viagensPorMes = new Array(12).fill(0);
@@ -12,13 +10,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         viagensPorMes[mes]++;
     });
 
-
     // Configura os rótulos dos meses
     const labels = [
         'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
         'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
     ];
-
 
     // Cria o gráfico
     const ctx = document.getElementById('viagensChart').getContext('2d');
@@ -77,26 +73,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
     });
-});
-
-
-
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const viagens = await getViagens();
-
-
-    // Supondo que você tenha a empresa logada com o ID, aqui estamos buscando as viagens dessa empresa
-    const empresaLogadaId = 123;  // Exemplo: substitua isso pela variável que contém o ID da empresa logada
-
 
     // Filtra as viagens pela empresa logada
-    const viagensDaEmpresa = viagens.filter(viagem => viagem.empresa_id === empresaLogadaId);
+    const idEmpresa = localStorage.getItem('userId');
 
+    // Filtra as viagens da empresa logada
+    const viagensDaEmpresa = viagens.filter(viagem => viagem.empresa_id === idEmpresa);
 
     // Obtém o total de viagens realizadas pela empresa
     const totalViagens = viagensDaEmpresa.length;
-
 
     // Exibe no card
     const totalViagensElement = document.getElementById('totalViagens');
