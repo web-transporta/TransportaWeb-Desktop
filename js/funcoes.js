@@ -177,7 +177,7 @@ export async function getVeiculos() {
         const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/veiculos`);
         if (response.ok) {
             const data = await response.json();
-            return data.empresas || []; // Retorna o array de caminhões ou um array vazio
+            return data.veiculos || []; // Retorna o array de caminhões ou um array vazio
         } else {
             console.error("Erro ao obter caminhões:", response.statusText);
             return [];
