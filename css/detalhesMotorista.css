@@ -1,16 +1,13 @@
 /* Estilos gerais */
-
 body {
-    font-family: Arial, sans-serif;
+    font-family: Nunito, Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-image: url('../css/img/background.PNG');
     background-repeat: no-repeat; /* Impede a repetição da imagem */
     background-size: cover; /* Faz com que a imagem ocupe toda a tela */
     background-position: center; /* Centraliza a imagem */
-    font-family: Nunito;
 }
-
 
 /* Cabeçalho */
 .header {
@@ -47,12 +44,12 @@ body {
 
 /* Conteúdo principal */
 .container {
-    max-width: 600px;
+    max-width: 900px;
     margin: 30px auto;
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background: #ffffff;
+    padding: 16px;
+    border: 1px solid #D92727;
+    border-radius: 20px;
 }
 
 .profile {
@@ -80,7 +77,7 @@ body {
 
 .profile p {
     font-size: 18px;
-    color: #555;
+    color: #333333;
 }
 
 /* Atividade */
@@ -104,7 +101,7 @@ body {
 .add-team {
     display: block;
     margin: 20px auto 0;
-    background-color: #eee;
+    background-color: #D92727;
     border: none;
     padding: 10px 20px;
     border-radius: 8px;
@@ -113,9 +110,72 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;  /* Cor do texto em branco */
 }
 
 .add-team:hover {
-    background-color: #ddd;
+    background-color: #910000;
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header .menu {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .profile .driver-photo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile h1 {
+        font-size: 28px;
+    }
+
+    .profile p {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 12px;
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .add-team {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+
+/* Para telas pequenas, como dispositivos móveis */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+
+    .profile .driver-photo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .profile h1 {
+        font-size: 24px;
+    }
+
+    .profile p {
+        font-size: 14px;
+    }
+
+    .add-team {
+        font-size: 14px;
+        padding: 8px 18px;
+    }
+}
