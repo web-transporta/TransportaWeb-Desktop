@@ -126,6 +126,37 @@ export async function postViagem(insert) {
         throw error; // Re-lança o erro para tratamento no código chamador
     }
 }
+
+export async function excluirViagem(id) {
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`;
+    console.log("URL para exclusão:", url);
+
+    try {
+        // Realiza a requisição DELETE para excluir a viagem
+        const response = await fetch(url, {
+            method: "DELETE", // Define o método como DELETE
+            headers: {
+                "Content-Type": "application/json", // Cabeçalho indicando JSON
+            },
+        });
+
+        // Verifica se a exclusão foi bem-sucedida (código 200 ou 204)
+        if (!response.ok) {
+            throw new Error(`Erro ao excluir a viagem: ${response.status}`);
+        }
+
+        // Caso o servidor retorne algum dado, pode ser extraído aqui
+        const data = await response.json();
+        console.log("Resposta da exclusão:", data);
+
+        // Retorna a resposta do servidor ou uma mensagem de sucesso
+        return data.message || "Viagem excluída com sucesso.";
+    } catch (error) {
+        console.error("Erro ao excluir a viagem:", error);
+        throw error; // Propaga o erro para ser tratado no escopo que chamou
+    }
+}
+
 export async function putViagem(insert) {
     try {
         // Faz a requisição para a API
