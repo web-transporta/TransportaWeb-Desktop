@@ -1,43 +1,44 @@
+
 body {
     margin: 0;
     font-family: Nunito;
-}
-
-.header-container {
+ }
+ 
+ .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-}
-
-.profile-container {
+ }
+ 
+ .profile-container {
     display: flex;
     align-items: center;
-}
-
-.profile-container img {
+ }
+ 
+ .profile-container img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
-}
-
-.profile-container span {
+ }
+ 
+ .profile-container span {
     font-size: 14px;
     font-weight: bold;
-}
-
-.profile-container .name {
+ }
+ 
+ .profile-container .name {
     color: red;
-}
-
-.button-group {
+ }
+ 
+ .button-group {
     display: flex;
     gap: 10px;
     align-items: center;
-}
-
-.button {
+ }
+ 
+ .button {
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -48,9 +49,9 @@ body {
     align-items: center;
     justify-content: center;
     height: 40px;
-}
-
-#openModal {
+ }
+ 
+ #openModal {
     background-color: #D92727;
     margin-right: 20px;
     color: white;
@@ -62,19 +63,19 @@ body {
     cursor: pointer;
     font-family: nunito;
     font-weight: 700;
-}
-
-#openModal:hover {
+ }
+ 
+ #openModal:hover {
     background-color: #aa0c0c;
-}
-.motoristas{
+ }
+ .motoristas{
     color: red;
     text-decoration: underline;
-}
-
-.control-section {
+ }
+ 
+ .control-section {
     height: 200px;
-    width: 85vh; /* Ajuste a largura conforme necessário, você pode trocar por um valor fixo como '600px' */
+    width: 90vh; /* Ajuste a largura conforme necessário, você pode trocar por um valor fixo como '600px' */
     background-color: #d32f2f;
     color: white;
     padding: 40px;
@@ -84,39 +85,39 @@ body {
     align-items: center;         /* Alinha o texto verticalmente */
     position: relative;          /* Permite o uso de position absolute para a imagem */
     margin: 0 auto;
-}
-
-.control-section .text {
+ }
+ 
+ .control-section .text {
     display: flex;
     flex-direction: column;
     max-width: 500px;
     padding-left: 50px;
-
-}
-
-.control-section h1 {
+ 
+ }
+ 
+ .control-section h1 {
     font-size: 28px;
     margin-bottom: 0px;
     font-weight: 800;
-}
-
-.control-section p {
+ }
+ 
+ .control-section p {
     font-size: 18px;
-
-}
-
-.illustration img {
+ 
+ }
+ 
+ .illustration img {
     position: absolute;   /* Posiciona a imagem fora do fluxo do layout */
     right: 0;             /* Gruda a imagem no canto direito */
     bottom: 0;            /* Se quiser que a imagem fique alinhada com a parte inferior do contêiner */
     width: 400px;
     height: auto;
-}
-
-
-
-/* Estilos para o fundo do modal */
-.modal-background {
+ }
+ 
+ 
+ 
+ /* Estilos para o fundo do modal */
+ .modal-background {
     position: fixed;
     top: 0;
     left: 0;
@@ -127,10 +128,10 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 9999; /* Define o z-index alto para ficar acima dos cards */
-}
-
-/* Estilos para o modal em si */
-.modal {
+ }
+ 
+ /* Estilos para o modal em si */
+ .modal {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -139,50 +140,50 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 10000;
-}
-
-/* Estilos para o botão de fechar modal */
-.close-modal {
+ }
+ 
+ /* Estilos para o botão de fechar modal */
+ .close-modal {
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 24px;
     cursor: pointer;
-}
-
-
-.modal h2 {
+ }
+ 
+ 
+ .modal h2 {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-}
-
-.modal-form {
+ }
+ 
+ .modal-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-}
-
-.form-group {
+ }
+ 
+ .form-group {
     display: flex;
     flex-direction: column;
-}
-
-.form-group label {
+ }
+ 
+ .form-group label {
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group select {
+ }
+ 
+ .form-group input,
+ .form-group select {
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-.form-group button {
+ }
+ 
+ .form-group button {
     margin-top: 5px;
     padding: 8px;
     background-color: #007BFF;
@@ -190,13 +191,13 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.form-group button:hover {
+ }
+ 
+ .form-group button:hover {
     background-color: #0056b3;
-}
-
-.modal-form button[type="submit"] {
+ }
+ 
+ .modal-form button[type="submit"] {
     grid-column: 1 / -1;
     padding: 12px;
     font-size: 16px;
@@ -206,40 +207,40 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-}
-
-.modal-form button[type="submit"]:hover {
+ }
+ 
+ .modal-form button[type="submit"]:hover {
     background-color: #45a049;
-}
-
-.pesquisa {
-    margin-bottom: 50px;
+ }
+ 
+ .pesquisa {
+    margin-bottom: -55px;
     width: 100%;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#pesquisa {
+ }
+ 
+ #pesquisa {
     width: 40%;
     padding: 10px;
     border: none;
     background-color: #d8d8d8;
     color: #333;
     outline: none;
-}
-
-.container-cards {
+ }
+ 
+ .container-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
     z-index: 1;
-}
-
-/* Estilos para os cards de viagem */
-.trip-card {
+ }
+ 
+ /* Estilos para os cards de viagem */
+ .trip-card {
     background-color: rgb(247, 233, 208);
     padding: 10px;
     border-radius: 8px;
@@ -252,63 +253,66 @@ body {
     position: relative;
     z-index: 1;
     cursor: pointer;
-}
-
-.trip-info {
+ }
+ 
+ .trip-info {
     display: flex;
     flex-direction: column; /* Alinha os elementos em coluna */
     justify-content: center; /* Centraliza verticalmente */
     margin-right: 10px; /* Espaçamento entre as informações e a imagem */
     z-index: 1;
-}
-
-.trip-title {
+ }
+ 
+ .trip-title {
     font-size: 18px; /* Aumenta o tamanho do título */
     font-weight: bold; /* Deixa o título em negrito */
     text-align: left;
-}
-
-.trip-remetente,
-.trip-destinatario,
-.trip-data {
+ }
+ 
+ .trip-remetente,
+ .trip-destinatario,
+ .trip-data {
     margin: 0; /* Remove margens padrão */
     font-size: 14px; /* Tamanho da fonte das informações */
     text-align: left; /* Alinha o texto à esquerda */
-}
-
-#viagens-criadas h2 {
+ }
+ 
+ #viagens-criadas h2 {
     text-align: left; /* Alinha o texto à esquerda */
     margin: 0; /* Remove margens padrão */
     padding-left: 24px; /* Adiciona um espaço à direita */
     font-size: 24px; /* Tamanho da fonte */
     font-weight: bold; /* Deixa o texto em negrito */
     color: #D92727; /* Muda a cor do texto (exemplo: vermelho) */
-}
-
-.trip-image {
+ }
+ 
+ .trip-image {
     flex-shrink: 0; /* Impede que a imagem encolha */
-}
-
-.trip-image-img {
+ }
+ 
+ .trip-image-img {
     width: 80px; /* Largura da imagem */
     height: auto; /* Mantém a proporção da imagem */
     border-radius: 4px; /* Arredonda as bordas da imagem */
-}
-
-/* Container para os cards */
-.container-cards {
+ }
+ 
+ /* Container para os cards */
+ .container-cards {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 20%;
+    margin-right: 20%;
+ 
     gap: 20px; /* Espaçamento entre os cards */
     justify-content: center;
-
-}
-
-/* Estilo dos cards */
-
-/* Conteúdo do card */
-
-.motorista-card {
+ 
+ }
+ 
+ /* Estilo dos cards */
+ 
+ /* Conteúdo do card */
+ 
+ .motorista-card {
     background-color: #F5F5F5; /* Fundo branco para os cards */
     border: 1px solid #b1b1b1; /* Bordas sutis */
     color: black;
@@ -323,23 +327,23 @@ body {
     flex-direction: column; /* Organizar o conteúdo na vertical */
     text-align: center;
     margin-top: 50px;
-}
-
-.motorista-card:hover {
+ }
+ 
+ .motorista-card:hover {
     transform: translateY(-5px); /* Efeito de hover */
-}
-
-
-.motorista-info {
+ }
+ 
+ 
+ .motorista-info {
     font-weight: 600;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-}
-
-
-.motorista-image {
+ }
+ 
+ 
+ .motorista-image {
     width: 90px; /* Tamanho do container da imagem */
     height: 90px; /* Manter altura igual à largura para formato circular */
     overflow: hidden; /* Esconde qualquer parte da imagem que transborde */
@@ -348,38 +352,38 @@ body {
     display: flex; /* Para centrar a imagem dentro do container */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
-}
-
-.motorista-image-img {
+ }
+ 
+ .motorista-image-img {
     width: auto; /* Mantém a largura automática para preservar a proporção */
     height: 100%; /* Faz a imagem ocupar toda a altura do container */
     max-height: 100%; /* Garante que a imagem não ultrapasse o container */
     object-fit: cover; /* Ajusta a imagem para cobrir o container sem distorcer */
-}
-/* Estilo para o título "E-mail" */
-.motorista-email::before {
+ }
+ /* Estilo para o título "E-mail" */
+ .motorista-email::before {
     content: "E-mail: "; /* Adiciona o título "E-mail:" antes do conteúdo */
     font-weight: bold; /* Aplica o negrito apenas ao título */
     color: #000;
-}
-
-/* Estilo para o título "Telefone" */
-.motorista-telefone::before {
+ }
+ 
+ /* Estilo para o título "Telefone" */
+ .motorista-telefone::before {
     content: "Telefone: "; /* Adiciona o título "Telefone:" antes do conteúdo */
     font-weight: bold; /* Aplica o negrito apenas ao título */
     color: #000;
-
-}
-
-/* Estilo para o conteúdo do e-mail e telefone */
-.motorista-email, .motorista-telefone {
+ 
+ }
+ 
+ /* Estilo para o conteúdo do e-mail e telefone */
+ .motorista-email, .motorista-telefone {
     font-size: 14px; /* Ajusta o tamanho da fonte */
     color: #555; /* Cor mais suave para o texto */
     margin-top: 5px; /* Espaçamento entre as informações */
-}
-
-
-.botao-nao-funcional {
+ }
+ 
+ 
+ .botao-nao-funcional {
     margin-top: auto; /* Faz o botão ir para a parte inferior */
     padding: 10px 20px;
     background-color: #dddddd;
@@ -392,18 +396,18 @@ body {
     text-align: center;
     width: 100%; /* Deixa o botão com largura total */
     height: 50px;
-}
-
-.botao-nao-funcional:hover {
+ }
+ 
+ .botao-nao-funcional:hover {
     background-color: #c5c5c5;
-}
-
-.button-container {
+ }
+ 
+ .button-container {
     display: flex; /* Usado para alinhar o botão à direita */
     justify-content: flex-end; /* Alinha o botão à direita */
-}
-
-.remove-button {
+ }
+ 
+ .remove-button {
     margin-top: 10px; /* Espaço acima do botão */
     padding: 8px 12px; /* Espaçamento interno do botão */
     background-color: #c0c0c0; /* Cor de fundo vermelha */
@@ -413,13 +417,13 @@ body {
     cursor: pointer; /* Muda o cursor ao passar o mouse */
     font-size: 14px; /* Tamanho da fonte */
     transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-}
-
-.remove-button:hover {
+ }
+ 
+ .remove-button:hover {
     background-color: #c0392b; /* Cor de fundo ao passar o mouse */
-}
-
-.opcaofree {
+ }
+ 
+ .opcaofree {
     width: 250px; /* Aumenta o espaço para acomodar as palavras e o botão */
     height: 50px;
     background-color: rgba(0, 0, 0, 0); /* Fundo transparente */
@@ -433,43 +437,43 @@ body {
     margin: auto 0px;
     left: 50%; /* Centraliza horizontalmente */
     transform: translate(-50%, -100%);
-}
-
-.container {
+ }
+ 
+ .container {
     position: relative;
     width: 100%; /* Ajusta para ocupar todo o espaço disponível */
     height: 50px;
     display: flex;
     justify-content: space-between; /* Espaça as palavras e o botão */
     align-items: center;
-}
-
-.opcaofree p {
+ }
+ 
+ .opcaofree p {
     margin: 0;
     font-size: 18px;
     color: #000;
     z-index: 2; /* Garante que o texto fique acima da linha */
     position: relative; /* Para alinhamento adequado */
-}
-
-.left {
+ }
+ 
+ .left {
     text-align: left; /* Alinha o texto à esquerda */
     padding-left: 15px;
-}
-
-.right {
+ }
+ 
+ .right {
     text-align: right; /* Alinha o texto à direita */
     padding-right: 15px;
-
-}
-.divisao{
+ 
+ }
+ .divisao{
     width: 1px;
     height: 45px;
     background-color: #000;
     border: none;
-}
-
-.toggle-btn {
+ }
+ 
+ .toggle-btn {
     position: absolute;
     padding: 0;
     width: 110px;
@@ -482,14 +486,16 @@ body {
     border-bottom-left-radius: 30px; /* Arredonda o canto inferior esquerdo */
     transition: transform 0.3s ease, background-color 0.3s ease;
     z-index: 3; /* Coloca o botão acima de tudo */
-}
-
-
-.toggle-btn.left {
+ }
+ 
+ 
+ .toggle-btn.left {
     transform: translateX(120px); /* Posição inicial à esquerda */
-}
-
-.toggle-btn.right {
+ }
+ 
+ .toggle-btn.right {
     transform: translateX(0px); /* Posição à direita */
-}
-
+ }
+ 
+ 
+ 

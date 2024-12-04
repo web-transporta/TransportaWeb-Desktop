@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>TransportaWeb</title>
+    <link rel="stylesheet" href="../css/viagens.css">
+    <link rel="stylesheet" href="../css/root.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/notificacao.css">
+    <script src="../js/funcoes.js" type="module" defer></script>
+    <script src="../js/viagens.js" type="module" defer></script>
+</head>
+<body>
+    <header>
+        <div class="profile-container">
+            <img src="" id="foto-url" alt="Foto de Perfil">
+            <span>Bem-vindo,<br><span class="name" id="empresaNome"></span></span>
+        </div>
+        <div class="content-area">
+            <ul class="navbar">
+                <a href="./paginaHome.html">Home</a>
+                <a href="./equipe.html">Equipe</a>
+                <a href="./viagens.html">Viagens</a>
+                <a href="./motoristas.html">Motoristas</a>
+                <a href="./ceps.html">Ceps</a>
+                <a href="./chat.html">Chat</a>
+            </ul>
+            <div class="notificacao-botao">
+                <div class="buttons-area">
+                    <button class="botao-viagem" id="openModal">
+                        <img src="../css/img/localizacao.png" alt="localizacao" height="25">
+                        Nova Viagem
+                    </button>
+                </div>
+                <button class="botao-notificacoes" id="openNotificationModal">
+                    <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="45">
+                </button>
+            </div> 
+        </div>
+    </header>
+    <div class="pesquisa">
+    <input type="text" id="pesquisa" placeholder="Pesquise por uma viagem através de seu id.">
+
+    </div>    
+    <main class="grow flex">
+        <div class="modal-background" id="modalBackground" style="display: none;">
+            <div class="modal">
+                <span class="close-modal" id="closeModal">&times;</span>
+                <h2>Criar Nova Viagem</h2>
+                <form class="modal-form">
+                    <div class="form-group">
+                        <label for="id_viagem">ID da Viagem:</label>
+                        <input type="text" id="id_viagem" name="id_viagem" placeholder="Ex.: 712-939-VCD" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dia_partida">Dia de Partida:</label>
+                        <input type="date" id="dia_partida" name="dia_partida" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="horario_partida">Horário de Partida:</label>
+                        <input type="text" id="horario_partida" name="horario_partida" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dia_chegada">Dia de Chegada:</label>
+                        <input type="date" id="dia_chegada" name="dia_chegada">
+                    </div>
+                    <div class="form-group">
+                        <label for="remetente">Remetente:</label>
+                        <input type="text" id="remetente" name="remetente" placeholder="Ex.: Empresa Épsilon" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="destinatario">Destinatário:</label>
+                        <input type="text" id="destinatario" name="destinatario" placeholder="Ex.: Cliente E" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status_entregue">Status de Entrega:</label>
+                        <select id="status_entregue" name="status_entregue" required>
+                            <option value="0">Não Entregue</option>
+                            <option value="1">Entregue</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="partida_cep">CEP de Partida:</label>
+                        <select id="id_partida" name="id_partida" required>
+                            <option value="selecione">Selecione uma partida:</option>
+                            <!-- <option value="59156-745">59156-745</option>
+                            <option value="50000-000">50000-000</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="destino_cep">CEP de Destino:</label>
+                        <select id="id_destino" name="id_destino" required>
+                            <option value="selecione">Selecione um destino:</option>
+                            <!-- <option value="50751-310">50751-310</option>
+                            <option value="60000-000">60000-000</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="detalhes">Motorista ID:</span>
+                        <select id="id_motorista" name="id_motorista" required>
+                            <option value="selecione">Selecione um motorista:</option>
+                            <!-- <option value="12345">12345</option>
+                            <option value="67890">67890</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="detalhes">Caminhão ID:</span>
+                        <select id="id_veiculo" name="id_veiculo" required>
+                            <option value="selecione">Selecione um caminhão:</option>
+                            <!-- <option value="ABC123">ABC123</option>
+                            <option value="DEF456">DEF456</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="detalhes">Carga:</span>
+                        <select id="id_carga" name="id_carga" required>
+                            <option value="selecione">Selecione um tipo de carga:</option>
+                            <!-- <option value="ABC123">ABC123</option>
+                            <option value="DEF456">DEF456</option> -->
+                            <!-- Adicione mais opções aqui, conforme necessário -->
+                        </select>
+                    </div>
+                    
+                    <button type="submit">Salvar Viagem</button>
+                </form>
+            </div>
+        </div>
+        <div class="container-cards" id="container-cards">
+        
+        </div>
+  <!-- Modal de detalhes da viagem -->
+<div id="modalDetalhes" class="modal-background" style="display:none;">
+    <div class="modal-contentt">
+        <span id="closeModalDetalhes" class="close">&times;</span>
+        <h2>Detalhes da Viagem</h2>
+        <div id="detalhesViagem">
+            <div class="form-group">
+                <input type="text" id="id_viagem" name="id_viagem" placeholder="Ex.: 712-939-VCD" disabled>
+            </div>
+            <div class="form-group">
+                <input type="date" id="dia_partida" name="dia_partida" disabled>
+            </div>
+            <div class="form-group">
+                <input type="text" id="horario_partida" name="horario_partida" disabled>
+            </div>
+            <div class="form-group">
+                <input type="date" id="dia_chegada" name="dia_chegada">
+            </div>
+            <div class="form-group">
+                <input type="text" id="remetente" name="remetente" placeholder="Ex.: Empresa Épsilon" disabled>
+            </div>
+            <div class="form-group">
+                <input type="text" id="destinatario" name="destinatario" placeholder="Ex.: Cliente E" disabled>
+            </div>
+            <div class="form-group">
+                <select id="status_entregue" name="status_entregue" disabled>
+                    <option value="0">Não Entregue</option>
+                    <option value="1">Entregue</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_partida" name="id_partida" disabled>
+                    <option value="selecione">Selecione uma partida</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_destino" name="id_destino" disabled>
+                    <option value="selecione">Selecione um destino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_motorista" name="id_motorista" disabled>
+                    <option value="selecione">Selecione um motorista</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_veiculo" name="id_veiculo" disabled>
+                    <option value="selecione">Selecione um caminhão</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="id_carga" name="id_carga" disabled>
+                    <option value="selecione">Selecione um tipo de carga</option>
+                </select>
+            </div>
+            
+        </div>
+        
+        <!-- Botões de editar e excluir -->
+        <button id="editarViagemBtn">Editar</button>
+        <button id="salvarViagemBtn" style="display:none;">Salvar</button> <!-- Inicialmente oculto -->
+        <button id="excluirViagemBtn">Excluir</button>
+    </div>
+</div>
+
+
+    </main>
+</body>
+</html>
