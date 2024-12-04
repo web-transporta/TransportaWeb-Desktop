@@ -49,6 +49,9 @@ const criarCardMotorista = (motorista) => {
     const cardContainer = document.createElement('div');
     cardContainer.className = 'motorista-card';
 
+    // Adiciona o ID do motorista como um atributo data-id no card
+    cardContainer.setAttribute('data-id', motorista.id);
+
     const cardContent = document.createElement('div');
     cardContent.className = 'motorista-info';
 
@@ -74,11 +77,16 @@ const criarCardMotorista = (motorista) => {
 
     cardContent.append(imageContainer, nomeMotorista, cpfMotorista, telefoneMotorista);
 
-    // Botão não funcional no final do card
-    const botao = document.createElement('button');
-    botao.className = 'botao-nao-funcional';
-    botao.textContent = 'Botão Não Funcional';
-    cardContent.appendChild(botao);
+    // Botão para abrir os detalhes do motorista
+    const botaoDetalhes = document.createElement('button');
+    botaoDetalhes.className = 'botao-detalhes';
+    botaoDetalhes.textContent = 'Ver Detalhes';
+    // Adiciona evento para o clique no card
+    cardContainer.addEventListener('click', () => {
+        const motoristaId = cardContainer.getAttribute('data-id'); // Pega o ID do motorista do atributo data-id
+        window.location.href = `detalhesMotorista.html?id=${motoristaId}`; // Redireciona para a página de detalhes com o ID
+    });
+    cardContent.appendChild(botaoDetalhes);
 
     cardContainer.append(cardContent);
 
@@ -125,5 +133,3 @@ const carregarMotoristas = async (id) => {
         containerCards.removeChild(loadingSpinner);
     }
 };
-
-

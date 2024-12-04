@@ -1,0 +1,181 @@
+/* Estilos gerais */
+body {
+    font-family: Nunito, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../css/img/background.PNG');
+    background-repeat: no-repeat; /* Impede a repetição da imagem */
+    background-size: cover; /* Faz com que a imagem ocupe toda a tela */
+    background-position: center; /* Centraliza a imagem */
+}
+
+/* Cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .welcome {
+    display: flex;
+    align-items: center;
+}
+
+.header .welcome .user-photo {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header .menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.header .menu a.active {
+    color: red;
+    font-weight: bold;
+}
+
+/* Conteúdo principal */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 16px;
+    border: 1px solid #D92727;
+    border-radius: 20px;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile .driver-photo {
+    width: 250px;
+    height: 200px;
+    border-radius: 20%;
+    margin-bottom: 10px;
+}
+
+.profile .rating {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.profile h1 {
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+.profile p {
+    font-size: 18px;
+    color: #333333;
+}
+
+/* Atividade */
+.activity {
+    margin: 20px 0;
+}
+
+.activity h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.activity .heatmap {
+    background-color: #e5e5e5;
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+}
+
+/* Botão */
+.add-team {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #D92727;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;  /* Cor do texto em branco */
+}
+
+.add-team:hover {
+    background-color: #910000;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header .menu {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .profile .driver-photo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile h1 {
+        font-size: 28px;
+    }
+
+    .profile p {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 12px;
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .add-team {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+
+/* Para telas pequenas, como dispositivos móveis */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+
+    .profile .driver-photo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .profile h1 {
+        font-size: 24px;
+    }
+
+    .profile p {
+        font-size: 14px;
+    }
+
+    .add-team {
+        font-size: 14px;
+        padding: 8px 18px;
+    }
+}

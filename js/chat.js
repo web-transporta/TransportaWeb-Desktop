@@ -103,16 +103,15 @@ export function setRecipientId(newRecipientId) {
     loadMessages();
 }
 
-
 document.querySelector(".button-message .send").addEventListener("click", function(e) {
     e.preventDefault();
     sendMessage();
 });
 
-
-document.querySelector(".input-area input[type='text']").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        e.preventDefault();
-        sendMessage();
-    }
+// Função para redirecionar para a página de detalhes do motorista
+document.querySelector("#button-visitar-perfil").addEventListener("click", function() {
+    // Redireciona para a página detalhesMotorista.html com o ID do motorista como parâmetro
+    window.location.href = `../html/detalhesMotorista.html?id=${recipientId}`;
 });
+
+
