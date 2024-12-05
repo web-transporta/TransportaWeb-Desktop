@@ -45,150 +45,150 @@ window.addEventListener('DOMContentLoaded', async () => {
        MODAL
 **********************/
 document.addEventListener("DOMContentLoaded", async () => {
-   const openModalBtn = document.getElementById('openModal');
-   const modalBackground = document.getElementById('modalBackground');
-   const closeModalBtn = document.getElementById('closeModal');
-   const modalForm = document.querySelector('.modal-form');
-   const idVeiculoSelect = document.getElementById('id_veiculo');
-   const idPartidaSelect = document.getElementById('id_partida');
-   const idDestinoSelect = document.getElementById('id_destino');
-   const idMotoristaSelect = document.getElementById('id_motorista');
-   const idCargaSelect = document.getElementById('id_carga');
-
-
-   verificarElementos([openModalBtn, modalBackground, closeModalBtn, modalForm, idVeiculoSelect, idPartidaSelect, idDestinoSelect, idMotoristaSelect, idCargaSelect]);
-
-   try {
-       const [caminhoes, partidas, destinos, motoristas, cargas] = await Promise.all([
-           getVeiculos(),
-           getPartida(),
-           getDestino(),
-           getMotoristas(),
-           getCargas()
-       ]);
-
-       preencherSelect(caminhoes, idVeiculoSelect, "modelo");
-       preencherSelect(partidas, idPartidaSelect, "cep");
-       preencherSelect(destinos, idDestinoSelect, "cep");
-       preencherSelectMotoristas(motoristas, idMotoristaSelect);
-       preencherSelectCargas(cargas, idCargaSelect);
-
-   } catch (error) {
-       console.error("Erro ao carregar dados:", error);
-   }
-
-   if (openModalBtn && modalBackground && closeModalBtn && modalForm) {
-       openModalBtn.addEventListener('click', () => {
-           modalForm.reset();
-           modalBackground.style.display = 'flex';
-       });
-
-       closeModalBtn.addEventListener('click', () => {
-           modalBackground.style.display = 'none';
-           modalForm.reset();
-       });
-
-       modalBackground.addEventListener('click', (e) => {
-           if (e.target === modalBackground) {
-               modalBackground.style.display = 'none';
-               modalForm.reset();
-           }
-       });
-
-       modalForm.addEventListener('submit', criarViagem);
-   }
-
-   async function criarViagem(event) {
-       event.preventDefault();
-   
-       // Recupera o ID da empresa do localStorage
-       const idEmpresa = localStorage.getItem('userId');
-       console.log(idEmpresa);
-       // Se o ID da empresa não estiver no localStorage, exibe um erro
-       if (!idEmpresa) {
-           Swal.fire({
-               title: 'Erro!',
-               text: 'ID da empresa não encontrado no localStorage.',
-               icon: 'error',
-               confirmButtonText: 'OK',
-           });
-           return;
-       }
-   
-       // Verifica se o motorista foi selecionado corretamente
-       const id_motorista = idMotoristaSelect?.value || null;
-       if (!id_motorista) {
-           Swal.fire({
-               title: 'Erro!',
-               text: 'Por favor, selecione um motorista.',
-               icon: 'error',
-               confirmButtonText: 'OK',
-           });
-           return;
-       }
-   
-       // Prepara os dados da nova viagem, incluindo o id_empresa
-       const novaViagem = {
-           id_viagem: document.getElementById('id_viagem')?.value || '',
-           dia_partida: document.getElementById('dia_partida')?.value || '',
-           horario_partida: document.getElementById('horario_partida')?.value || '',
-           dia_chegada: document.getElementById('dia_chegada')?.value || '',
-           remetente: document.getElementById('remetente')?.value || '',
-           destinatario: document.getElementById('destinatario')?.value || '',
-           status_entregue: document.getElementById('status_entregue')?.value || '',
-           id_partida: idPartidaSelect?.value || '',
-           id_destino: idDestinoSelect?.value || '',
-           id_motorista: id_motorista, // Garantindo que o valor do motorista seja válido
-           id_veiculo: idVeiculoSelect?.value || '',
-           id_tipo_carga: idCargaSelect?.value || '',
-           id_empresa: idEmpresa // Adiciona o ID da empresa ao objeto novaViagem
-       };
-       console.log(novaViagem);
-   
-       modalBackground.style.display = 'none';
-   
-       const loadingAlert = Swal.fire({
-           title: 'Carregando...',
-           text: 'Aguarde enquanto processamos sua solicitação.',
-           icon: 'info',
-           allowOutsideClick: false,
-           didOpen: () => Swal.showLoading(),
-       });
-   
-       try {
-           const response = await postViagem(novaViagem);
-           await loadingAlert.close();
-   
-           if (response.status === 200) {
-               await Swal.fire({
-                   title: 'Sucesso!',
-                   text: 'Viagem criada com sucesso!',
-                   icon: 'success',
-                   confirmButtonText: 'OK',
-               });
-               mostrarContainer();
-           } else {
-               throw new Error('Erro ao criar a viagem.');
-           }
-       } catch (error) {
-           await loadingAlert.close();
-           await Swal.fire({
-               title: 'Erro!',
-               text: 'Ocorreu um erro ao criar a viagem. Tente novamente.',
-               icon: 'error',
-               confirmButtonText: 'OK',
-           });
-       }
-   }
-   
-
-   function verificarElementos(elementos) {
-       elementos.forEach((elemento, index) => {
-           if (!elemento) {
-               console.error(`Elemento não encontrado. Índice: ${index}`);
-           }
-       });
-   }
+    const openModalBtn = document.getElementById('openModal');
+    const modalBackground = document.getElementById('modalBackground');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalForm = document.querySelector('.modal-form');
+    const idVeiculoSelect = document.getElementById('id_veiculo');
+    const idPartidaSelect = document.getElementById('id_partida');
+    const idDestinoSelect = document.getElementById('id_destino');
+    const idMotoristaSelect = document.getElementById('id_motorista');
+    const idCargaSelect = document.getElementById('id_carga');
+ 
+ 
+    verificarElementos([openModalBtn, modalBackground, closeModalBtn, modalForm, idVeiculoSelect, idPartidaSelect, idDestinoSelect, idMotoristaSelect, idCargaSelect]);
+ 
+    try {
+        const [caminhoes, partidas, destinos, motoristas, cargas] = await Promise.all([
+            getVeiculos(),
+            getPartida(),
+            getDestino(),
+            getMotoristas(),
+            getCargas()
+        ]);
+ 
+        preencherSelect(caminhoes, idVeiculoSelect, "modelo");
+        preencherSelect(partidas, idPartidaSelect, "cep");
+        preencherSelect(destinos, idDestinoSelect, "cep");
+        preencherSelectMotoristas(motoristas, idMotoristaSelect);
+        preencherSelectCargas(cargas, idCargaSelect);
+ 
+    } catch (error) {
+        console.error("Erro ao carregar dados:", error);
+    }
+ 
+    if (openModalBtn && modalBackground && closeModalBtn && modalForm) {
+        openModalBtn.addEventListener('click', () => {
+            modalForm.reset();
+            modalBackground.style.display = 'flex';
+        });
+ 
+        closeModalBtn.addEventListener('click', () => {
+            modalBackground.style.display = 'none';
+            modalForm.reset();
+        });
+ 
+        modalBackground.addEventListener('click', (e) => {
+            if (e.target === modalBackground) {
+                modalBackground.style.display = 'none';
+                modalForm.reset();
+            }
+        });
+ 
+        modalForm.addEventListener('submit', criarViagem);
+    }
+ 
+    async function criarViagem(event) {
+        event.preventDefault();
+    
+        // Recupera o ID da empresa do localStorage
+        const idEmpresa = localStorage.getItem('userId');
+        console.log(idEmpresa);
+        // Se o ID da empresa não estiver no localStorage, exibe um erro
+        if (!idEmpresa) {
+            Swal.fire({
+                title: 'Erro!',
+                text: 'ID da empresa não encontrado no localStorage.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+    
+        // Verifica se o motorista foi selecionado corretamente
+        const id_motorista = idMotoristaSelect?.value || null;
+        if (!id_motorista) {
+            Swal.fire({
+                title: 'Erro!',
+                text: 'Por favor, selecione um motorista.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+    
+        // Prepara os dados da nova viagem, incluindo o id_empresa
+        const novaViagem = {
+            id_viagem: document.getElementById('id_viagem')?.value || '',
+            dia_partida: document.getElementById('dia_partida')?.value || '',
+            horario_partida: document.getElementById('horario_partida')?.value || '',
+            dia_chegada: document.getElementById('dia_chegada')?.value || '',
+            remetente: document.getElementById('remetente')?.value || '',
+            destinatario: document.getElementById('destinatario')?.value || '',
+            status_entregue: document.getElementById('status_entregue')?.value || '',
+            id_partida: idPartidaSelect?.value || '',
+            id_destino: idDestinoSelect?.value || '',
+            id_motorista: id_motorista, // Garantindo que o valor do motorista seja válido
+            id_veiculo: idVeiculoSelect?.value || '',
+            id_tipo_carga: idCargaSelect?.value || '',
+            id_empresa: idEmpresa // Adiciona o ID da empresa ao objeto novaViagem
+        };
+        console.log(novaViagem);
+    
+        modalBackground.style.display = 'none';
+    
+        const loadingAlert = Swal.fire({
+            title: 'Carregando...',
+            text: 'Aguarde enquanto processamos sua solicitação.',
+            icon: 'info',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading(),
+        });
+    
+        try {
+            const response = await postViagem(novaViagem);
+            await loadingAlert.close();
+    
+            if (response.status === 200) {
+                await Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Viagem criada com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                });
+                mostrarContainer();
+            } else {
+                throw new Error('Erro ao criar a viagem.');
+            }
+        } catch (error) {
+            await loadingAlert.close();
+            await Swal.fire({
+                title: 'Erro!',
+                text: 'Ocorreu um erro ao criar a viagem. Tente novamente.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        }
+    }
+    
+ 
+    function verificarElementos(elementos) {
+        elementos.forEach((elemento, index) => {
+            if (!elemento) {
+                console.error(`Elemento não encontrado. Índice: ${index}`);
+            }
+        });
+    }
 
    async function mostrarDetalhesViagem(id_viagem) {
        try {
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                <p><strong>Status Entregue:</strong> <input type="checkbox" id="status_entregue" ${viagem.status_entregue ? 'checked' : ''} disabled></p>
                <p><strong>Partida (CEP):</strong> ${viagem.partida_cep || 'Não encontrado'}</p>
                <p><strong>Destino (CEP):</strong> ${viagem.destino_cep || 'Não encontrado'}</p>
-               <p><strong>Motorista:</strong> ${viagem.motorista_nome || 'Não encontrado'}</p>
+               <p><strong>Motorista:</strong> ${viagem.motorista_nome || 'Freelancer'}</p>
                <p><strong>Veículo:</strong> ${viagem.veiculo_modelo || 'Não encontrado'}</p>
                <p><strong>Carga:</strong> ${viagem.tipo_carga_nome || 'Não encontrado'}</p>
            `;
@@ -391,7 +391,7 @@ document.getElementById('editarViagemBtn').onclick = habilitarEdicao;
 // Função de Excluir Viagem (Caso necessário)
 async function excluirViagem(idViagem) {
    try {
-       const response = await deleteViagem(idViagem); // Substitua deleteViagem pela função de exclusão que você usa
+       const response = await excluirViagem(idViagem); // Substitua deleteViagem pela função de exclusão que você usa
        if (response.status === 200) {
            Swal.fire({
                title: 'Sucesso!',
@@ -413,6 +413,7 @@ async function excluirViagem(idViagem) {
        });
    }
 }
+excluirViagem()
 
    /*********************
        CARDS DE VIAGENS
