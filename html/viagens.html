@@ -148,10 +148,20 @@
     <div class="modal-contentt">
         <span id="closeModalDetalhes" class="close">&times;</span>
         <h2>Detalhes da Viagem</h2>
-        <div id="detalhesViagem">
+        <!-- <div id="detalhesViagem">
             <div class="form-group">
                 <input type="text" id="id_viagem" name="id_viagem" placeholder="Ex.: 712-939-VCD" disabled>
+            </div> -->
+
+            <div class="form-group">
+                <label for="id_viagem">ID da Viagem:</label>
+                <div class="input-icon-container">
+                    <input type="text" id="id_viagem" name="id_viagem" placeholder="Ex.: 712-939-VCD" required>
+                    <span class="input-icon fas fa-truck"></span> <!-- Aqui o ícone -->
+                </div>
             </div>
+
+            
             <div class="form-group">
                 <input type="date" id="dia_partida" name="dia_partida" disabled>
             </div>
