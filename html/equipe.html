@@ -1,63 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <title>Equipe</title>
-   <link rel="icon" href="../css/img/LOGO.png" type="image/x-icon">
-   <link rel="stylesheet" href="../css/equipe.css">
-   <link rel="stylesheet" href="../css/navbar.css">
-   <link rel="stylesheet" href="../css/notificacao.css">
-   <link rel="stylesheet" href="../css/root.css">
-   <script src="../js/funcoes.js" type="module" defer></script>
-   <script src="../js/motoristas.js" type="module" defer></script>
-</head>
-<body>
-   <header>
-       <div class="profile-container">
-           <img src="" id="foto-url" alt="Foto de Perfil">
-           <span>Bem-vindo,<br><span class="name" id="empresaNome"></span></span>
-       </div>
-       <div class="content-area">
-        <ul class="navbar">
-            <a href="./paginaHome.html">Home</a>
-            <a href="./equipe.html">Equipe</a>
-            <a href="./viagens.html">Viagens</a>
-            <a href="./motoristas.html">Motoristas</a>
-            <a href="./ceps.html">Ceps</a>
-            <a href="./perfilEmpresa.html">Perfil</a>
-        </ul>
-        <div class="notificacao-botao">
-            <div class="buttons-area">
-                <a href="./chat.html">
-                    <button class="botao-chat">
-                        <img src="../css/img/chat.png" alt="perfil" height="20">
-                        Chat
-                    </button>
-                </a>
-            </div>
-            <button class="botao-notificacoes" id="openNotificationModal">
-                <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="45">
-            </button>
-        </div> 
-    </div>
-   </header>
-   <main>
-       <section class="control-section">
-           <div class="text">
-               <h1>Tenha Controle Total da Sua Equipe!</h1>
-               <p>Simplifique a gestão do seu time com uma plataforma que centraliza todas as informações. Tenha acesso rápido e fácil a todos os usuários que fazem parte da sua equipe, facilitando a administração e o acompanhamento das atividades.</p>
-           </div>
-           <div class="illustration">
-               <img src="../css/img/equipe.png" alt="Team Illustration">
-           </div>
-       </section>
 
-   </main>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Equipe</title>
+    <link rel="stylesheet" href="../css/equipe.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/notificacao.css">
+    <link rel="stylesheet" href="../css/root.css">
+    <script src="../js/funcoes.js" type="module" defer></script>
+    <script src="../js/equipe.js" type="module" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="profile-container">
+            <img src="" id="foto-url" alt="Foto de Perfil">
+            <span>Bem-vindo,<br><span class="name" id="empresaNome"></span></span>
+        </div>
+        <div class="content-area">
+            <ul class="navbar">
+                <a href="./paginaHome.html">Home</a>
+                <a href="./equipe.html">Equipe</a>
+                <a href="./viagens.html">Viagens</a>
+                <a href="./motoristas.html">Motoristas</a>
+                <a href="./ceps.html">Ceps</a>
+                <a href="./perfilEmpresa.html">Perfil</a>
+            </ul>
+            <div class="notificacao-botao">
+                <div class="buttons-area">
+                    <a href="./chat.html">
+                        <button class="botao-chat">
+                            <img src="../css/img/chat.png" alt="perfil" height="20">
+                            Chat
+                        </button>
+                    </a>
+                </div>
+                <button class="botao-notificacoes" id="openNotificationModal">
+                    <img src="../css/img/sino-de-notificacao.png" alt="notificações" height="45">
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="control-section">
+            <div class="text">
+                <h1>Tenha Controle Total da Sua Equipe!</h1>
+                <p>Simplifique a gestão do seu time com uma plataforma que centraliza todas as informações. Tenha acesso
+                    rápido e fácil a todos os usuários que fazem parte da sua equipe, facilitando a administração e o
+                    acompanhamento das atividades.</p>
+            </div>
+            <div class="illustration">
+                <img src="../css/img/equipe.png" alt="Team Illustration">
+            </div>
+        </section>
+
+        <div class="pesquisa">
+            <input type="text" id="pesquisa" placeholder="Buscar Motorista"> 
+        </div>
+
+        <div class="card-container" id="card-container">
+        </div>
+
+    </main>
 </body>
+
 </html>
