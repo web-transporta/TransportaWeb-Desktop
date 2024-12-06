@@ -42,16 +42,15 @@ body{
     width: 500px;
  }
  .content-area{
-    height: 80%;
+   height: 80%;   
     display: flex;
     flex-direction: column;
     justify-content: baseline;
-    gap: 120px;
+    gap: 30px;
  }
  .go-back{
     display: flex;
     align-items: center;
-    gap: 10px;
     cursor: pointer;
  }
  .arow{
@@ -102,7 +101,7 @@ body{
  .input-area{
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
  }
  .section-2{
     display: flex;
@@ -132,7 +131,7 @@ body{
     transform: translateY(-0.125em);
  } 
  .botao-area{
-    padding-top: 150px;
+    padding-top: 20px;
  }
 
 

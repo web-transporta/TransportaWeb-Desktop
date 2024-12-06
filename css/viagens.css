@@ -116,7 +116,13 @@ body {
 
 
 
-.form-group input,
+.form-group input{
+    width: 94%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 .form-group select {
     padding: 10px;
     font-size: 14px;

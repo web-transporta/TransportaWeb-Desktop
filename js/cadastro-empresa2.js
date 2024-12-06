@@ -102,7 +102,7 @@ if (!numero_telefone || !foto_url || !email || !senha || !button) {
             if (sucesso) {
                 Swal.fire('Sucesso', 'Empresa cadastrada com sucesso!', 'success')
                     .then(() => {
-                        window.location.href = '../html/paginaHome.html';
+                        window.location.href = '../html/login.html';
                     });
             } else {
                 Swal.fire('Erro', 'Falha ao cadastrar a empresa, tente novamente.', 'error');
