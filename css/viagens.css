@@ -143,6 +143,8 @@ body {
 
 }
 
+
+
 input{
     height: 14px;
      border: none;
@@ -290,6 +292,14 @@ input{
 
 
 }
+.trip-card .trip-title {
+    font-weight: bold;
+}
+.label {
+    font-weight: bold; /* Deixa o rótulo em negrito */
+}
+
+
 
 
 

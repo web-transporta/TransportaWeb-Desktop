@@ -3,12 +3,36 @@ body {
     font-family: Nunito, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('../css/img/background.PNG');
-    background-repeat: no-repeat; /* Impede a repetição da imagem */
-    background-size: cover; /* Faz com que a imagem ocupe toda a tela */
-    background-position: center; /* Centraliza a imagem */
+    background: linear-gradient(135deg, #880000, #a73131, #ffffff, #c47575);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite, backgroundShape 8s ease-in-out infinite;
 }
 
+/* Animação do gradiente */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animação do formato do fundo */
+@keyframes backgroundShape {
+    0% {
+        background-size: 200% 200%;
+    }
+    50% {
+        background-size: 300% 300%;
+    }
+    100% {
+        background-size: 200% 200%;
+    }
+}
 /* Cabeçalho */
 .header {
     display: flex;
@@ -42,80 +66,55 @@ body {
     font-weight: bold;
 }
 
-/* Conteúdo principal */
+
+
+/* Centralização do container */
 .container {
-    max-width: 900px;
-    margin: 30px auto;
-    background: #ffffff;
+    max-width: 500px; /* Definindo o tamanho máximo */
+    margin-top: 130px; /* Centralizando horizontalmente */
+    margin-left: 35%; /* Centralizando horizontalmente */
     padding: 16px;
-    border: 1px solid #D92727;
-    border-radius: 20px;
-}
-
-.profile {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.profile .driver-photo {
-    width: 250px;
-    height: 200px;
-    border-radius: 20%;
-    margin-bottom: 10px;
-}
-
-.profile .rating {
-    font-size: 16px;
-    color: #555;
-    margin: 5px 0;
-}
-
-.profile h1 {
-    font-size: 34px;
-    margin: 10px 0;
-}
-
-.profile p {
-    font-size: 18px;
-    color: #333333;
-}
-
-/* Atividade */
-.activity {
-    margin: 20px 0;
-}
-
-.activity h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.activity .heatmap {
-    background-color: #e5e5e5;
-    width: 100%;
-    height: 120px;
-    border-radius: 8px;
-}
-
-/* Botão */
-.add-team {
-    display: block;
-    margin: 20px auto 0;
-    background-color: #D92727;
+    background: #ffffff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;  /* Cor do texto em branco */
+    border-radius: 10px;
+    display: block;
 }
 
-.add-team:hover {
-    background-color: #910000;
+/* Outros estilos permanecem os mesmos */
+
+
+/* Foto de perfil */
+.profile .driver-photo {
+    width: 150px; /* Ajuste do tamanho */
+    height: 150px;
+    object-fit: cover; /* Mantém a proporção e preenche o contêiner */
+    border-radius: 50%; /* Deixa a imagem circular */
+    margin-bottom: 20px; /* Espaçamento com as informações abaixo */
 }
+
+/* Títulos em negrito com informações abaixo */
+.profile .info {
+    text-align: left;
+    margin: 10px auto;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.profile .info strong {
+    display: block; /* Faz o título ocupar a linha toda */
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Centralizar o conteúdo */
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
