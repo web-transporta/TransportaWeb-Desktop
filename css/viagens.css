@@ -2,25 +2,6 @@ body {
     margin: 0;
     font-family: Nunito, sans-serif; /* Adicionado sans-serif como fallback */
 }
-
-#openModal {
-    background-color: #D92727;
-    margin-right: 20px;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    width: 150px;
-    height: 40px;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: Nunito;
-    font-weight: 700;
-}
-
-#openModal:hover {
-    background-color: #aa0c0c;
-}
-
 .viagens {
     color: red;
     text-decoration: underline;
@@ -110,8 +91,7 @@ body {
 
 .form-group label {
     font-size: 14px;
-    color: #000000;
-    font-weight: 900;
+    color: #555;
     margin-bottom: 5px;
 }
 
@@ -121,8 +101,8 @@ body {
 .form-group select {
     padding: 10px;
     font-size: 14px;
-    border: 1px solid #9c9c9c;
-    border-radius: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .form-group button {
