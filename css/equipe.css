@@ -1,28 +1,34 @@
 
 body {
     margin: 0;
-    font-family: Nunito;
+    font-family: var(--titulo);
+    padding-bottom: 40px;
+ }
+
+ main{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 40px;
  }
  
  .control-section {
-    height: 200px;
-    width: 90vh; /* Ajuste a largura conforme necessário, você pode trocar por um valor fixo como '600px' */
+    height: 250px;
+    width: 100vh;
     background-color: #d32f2f;
     color: white;
     padding: 40px;
     text-align: left;
     display: flex;
-    justify-content: flex-start; /* Garante que o texto fique à esquerda */
-    align-items: center;         /* Alinha o texto verticalmente */
-    position: relative;          /* Permite o uso de position absolute para a imagem */
-    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
  }
  
  .control-section .text {
     display: flex;
     flex-direction: column;
     max-width: 500px;
-    padding-left: 50px;
  
  }
  
@@ -41,6 +47,136 @@ body {
     width: 280px;
     height: 280px;
  }
- 
- 
- 
+
+ .card-container{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 70px;
+   flex-wrap: wrap;
+   font-family: var(--texto);
+ }
+
+ .driver-card {
+  width: 740px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  background-color: var(--branco);
+  border: 1px solid #D8D8D8;
+  border-radius: 10px;
+  padding: 22px;
+  gap: 20px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-image: url(https://media.istockphoto.com/id/1396633199/pt/foto/happy-truck-driver-looking-through-side-window-while-driving-his-truck.jpg?s=612x612&w=0&k=20&c=pIka2KPhH-UWkTrA0H6_qFZnJs-uRCIkFdCIJd-Exec=);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.header .view-profile {
+  color: #969696;
+  font-weight: 500;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);  
+}
+
+.header .view-profile:hover{
+  color: var(--vermelho);
+  transform: translateY(-0.125em);
+}
+
+a{
+  text-decoration: none;
+}
+
+.stars {
+  color: #FFFB70;
+  font-size: 2em;
+}
+
+.contact-info {
+  font-size: 16px;
+  display: flex;
+  gap: 50px;
+  padding-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 30px;
+}
+
+.actions button {
+  width: 169px;
+  height: 42px;
+  border-radius: 5px;
+  font-family: var(--titulo);
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);  
+  cursor: pointer;
+}
+
+.actions .remove {
+  background-color: var(--vermelho);
+  color: #fff;
+  border: none;
+}
+
+.actions .remove:hover {
+  background-color: #c32a2a;
+}
+
+.actions .request {
+  background-color: #fff;
+  border: 1px solid #969696;
+  color: #333;
+}
+
+.actions .request:hover {
+  background-color: #f0f0f0;
+}
+
+.info-icons{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pesquisa {
+  margin-bottom: -55px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+#pesquisa {
+  width: 40%;
+  padding: 10px;
+  border: none;
+  background-color: #d8d8d8;
+  color: #333;
+  outline: none;
+}

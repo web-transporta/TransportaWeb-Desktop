@@ -75,7 +75,7 @@ body {
  
  .control-section {
     height: 200px;
-    width: 90vh; /* Ajuste a largura conforme necessário, você pode trocar por um valor fixo como '600px' */
+    width: 90vh; 
     background-color: #d32f2f;
     color: white;
     padding: 40px;
@@ -91,7 +91,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 500px;
-    padding-left: 50px;
+    padding-left: 10px;
  
  }
  

@@ -6,6 +6,7 @@ body {
     color: red;
     text-decoration: underline;
 }
+
 /* Estilo para o fundo do modal */
 #modalBackground,
 #detalhesModalBackground {
@@ -46,9 +47,14 @@ body {
     width: 500px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
+    
 }
 
-/* Estilo para o modal e detalhes */
+.modal-contentt p {
+    text-align: center;
+    margin: 10px 0;
+}
+
 .modal,
 .detalhesModal {
     background-color: #fff;
@@ -60,54 +66,6 @@ body {
     width: 100%;
 }
 
-/* Container dos botões */
-.modal-contentt .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Espaço entre os botões */
-    margin-top: 20px;
-}
-
-/* Estilo para os botões */
-#editarViagemBtn,
-#salvarViagemBtn,
-#excluirViagemBtn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-}
-
-/* Estilo para o botão de editar */
-#editarViagemBtn {
-    background-color: #4CAF50; /* Verde */
-    color: #c7f8c9;
-    margin-right: 10px;
-
-}
-
-/* Estilo para o botão de salvar */
-#salvarViagemBtn {
-    background-color: #4CAF50; 
-    border: 1px solid #015f04;
-    color: #c7f8c9;
-}
-
-/* Estilo para o botão de excluir */
-#excluirViagemBtn {
-    background-color: #cf261a; /* Vermelho */
-    color: #f8c7c7;
-}
-
-/* Estilo para o botão de salvar, quando exibido */
-#salvarViagemBtn[style="display: block;"] {
-    display: block;
-}
-
-      
 /* Botão de fechar */
 #detalhesFecharModal,
 #closeModal {
@@ -131,54 +89,13 @@ body {
     flex-direction: column;
 }
 
-
 .form-group label {
     font-size: 14px;
+    color: #555;
     margin-bottom: 5px;
-    font-weight: 800;
-}
-
-.detalhes {
-    font-weight: 800;
-
 }
 
 
-
-input{
-    height: 14px;
-     border: none;
-     font-weight: 400;
-     border-bottom: 1px solid var(--preto);
-     background-color: var(--branco);
-     padding-left: 10px;
-     font-size: 15px;
-     outline: 0;
-     color: var(--preto);
-    }
-
-
-
-/* Estilos para o input com ícone */
-.input-icon {
-    position: relative;
-}
-
-.input-icon i {
-    position: absolute;
-    left: 315px; /* Distância do ícone para a borda esquerda */
-    top: 50%;
-    transform: translateY(-50%); /* Alinha verticalmente o ícone */
-    color: #000000; /* Cor do ícone */
-    font-size: 16px; /* Tamanho do ícone */
-}
-
-.input-icon input {
-    padding-left: 30px; /* Espaço para o ícone dentro do input */
-    font-size: 14px; /* Tamanho da fonte do input */
-    width: 317px;
-
-}
 
 .form-group input,
 .form-group select {
@@ -188,7 +105,7 @@ input{
     border-radius: 4px;
 }
 
-/* .form-group button {
+.form-group button {
     margin-top: 5px;
     padding: 8px;
     background-color: #007BFF;
@@ -200,25 +117,22 @@ input{
 
 .form-group button:hover {
     background-color: #0056b3;
-} */
+}
 
 .modal-form button[type="submit"] {
     grid-column: 1 / -1;
     padding: 12px;
     font-size: 16px;
-    background-color: #be0000;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-    font-weight: 400;
 }
 
 .modal-form button[type="submit"]:hover {
-    background-color: #a10101;
-    color: #ffffff;
-
+    background-color: #45a049;
 }
 
 .pesquisa {
@@ -292,14 +206,6 @@ input{
 
 
 }
-.trip-card .trip-title {
-    font-weight: bold;
-}
-.label {
-    font-weight: bold; /* Deixa o rótulo em negrito */
-}
-
-
 
 
 
@@ -344,8 +250,6 @@ input{
     animation: modalFadeIn 0.3s;
 }
 
-
-
 @keyframes modalFadeIn {
     from {
         opacity: 0;
@@ -380,4 +284,39 @@ h2 {
     font-weight: 400;
     line-height: 1.5;
 }
+
+/* Estilo para o botão "Editar" */
+#editButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#editButton:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* Estilo para o botão "Excluir" */
+#deleteButton {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#deleteButton:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+input{
+    height: 13px;
+     width: 130px;
+     border: none;
+     font-weight: 400;
+     border-bottom: 1px solid var(--preto);
+     background-color: var(--branco);
+     padding-left: 10px;
+     font-size: 15px;
+     outline: 0;
+     color: var(--preto);
+    }
 
