@@ -3,10 +3,25 @@ body {
     font-family: Nunito, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('../css/img/background.PNG');
-    background-repeat: no-repeat; /* Impede a repetição da imagem */
-    background-size: cover; /* Faz com que a imagem ocupe toda a tela */
-    background-position: center; /* Centraliza a imagem */
+    height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    width: 100vw; /* Garante que o body ocupe toda a largura da tela */
+    background: linear-gradient(135deg, #c48484, #ffffff, #ffffff, #c48484); /* Gradiente com vermelho nas pontas e branco no meio */
+    background-size: 200% 200%; /* Ajuste para cobrir toda a tela */
+    background-repeat: no-repeat; /* Garante que o gradiente não se repita */
+    animation: gradientAnimation 15s ease infinite; /* Animação mais suave e contínua */
+}
+
+/* Animação do gradiente */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%; /* Começa com o gradiente na posição inicial */
+    }
+    50% {
+        background-position: 100% 50%; /* Move o gradiente de forma equilibrada */
+    }
+    100% {
+        background-position: 0% 50%; /* Retorna à posição inicial */
+    }
 }
 
 /* Cabeçalho */
@@ -17,6 +32,8 @@ body {
     padding: 15px 30px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para o cabeçalho */
+    color: #333; /* Alteração da cor do texto do cabeçalho */
 }
 
 .header .welcome {
@@ -35,6 +52,12 @@ body {
     margin: 0 15px;
     text-decoration: none;
     color: #333;
+    transition: color 0.3s ease, transform 0.3s ease; /* Transição suave */
+}
+
+.header .menu a:hover {
+    color: #c48484; /* Mudança de cor no hover */
+    transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
 }
 
 .header .menu a.active {
@@ -42,82 +65,77 @@ body {
     font-weight: bold;
 }
 
-/* Conteúdo principal */
+/* Centralização do container */
 .container {
-    max-width: 900px;
-    margin: 30px auto;
-    background: #ffffff;
+    max-width: 1000px; /* Aumenta um pouco a largura máxima do container */
+    width: 100%; /* Garante que o container ocupe toda a largura disponível */
+    margin: 0 auto; /* Centralizando horizontalmente */
     padding: 16px;
-    border: 1px solid #D92727;
-    border-radius: 20px;
-}
-
-.profile {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.profile .driver-photo {
-    width: 250px;
-    height: 200px;
-    border-radius: 20%;
-    margin-bottom: 10px;
-}
-
-.profile .rating {
-    font-size: 16px;
-    color: #555;
-    margin: 5px 0;
-}
-
-.profile h1 {
-    font-size: 34px;
-    margin: 10px 0;
-}
-
-.profile p {
-    font-size: 18px;
-    color: #333333;
-}
-
-/* Atividade */
-.activity {
-    margin: 20px 0;
-}
-
-.activity h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.activity .heatmap {
-    background-color: #e5e5e5;
-    width: 100%;
-    height: 120px;
-    border-radius: 8px;
-}
-
-/* Botão */
-.add-team {
+    background: #ffffff;
+    border: 0.5px solid rgb(221, 221, 221);
+    border-radius: 10px; /* Bordas arredondadas para suavizar o visual */
     display: block;
-    margin: 20px auto 0;
-    background-color: #D92727;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade ao container */
+}
+
+/* Foto de perfil */
+.profile .driver-photo {
+    width: 200px; /* Aumenta o tamanho da foto */
+    height: 200px; /* Aumenta o tamanho da foto */
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile .info {
+    text-align: left;
+    margin: 10px auto;
+    font-size: 22px; /* Aumenta o tamanho das letras */
+    color: #333;
+    line-height: 1.5;
+}
+
+.profile .info strong {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Manter o restante do estilo do perfil conforme sua necessidade */
+.profile {
     display: flex;
+    flex-direction: column;
     align-items: center;
+}
+
+/* Estilo do botão de notificações */
+/* Estilo do botão de notificações */
+.botao-notificacoes {
+    display: flex;
     justify-content: center;
-    color: white;  /* Cor do texto em branco */
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.3s ease;
 }
 
-.add-team:hover {
-    background-color: #910000;
+.botao-notificacoes img {
+    width: 45px; /* Aumentando o tamanho do ícone de 40px para 60px */
+    height: 45px; /* Aumentando o tamanho do ícone de 40px para 60px */
 }
 
-/* Responsividade */
+.botao-notificacoes:hover {
+    transform: scale(1.1); /* Efeito de aumento ao passar o mouse */
+}
+
+/* Para telas menores */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -131,22 +149,20 @@ body {
     }
 
     .profile .driver-photo {
-        width: 200px;
-        height: 200px;
+        width: 180px; /* Ajusta o tamanho da foto em telas menores */
+        height: 180px; /* Ajusta o tamanho da foto em telas menores */
     }
 
     .profile h1 {
-        font-size: 28px;
+        font-size: 32px; /* Aumenta o tamanho do título */
     }
 
     .profile p {
-        font-size: 16px;
+        font-size: 18px; /* Aumenta o tamanho dos parágrafos */
     }
 
     .container {
-        padding: 12px;
-        width: 90%;
-        margin: 20px auto;
+        width: 90%; /* Ajusta a largura para 90% em telas menores */
     }
 
     .add-team {
@@ -155,27 +171,53 @@ body {
     }
 }
 
-/* Para telas pequenas, como dispositivos móveis */
+/* Para telas muito pequenas (móveis) */
 @media (max-width: 480px) {
     .header {
         padding: 10px;
     }
 
     .profile .driver-photo {
-        width: 180px;
-        height: 180px;
+        width: 150px; /* Ajusta o tamanho da foto em telas muito pequenas */
+        height: 150px; /* Ajusta o tamanho da foto em telas muito pequenas */
     }
 
     .profile h1 {
-        font-size: 24px;
+        font-size: 28px; /* Aumenta o tamanho do título */
     }
 
     .profile p {
-        font-size: 14px;
+        font-size: 16px; /* Aumenta o tamanho dos parágrafos */
     }
 
     .add-team {
         font-size: 14px;
         padding: 8px 18px;
     }
+}
+
+/* Estilo do botão de voltar discreto */
+.back-button {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 20px; /* Aumenta o tamanho da fonte do botão */
+    font-weight: 500;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    text-decoration: none; /* Remover sublinhado */
+    margin-top: 10px;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.back-button i {
+    margin-right: 8px; /* Espaço entre a seta e o texto */
+    font-size: 20px; /* Aumenta o tamanho da seta */
+}
+
+/* Alterar a cor do texto e seta ao passar o mouse */
+.back-button:hover {
+    color: #9c1f1f; /* Cor ao passar o mouse */
 }
