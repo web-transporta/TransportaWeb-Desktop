@@ -145,6 +145,37 @@ export async function postViagem(insert) {
     }
 }
 
+export async function insertPartida(insert) {
+    try {
+        // Montando o objeto conforme a API espera
+        const dataToSend = {
+            "cep": insert.cep // Apenas a chave "cep"
+        };
+
+        // Fazendo a requisição para a API
+        const response = await fetch('https://crud-03-09.onrender.com/v1/transportaweb/newpartida', {
+            method: 'POST',
+            body: JSON.stringify(dataToSend), // Enviando o JSON no corpo
+            headers: { 
+                'Content-Type': 'application/json'
+            }
+        });
+
+        // Verificando se a resposta é bem-sucedida
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Resposta da API:', data);
+            return data; // Retorna o JSON completo da resposta
+        } else {
+            const errorMessage = await response.text();
+            console.error('Erro da API:', errorMessage);
+            throw new Error(`Erro da API: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error('Erro na requisição:', error);
+        throw error; // Re-lança o erro para ser tratado no código chamador
+    }
+}
 export async function excluirViagem(id) {
     const url = `https://crud-03-09.onrender.com/v1/transportaweb/viagem/${id}`;
     console.log("URL para exclusão:", url);
