@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="icon" href="../css/img/LOGO.png" type="image/x-icon">
 
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script src="../js/ceps.js" defer></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" defer src="../js/ceps.js"></script>
     <title>Endereços dos CEPs</title>
     <link rel="icon" href="../css/img/logo-topo.PNG" type="image/x-icon">
     <link rel="stylesheet" href="../css/ceps.css">
@@ -32,8 +29,8 @@
         <label for="cep">CEP:</label>
         <input type="text" id="cep" name="cep" maxlength="9" placeholder="Digite o CEP">
         
-        <select id="cep" name="cep">
-            <option value="00000-000">00000-000</option>
+        <select id="selectCep" name="cep">
+            <option value="">Selecione um cep:</option>
             <!-- Adicione outras opções de CEP conforme necessário -->
         </select>
 
@@ -67,9 +64,20 @@
             <input type="text" id="pais" name="pais" value="" disabled>
         </div>
 
-
-        <button type="submit" class="add-cep-button">ADICIONAR NOVO CEP</button>
+        <!-- Botão para adicionar novo CEP -->
+        <button type="button" class="add-cep-button" id="adicionarCep">ADICIONAR NOVO CEP</button>
     </form>
+</div>
+
+<!-- Modal para Adicionar Novo CEP -->
+<div id="modalCep" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Adicionar Novo CEP</h2>
+        <label for="novoCep">Digite o novo CEP:</label>
+        <input type="text" id="novoCep" name="novoCep" maxlength="9" placeholder="Digite o CEP">
+        <button id="salvarCep">Salvar CEP</button>
+    </div>
 </div>
 
 </body>

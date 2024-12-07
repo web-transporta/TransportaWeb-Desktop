@@ -50,6 +50,8 @@ async function renderMotoristaCards() {
                 const card = document.createElement('div');
                 card.classList.add('driver-card');
 
+
+
                 // Pega a avaliação do motorista
                 const numEstrelas = await getMotoristasAvaliacoes(motoristaEquipe.cpf);
 
