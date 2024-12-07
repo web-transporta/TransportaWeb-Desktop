@@ -388,7 +388,7 @@ camposEdicao.forEach(campoId => {
 document.getElementById('editarViagemBtn').onclick = habilitarEdicao;
 
 
-// Função de Excluir Viagem (Caso necessário)
+/* Função de Excluir Viagem (Caso necessário)
 async function excluirViagem(idViagem) {
    try {
        const response = await excluirViagem(idViagem); // Substitua deleteViagem pela função de exclusão que você usa
@@ -413,7 +413,7 @@ async function excluirViagem(idViagem) {
        });
    }
 }
-excluirViagem()
+excluirViagem() */
 
    /*********************
        CARDS DE VIAGENS

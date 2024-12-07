@@ -67,6 +67,24 @@ export async function getViagens() {
     return data.viagens; // Verifique se 'viagens' é realmente a chave que contém os dados
 }
 
+
+export async function getMotoristasEmEquipes(id) { 
+    const url = `https://crud-03-09.onrender.com/v1/transportaweb/motoristaequipe/${id}`;
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+        console.error('Erro ao buscar motoristas:', response.statusText);
+        return [];
+    }
+
+    const data = await response.json();
+    console.log('Dados recebidos da API:', data);
+    return data.equipe;
+}
+
+
+
+
 export async function getMotoristasSemEquipe() {
     const url = `https://crud-03-09.onrender.com/v1/transportaweb/motoristasfree`; 
     const response = await fetch(url);
@@ -208,6 +226,7 @@ export async function getMotorista(id) {
         throw error;  // Re-throw o erro para ser tratado no código de chamada
     }
 }
+
 export async function getEmpresas() {
     try {
         const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/empresas`);
@@ -451,3 +470,19 @@ export async function postVeiculo(insert) {
     }
 }
 
+
+export async function getMotoristasAvaliacoes() {
+    try {
+        const response = await fetch(`https://crud-03-09.onrender.com/v1/transportaweb/motorista_avaliacoes`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.motoristas_avaliacoes || []; // Retorna o array de caminhões ou um array vazio
+        } else {
+            console.error("Erro ao obter cargas:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Erro de rede ao obter cargas:", error);
+        return []; // Retorna um array vazio em caso de erro
+    }
+}

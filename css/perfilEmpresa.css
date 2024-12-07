@@ -32,6 +32,18 @@ body {
    object-fit: cover; /* Isso garante que a imagem preencha a área sem distorcer */
    object-position: center; /* Centraliza a imagem */
 }
+#sair{
+   border: 2px solid var(--vermelho); 
+   color: var(--vermelho);
+   text-decoration: none;
+}
+
+#sair:hover{
+   color: var(--branco); 
+   background-color: var(--vermelho); 
+   transform: translateY(-0.125em); 
+   
+}
 
 
 .container-t {
@@ -123,10 +135,21 @@ form .detalhes-usuario .inputbox {
    margin-left: 50%;
    padding-left: 20px;
    margin-top: -140px;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: 1fr 1fr;
+   align-items: center;
+   justify-items: center;
+   gap: 12px;
 }
+
 .botao { 
-   margin-right: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
 }
+
 .botao:hover, .excluir:hover {
    color: var(--branco); 
    background-color: var(--preto); 

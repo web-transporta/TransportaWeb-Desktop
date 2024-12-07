@@ -217,4 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
             excluirPerfil(); // Exclui o perfil
         });
     }
+  
 });
+
