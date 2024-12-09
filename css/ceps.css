@@ -1,47 +1,152 @@
+/* Resetando margens e preenchimento, e aplicando box-sizing para todos os elementos */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Nunito;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #ffffff;
-  }
-  
-  /* Estilos para o cabeçalho fora do container */
-  .header {
-    width: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-top: 80px;
-  }
-  
-  .back-button {
-    text-decoration: none;
-    font-size: 50px;
-    color: #333;
-    margin-right: 80px;
-  }
-  
-  /* Estilos para o Modal */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Nunito, Arial, sans-serif;
+}
+
+/* Corpo da página */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+/* Container principal */
+.container {
+  width: 65%;
+  height: 100vh;
+  background: #ffffff;
+  padding: 80px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;  /* Centraliza o conteúdo horizontalmente */
+  align-items: center;      /* Centraliza o conteúdo verticalmente */
+  flex-direction: column;
+}
+
+/* Estilo da imagem à direita (caso você precise dela) */
+.imagem-direita {
+  height: 100%;
+  width: 77vh;
+  position: absolute;
+  right: 0;
+}
+
+/* Formulário com campos */
+.cep-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Ajuste o espaçamento entre os campos */
+  width: 100%;
+  align-items: center; /* Garante que os inputs fiquem centralizados */
+}
+
+/* Estilo dos labels */
+label {
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+  text-align: left;  /* Alinha os títulos (labels) à esquerda */
+  width: 70%;       /* Faz com que o título ocupe toda a largura disponível */
+  margin-bottom: 5px;
+}
+
+
+.form-group
+
+{
+  width: 70%;       /* Faz com que o título ocupe toda a largura disponível */
+
+}
+.form-field{
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  text-align: left;  /* Alinha os títulos (labels) à esquerda */
+  margin-bottom: 5px;
+}
+
+
+/* Estilo dos inputs e select */
+input[type="text"],
+select {
+  width: 100%;       /* Faz com que o título ocupe toda a largura disponível */
+  padding: 8px;
+  background-color: #fff;
+  border: none;
+  border-bottom: 2px solid #ccc; /* Borda apenas na parte inferior */
+  font-size: 20px;
+  color: #333;
+  outline: none; /* Remove o contorno ao focar (opcional) */
+}
+
+#cep{
+  width: 70%;       /* Faz com que o título ocupe toda a largura disponível */
+
+}
+
+#selectCep{
+  width: 71%;       /* Faz com que o título ocupe toda a largura disponível */
+border: 1px solid #77767669; /* Borda apenas na parte inferior */
+margin-top: 20px;
+margin-bottom: 10px;
+
+
+}
+
+
+/* Formato para os grupos de formulários */
+.form-group {
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-field {
+  flex: 1;
+}
+
+/* Estilo para o botão de adicionar novo CEP */
+.add-cep-button {
+  width: 65%;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: white;
+  color: #000000;
+  border: 1px solid #000000; /* Borda apenas na parte inferior */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Hover para o botão */
+.add-cep-button:hover {
+  background-color: #000000;
+  color: #fff;
+
+}
+
+/* Estilo do Modal */
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+  height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -49,9 +154,10 @@
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; 
+  width: 80%;
 }
 
+/* Estilo do botão de fechar do Modal */
 .close {
   color: #aaa;
   float: right;
@@ -65,80 +171,66 @@
   text-decoration: none;
   cursor: pointer;
 }
-  .header h1 {
-    font-size: 20px;
-    color: #333;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 0;
-    margin-right: 80px;
-  }
-  
-  .logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
-  
-  /* Container Principal */
-  .container {
-    width: 1000px;
-    background: #fafafa;
-    padding: 80px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .cep-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  input[type="text"],
-  select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  #cep {
-    text-align: center;
-  }
-  
-  .form-group {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .form-field {
-    flex: 1;
-  }
-  
-  .add-cep-button {
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #dc3545;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .add-cep-button:hover {
-    background-color: #c82333;
-  }
+
+ /* Botão "Salvar CEP" estilizado */
+ 
+ button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  background-color: #000000;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#salvarCep{
+  width: 20%;
+
+
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px); /* Efeito de levantar o botão */
+}
+
+button:active {
+  background-color: #388E3C;
+  transform: translateY(0); /* Efeito de pressionar o botão */
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 20px; /* Aumenta o tamanho da fonte do botão */
+  font-weight: 500;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  text-decoration: none; /* Remover sublinhado */
+  margin-top: 10px;
+  margin-left: 20px;
+  transition: color 0.3s ease;
+  position: fixed; /* Alterar para fixed para manter no topo da página */
+  top: 20px; /* Distância do topo */
+  left: 20px; /* Distância da esquerda */
+  z-index: 9999; /* Garantir que o botão fique acima de outros elementos */
+}
+
+
+.back-button i {
+  margin-right: 8px; /* Espaço entre a seta e o texto */
+  font-size: 20px; /* Aumenta o tamanho da seta */
+}
+
+/* Alterar a cor do texto e seta ao passar o mouse */
+.back-button:hover {
+  color: #9c1f1f; /* Cor ao passar o mouse */
+}
