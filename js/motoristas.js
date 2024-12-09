@@ -63,7 +63,7 @@ const adicionarMotoristaEquipe = async (motoristaId) => {
         };
 
         // Verificar se os campos obrigatórios estão presentes
-        if (!dadosEquipe.id_motorsta || !dadosEquipe.id_empresa) {
+        if (!dadosEquipe.id_motorista || !dadosEquipe.id_empresa) {
             alert('Campos obrigatórios não preenchidos.');
             return;
         }
