@@ -1,4 +1,4 @@
-import { getMotorista, getEmpresa } from "./funcoes.js";  // Importando a função getMotorista
+import { getMotorista, getEmpresa, getMotoristasSemEquipe, postEquipe  } from "./funcoes.js";  // Importando a função getMotorista
 
 window.addEventListener('DOMContentLoaded', async () => {
     const id = localStorage.getItem('userId'); 

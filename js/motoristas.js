@@ -1,4 +1,4 @@
-import { getMotoristas, getMotoristaNome, getEmpresa, getMotoristasEquipe, getMotoristasSemEquipe } from "./funcoes.js"; 
+import { getMotoristas, getMotoristaNome, getEmpresa, getMotoristasEquipe, getMotoristasSemEquipe, postEquipe } from "./funcoes.js";
 
 // Garantir que o código só seja executado depois que o DOM estiver totalmente carregado
 window.addEventListener('DOMContentLoaded', async () => {
@@ -36,13 +36,50 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Carregar motoristas ao carregar a página
-        await carregarMotoristas(id); 
+        await carregarMotoristas(id);
 
     } catch (error) {
         console.error('Erro ao carregar dados da empresa:', error);
         alert('Erro ao carregar dados da empresa: ' + error.message);
     }
 });
+
+// Função para adicionar o motorista à equipe
+const adicionarMotoristaEquipe = async (motoristaId) => {
+    try {
+        const empresaId = localStorage.getItem('userId');
+        if (!empresaId) {
+            alert('ID da empresa não encontrado. Por favor, faça login novamente.');
+            window.location.href = '/html/login.html'; 
+            return;
+        }
+
+        // Cria o objeto para enviar na requisição POST
+        const dadosEquipe = {
+            id_motorsta: motoristaId,
+            id_empresa: empresaId
+        };
+
+        // Verificar se os campos obrigatórios estão presentes
+        if (!dadosEquipe.id_motorsta || !dadosEquipe.id_empresa) {
+            alert('Campos obrigatórios não preenchidos.');
+            return;
+        }
+
+        // Chama a função postEquipe do arquivo funcoes.js
+        const resultado = await postEquipe(dadosEquipe);
+
+        if (resultado.ok) {
+            alert('Motorista adicionado à equipe com sucesso!');
+            carregarMotoristas(empresaId); // Atualiza a lista de motoristas
+        } else {
+            alert('Erro ao adicionar motorista à equipe.');
+        }
+    } catch (error) {
+        console.error('Erro ao adicionar motorista à equipe:', error);
+        alert('Erro ao adicionar motorista à equipe: ' + error.message);
+    }
+};
 
 // Função para criar os cards dos motoristas
 const criarCardMotorista = (motorista) => {
@@ -86,14 +123,26 @@ const criarCardMotorista = (motorista) => {
         const motoristaId = cardContainer.getAttribute('data-id'); // Pega o ID do motorista do atributo data-id
         window.location.href = `detalhesMotorista.html?id=${motoristaId}`; // Redireciona para a página de detalhes com o ID
     });
+
+    // Botão para adicionar à equipe
+    const botaoAdicionarEquipe = document.createElement('button');
+    botaoAdicionarEquipe.className = 'botao-adicionar-equipe';
+    botaoAdicionarEquipe.textContent = 'Adicionar à Equipe';
+    // Evento para quando o botão for clicado
+    botaoAdicionarEquipe.addEventListener('click', (event) => {
+        event.stopPropagation(); // Impede que o clique também ative o evento de clique no card
+        const motoristaId = cardContainer.getAttribute('data-id');
+        adicionarMotoristaEquipe(motoristaId); // Chama a função para adicionar o motorista à equipe
+    });
     cardContent.appendChild(botaoDetalhes);
+    cardContent.appendChild(botaoAdicionarEquipe);
 
     cardContainer.append(cardContent);
 
     return cardContainer;
 };
 
-// Função para carregar motoristas com base no estado do botão
+// Função para carregar motoristas
 const carregarMotoristas = async (id) => {
     const containerCards = document.getElementById('container-cards');
     if (!containerCards) {
@@ -109,19 +158,15 @@ const carregarMotoristas = async (id) => {
     containerCards.appendChild(loadingSpinner);
 
     try {
-        // Aqui, decidimos carregar motoristas com ou sem equipe
-        let motoristas = [];
-
-        // No caso de um botão de alternância (toggle), você pode usar um flag para alternar
-        // Neste exemplo, estamos apenas carregando todos os motoristas
-        motoristas = await getMotoristas(id); 
+        // Buscar motoristas sem equipe
+        const motoristas = await getMotoristasSemEquipe(id);
 
         if (!motoristas || motoristas.length === 0) {
-            containerCards.innerHTML = '<p>Nenhum motorista encontrado.</p>';
+            containerCards.innerHTML = '<p>Nenhum motorista sem equipe encontrado.</p>';
             return;
         }
 
-        console.log('Motoristas carregados:', motoristas);
+        console.log('Motoristas sem equipe carregados:', motoristas);
         motoristas.forEach(motorista => {
             const card = criarCardMotorista(motorista);
             containerCards.appendChild(card);
@@ -130,6 +175,16 @@ const carregarMotoristas = async (id) => {
         console.error('Erro ao carregar motoristas:', error);
         containerCards.innerHTML = '<p>Erro ao carregar motoristas. Tente novamente mais tarde.</p>';
     } finally {
-        containerCards.removeChild(loadingSpinner);
+        if (loadingSpinner.parentNode) {
+            loadingSpinner.parentNode.removeChild(loadingSpinner); // Remove o loading spinner corretamente
+        }
     }
 };
+
+// Chamada para carregar motoristas ao carregar a página
+window.addEventListener('DOMContentLoaded', async () => {
+    const empresaId = localStorage.getItem('userId');
+    if (empresaId) {
+        await carregarMotoristas(empresaId);
+    }
+});

@@ -234,3 +234,8 @@ button:active {
 .back-button:hover {
   color: #9c1f1f; /* Cor ao passar o mouse */
 }
+
+#map {
+  height: 100%;
+  width: 77vh;
+}
