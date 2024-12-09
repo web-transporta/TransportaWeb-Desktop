@@ -1,501 +1,517 @@
-
 body {
-    margin: 0;
-    font-family: Nunito;
- }
- 
- .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
- }
- 
- .profile-container {
-    display: flex;
-    align-items: center;
- }
- 
- .profile-container img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
- }
- 
- .profile-container span {
-    font-size: 14px;
-    font-weight: bold;
- }
- 
- .profile-container .name {
-    color: red;
- }
- 
- .button-group {
-    display: flex;
-    gap: 10px;
-    align-items: center;
- }
- 
- .button {
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
- }
- 
- #openModal {
-    background-color: #D92727;
-    margin-right: 20px;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    width: 150px;
-    height: 40px;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: nunito;
-    font-weight: 700;
- }
- 
- #openModal:hover {
-    background-color: #aa0c0c;
- }
- .motoristas{
-    color: red;
-    text-decoration: underline;
- }
- 
- .control-section {
-    height: 200px;
-    width: 90vh; 
-    background-color: #d32f2f;
-    color: white;
-    padding: 40px;
-    text-align: left;
-    display: flex;
-    justify-content: flex-start; /* Garante que o texto fique à esquerda */
-    align-items: center;         /* Alinha o texto verticalmente */
-    position: relative;          /* Permite o uso de position absolute para a imagem */
-    margin: 0 auto;
- }
- 
- .control-section .text {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    padding-left: 10px;
- 
- }
- 
- .control-section h1 {
-    font-size: 28px;
-    margin-bottom: 0px;
-    font-weight: 800;
- }
- 
- .control-section p {
-    font-size: 18px;
- 
- }
- 
- .illustration img {
-    position: absolute;   /* Posiciona a imagem fora do fluxo do layout */
-    right: 0;             /* Gruda a imagem no canto direito */
-    bottom: 0;            /* Se quiser que a imagem fique alinhada com a parte inferior do contêiner */
-    width: 400px;
-    height: auto;
- }
- 
- 
- 
- /* Estilos para o fundo do modal */
- .modal-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999; /* Define o z-index alto para ficar acima dos cards */
- }
- 
- /* Estilos para o modal em si */
- .modal {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 10000;
- }
- 
- /* Estilos para o botão de fechar modal */
- .close-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
- }
- 
- 
- .modal h2 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
- }
- 
- .modal-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
- }
- 
- .form-group {
-    display: flex;
-    flex-direction: column;
- }
- 
- .form-group label {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 5px;
- }
- 
- .form-group input,
- .form-group select {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
- }
- 
- .form-group button {
-    margin-top: 5px;
-    padding: 8px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
- }
- 
- .form-group button:hover {
-    background-color: #0056b3;
- }
- 
- .modal-form button[type="submit"] {
-    grid-column: 1 / -1;
-    padding: 12px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
- }
- 
- .modal-form button[type="submit"]:hover {
-    background-color: #45a049;
- }
- 
- .pesquisa {
-    margin-bottom: -55px;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
- 
- #pesquisa {
-    width: 40%;
-    padding: 10px;
-    border: none;
-    background-color: #d8d8d8;
-    color: #333;
-    outline: none;
- }
- 
- .container-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
-    z-index: 1;
- }
- 
- /* Estilos para os cards de viagem */
- .trip-card {
-    background-color: rgb(247, 233, 208);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 120px;
-    display: flex;
-    outline: none;
-    justify-content: space-between; /* Alinha o conteúdo do card */
-    align-items: center; /* Alinha verticalmente os itens */
-    position: relative;
-    z-index: 1;
-    cursor: pointer;
- }
- 
- .trip-info {
-    display: flex;
-    flex-direction: column; /* Alinha os elementos em coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    margin-right: 10px; /* Espaçamento entre as informações e a imagem */
-    z-index: 1;
- }
- 
- .trip-title {
-    font-size: 18px; /* Aumenta o tamanho do título */
-    font-weight: bold; /* Deixa o título em negrito */
-    text-align: left;
- }
- 
- .trip-remetente,
- .trip-destinatario,
- .trip-data {
-    margin: 0; /* Remove margens padrão */
-    font-size: 14px; /* Tamanho da fonte das informações */
-    text-align: left; /* Alinha o texto à esquerda */
- }
- 
- #viagens-criadas h2 {
-    text-align: left; /* Alinha o texto à esquerda */
-    margin: 0; /* Remove margens padrão */
-    padding-left: 24px; /* Adiciona um espaço à direita */
-    font-size: 24px; /* Tamanho da fonte */
-    font-weight: bold; /* Deixa o texto em negrito */
-    color: #D92727; /* Muda a cor do texto (exemplo: vermelho) */
- }
- 
- .trip-image {
-    flex-shrink: 0; /* Impede que a imagem encolha */
- }
- 
- .trip-image-img {
-    width: 80px; /* Largura da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 4px; /* Arredonda as bordas da imagem */
- }
- 
- /* Container para os cards */
- .container-cards {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 20%;
-    margin-right: 20%;
- 
-    gap: 20px; /* Espaçamento entre os cards */
-    justify-content: center;
- 
- }
- 
- /* Estilo dos cards */
- 
- /* Conteúdo do card */
- 
- .motorista-card {
-    background-color: #F5F5F5; /* Fundo branco para os cards */
-    border: 1px solid #b1b1b1; /* Bordas sutis */
-    color: black;
-    border-radius: 20px; /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
-    width: 300px; /* Largura fixa dos cards */
-    height: 300px; /* Aumenta a altura para acomodar as informações */
-    overflow: hidden; /* Evitar que o conteúdo transborde */
-    transition: transform 0.3s; /* Transição suave */
-    display: flex; /* Usar flexbox para organizar o conteúdo */
-    padding-top: 20px;
-    flex-direction: column; /* Organizar o conteúdo na vertical */
-    text-align: center;
-    margin-top: 50px;
- }
- 
- .motorista-card:hover {
-    transform: translateY(-5px); /* Efeito de hover */
- }
- 
- 
- .motorista-info {
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
- }
- 
- 
- .motorista-image {
-    width: 90px; /* Tamanho do container da imagem */
-    height: 90px; /* Manter altura igual à largura para formato circular */
-    overflow: hidden; /* Esconde qualquer parte da imagem que transborde */
-    border-radius: 50%; /* Faz o container circular */
-    margin: 0 auto; /* Centraliza a imagem */
-    display: flex; /* Para centrar a imagem dentro do container */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
- }
- 
- .motorista-image-img {
-    width: auto; /* Mantém a largura automática para preservar a proporção */
-    height: 100%; /* Faz a imagem ocupar toda a altura do container */
-    max-height: 100%; /* Garante que a imagem não ultrapasse o container */
-    object-fit: cover; /* Ajusta a imagem para cobrir o container sem distorcer */
- }
- /* Estilo para o título "E-mail" */
- .motorista-email::before {
-    content: "E-mail: "; /* Adiciona o título "E-mail:" antes do conteúdo */
-    font-weight: bold; /* Aplica o negrito apenas ao título */
-    color: #000;
- }
- 
- /* Estilo para o título "Telefone" */
- .motorista-telefone::before {
-    content: "Telefone: "; /* Adiciona o título "Telefone:" antes do conteúdo */
-    font-weight: bold; /* Aplica o negrito apenas ao título */
-    color: #000;
- 
- }
- 
- /* Estilo para o conteúdo do e-mail e telefone */
- .motorista-email, .motorista-telefone {
-    font-size: 14px; /* Ajusta o tamanho da fonte */
-    color: #555; /* Cor mais suave para o texto */
-    margin-top: 5px; /* Espaçamento entre as informações */
- }
- 
- 
- .botao-nao-funcional {
-    margin-top: auto; /* Faz o botão ir para a parte inferior */
-    padding: 10px 20px;
-    background-color: #dddddd;
-    color: rgb(0, 0, 0);
-    font-weight: 500;
-    border: none;
-    font-size: 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    width: 100%; /* Deixa o botão com largura total */
-    height: 50px;
- }
- 
- .botao-nao-funcional:hover {
-    background-color: #c5c5c5;
- }
- 
- .button-container {
-    display: flex; /* Usado para alinhar o botão à direita */
-    justify-content: flex-end; /* Alinha o botão à direita */
- }
- 
- .remove-button {
-    margin-top: 10px; /* Espaço acima do botão */
-    padding: 8px 12px; /* Espaçamento interno do botão */
-    background-color: #c0c0c0; /* Cor de fundo vermelha */
-    color: rgb(0, 0, 0); /* Cor do texto */
-    border: none; /* Remove a borda padrão */
-    border-radius: 4px; /* Borda arredondada */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    font-size: 14px; /* Tamanho da fonte */
-    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
- }
- 
- .remove-button:hover {
-    background-color: #c0392b; /* Cor de fundo ao passar o mouse */
- }
- 
- .opcaofree {
-    width: 250px; /* Aumenta o espaço para acomodar as palavras e o botão */
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0); /* Fundo transparente */
-    border: 1px solid #000000; /* Borda de 2px com cor azul */
-    border-radius: 30px; /* Bordas arredondadas */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-    position: absolute;
-    margin: auto 0px;
-    left: 50%; /* Centraliza horizontalmente */
-    transform: translate(-50%, -100%);
- }
- 
- .container {
-    position: relative;
-    width: 100%; /* Ajusta para ocupar todo o espaço disponível */
-    height: 50px;
-    display: flex;
-    justify-content: space-between; /* Espaça as palavras e o botão */
-    align-items: center;
- }
- 
- .opcaofree p {
-    margin: 0;
-    font-size: 18px;
-    color: #000;
-    z-index: 2; /* Garante que o texto fique acima da linha */
-    position: relative; /* Para alinhamento adequado */
- }
- 
- .left {
-    text-align: left; /* Alinha o texto à esquerda */
-    padding-left: 15px;
- }
- 
- .right {
-    text-align: right; /* Alinha o texto à direita */
-    padding-right: 15px;
- 
- }
- .divisao{
-    width: 1px;
-    height: 45px;
-    background-color: #000;
-    border: none;
- }
- 
- .toggle-btn {
-    position: absolute;
-    padding: 0;
-    width: 110px;
-    height: 30px;
-    left: 10px;
-    background-color: #ffffffcb;
-    cursor: pointer;
-    border: none;
-    border-top-left-radius: 30px; /* Arredonda o canto superior esquerdo */
-    border-bottom-left-radius: 30px; /* Arredonda o canto inferior esquerdo */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    z-index: 3; /* Coloca o botão acima de tudo */
- }
- 
- 
- .toggle-btn.left {
-    transform: translateX(120px); /* Posição inicial à esquerda */
- }
- 
- .toggle-btn.right {
-    transform: translateX(0px); /* Posição à direita */
- }
- 
- 
- 
+   margin: 0;
+   font-family: Nunito;
+}
+
+.header-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px;
+}
+
+.profile-container {
+   display: flex;
+   align-items: center;
+}
+
+.profile-container img {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   margin-right: 10px;
+}
+
+.profile-container span {
+   font-size: 14px;
+   font-weight: bold;
+}
+
+.profile-container .name {
+   color: red;
+}
+
+.button-group {
+   display: flex;
+   gap: 10px;
+   align-items: center;
+}
+
+.button {
+   text-decoration: none;
+   padding: 8px 12px; /* Reduzi o tamanho do botão */
+   border-radius: 5px;
+   color: rgb(0, 0, 0);
+   font-weight: 600;
+   transition: background-color 0.3s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 35px; /* Reduzi a altura */
+}
+
+#openModal {
+   background-color: #D92727;
+   margin-right: 20px;
+   color: white;
+   border: none;
+   border-radius: 25px;
+   width: 120px; /* Reduzi a largura */
+   height: 35px; /* Reduzi a altura */
+   font-size: 14px; /* Reduzi o tamanho da fonte */
+   cursor: pointer;
+   font-family: nunito;
+   font-weight: 700;
+}
+
+#openModal:hover {
+   background-color: #aa0c0c;
+}
+
+.motoristas {
+   color: red;
+   text-decoration: underline;
+}
+
+.control-section {
+   height: 200px;
+   width: 90vh;
+   background-color: #d32f2f;
+   color: white;
+   padding: 40px;
+   text-align: left;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   position: relative;
+   margin: 0 auto;
+}
+
+.control-section .text {
+   display: flex;
+   flex-direction: column;
+   max-width: 500px;
+   padding-left: 10px;
+}
+
+.control-section h1 {
+   font-size: 28px;
+   margin-bottom: 0px;
+   font-weight: 800;
+}
+
+.control-section p {
+   font-size: 18px;
+}
+
+.illustration img {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   width: 400px;
+   height: auto;
+}
+
+.modal-background {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: none;
+   align-items: center;
+   justify-content: center;
+   z-index: 9999;
+}
+
+.modal {
+   background-color: #fff;
+   padding: 20px;
+   border-radius: 8px;
+   max-width: 500px;
+   width: 90%;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   position: relative;
+   z-index: 10000;
+}
+
+.close-modal {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   font-size: 24px;
+   cursor: pointer;
+}
+
+.modal h2 {
+   text-align: center;
+   font-size: 24px;
+   margin-bottom: 20px;
+}
+
+.modal-form {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 20px;
+}
+
+.form-group {
+   display: flex;
+   flex-direction: column;
+}
+
+.form-group label {
+   font-size: 14px;
+   color: #555;
+   margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+   padding: 10px;
+   font-size: 14px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+}
+
+.form-group button {
+   margin-top: 5px;
+   padding: 8px;
+   background-color: #007BFF;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+}
+
+.form-group button:hover {
+   background-color: #0056b3;
+}
+
+.modal-form button[type="submit"] {
+   grid-column: 1 / -1;
+   padding: 12px;
+   font-size: 16px;
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   margin-top: 10px;
+}
+
+.modal-form button[type="submit"]:hover {
+   background-color: #45a049;
+}
+
+.pesquisa {
+   margin-bottom: -35px;
+   width: 100%;
+   height: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#pesquisa {
+   width: 40%;
+   padding: 10px;
+   border: none;
+   background-color: #d8d8d8;
+   color: #333;
+   outline: none;
+}
+
+.container-cards {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 20px;
+   padding: 20px;
+}
+
+.trip-card {
+   background-color: rgb(247, 233, 208);
+   padding: 10px;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   height: 120px;
+   display: flex;
+   outline: none;
+   justify-content: space-between;
+   align-items: center;
+   position: relative;
+   z-index: 1;
+   cursor: pointer;
+}
+
+.trip-info {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin-right: 10px;
+   z-index: 1;
+}
+
+.trip-title {
+   font-size: 18px;
+   font-weight: bold;
+   text-align: left;
+}
+
+.trip-remetente,
+.trip-destinatario,
+.trip-data {
+   margin: 0;
+   font-size: 14px;
+   text-align: left;
+}
+
+#viagens-criadas h2 {
+   text-align: left;
+   margin: 0;
+   padding-left: 24px;
+   font-size: 24px;
+   font-weight: bold;
+   color: #D92727;
+}
+
+.trip-image {
+   flex-shrink: 0;
+}
+
+.trip-image-img {
+   width: 80px;
+   height: auto;
+   border-radius: 4px;
+}
+
+.container-cards {
+   display: flex;
+   flex-wrap: wrap;
+   margin-left: 20%;
+   margin-right: 20%;
+   gap: 20px;
+   justify-content: center;
+}
+
+.motorista-card {
+   background-color: #ffffff;
+   border-radius: 10px;
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+   width: 300px;
+   height: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 20px;
+   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+   overflow: hidden;
+   position: relative;
+}
+
+.motorista-card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.motorista-image {
+   width: 90px;
+   height: 90px;
+   border-radius: 50%;
+   overflow: hidden;
+   margin-bottom: 15px;
+   border: 3px solid #fff;
+}
+
+.motorista-image-img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.motorista-info {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   text-align: center;
+   margin-top: 25px;
+}
+
+.motorista-email, .motorista-telefone {
+   font-size: 14px;
+   color: #555;
+   margin-top: 5px;
+   font-weight: 600;
+}
+
+.motorista-email::before {
+   content: "\f0e0";
+   font-family: "Font Awesome 5 Free";
+   font-weight: 900;
+   margin-right: 8px;
+   color: #000000;
+}
+
+.motorista-telefone::before {
+   content: "\f095";
+   font-family: "Font Awesome 5 Free";
+   font-weight: 900;
+   margin-right: 8px;
+   color: #000000;
+}
+.botao-detalhes {
+   padding: 5px 10px; /* Ajuste do tamanho para ter apenas as letras */
+   background: none; /* Remove o fundo */
+   color: #D92727; /* Cor das letras */
+   border: none;
+   font-size: 12px; /* Tamanho da fonte ajustado */
+   font-weight: bold;
+   cursor: pointer;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   transition: all 0.3s ease-in-out;
+   text-align: center;
+   position: absolute;
+   top: 10px; /* Posiciona o botão no topo */
+   z-index: 2; /* Coloca o botão acima da imagem */
+}
+
+.botao-detalhes:hover {
+   color: #aa0c0c; /* Altera a cor ao passar o mouse */
+}
+
+.botao-detalhes:focus {
+   outline: none;
+   border: 2px solid #D92727;
+}
+
+
+.button-container {
+   display: flex;
+   justify-content: space-between; /* Deixando os botões um ao lado do outro */
+}
+
+.remove-button {
+   margin-top: 10px;
+   padding: 8px 12px;
+   background-color: #c0c0c0;
+   color: rgb(0, 0, 0);
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 14px;
+   transition: background-color 0.3s;
+}
+
+.remove-button:hover {
+   background-color: #c0392b;
+}
+
+.opcaofree {
+   width: 250px;
+   height: 50px;
+   background-color: rgba(0, 0, 0, 0);
+   border: 1px solid #000000;
+   border-radius: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: Arial, sans-serif;
+   position: absolute;
+   margin: auto 0px;
+   left: 50%;
+   transform: translate(-50%, -100%);
+}
+
+.container {
+   position: relative;
+   width: 100%;
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.opcaofree p {
+   margin: 0;
+   font-size: 18px;
+   color: #000;
+   z-index: 2;
+   position: relative;
+}
+
+.left {
+   text-align: left;
+   padding-left: 15px;
+}
+
+.right {
+   text-align: right;
+   padding-right: 15px;
+}
+
+.divisao {
+   width: 1px;
+   height: 45px;
+   background-color: #000;
+   border: none;
+}
+
+.toggle-btn {
+   position: absolute;
+   padding: 0;
+   width: 110px;
+   height: 30px;
+   left: 10px;
+   background-color: #ffffffcb;
+   cursor: pointer;
+   border: none;
+   border-top-left-radius: 30px;
+   border-bottom-left-radius: 30px;
+   transition: transform 0.3s ease, background-color 0.3s ease;
+   z-index: 3;
+}
+
+.toggle-btn.left {
+   transform: translateX(120px);
+}
+
+.toggle-btn.right {
+   transform: translateX(0px);
+}
+
+.botao-adicionar-equipe {
+   padding: 10px 16px; /* Reduzi o tamanho */
+   background: linear-gradient(45deg, #D92727, #aa0c0c);
+   color: white;
+   border: none;
+   border-radius: 25px;
+   font-size: 14px; /* Reduzi o tamanho da fonte */
+   font-weight: 700;
+   cursor: pointer;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+   transition: all 0.3s ease-in-out;
+   width: auto;
+   text-align: center;
+}
+
+.botao-adicionar-equipe:hover {
+   background: linear-gradient(45deg, #aa0c0c, #D92727);
+   transform: translateY(-5px) scale(1.05);
+   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.botao-adicionar-equipe:focus {
+   outline: none;
+   border: 2px solid #D92727;
+}
+
+.botao-adicionar-equipe:active {
+   transform: translateY(2px);
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
