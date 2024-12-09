@@ -41,10 +41,10 @@ body {
 .passo:not(:last-child)::after { 
     content: ""; 
     position: absolute; 
-    width: 170px; /* Ajuste o comprimento da linha conforme necessário */ 
+    width: 150px; /* Ajuste o comprimento da linha conforme necessário */ 
     height: 2px; /* Ajuste a espessura da linha conforme necessário */ 
     background-color: #8D8D8D; /* Cor da linha */ 
-    top: 2vh; 
+    top: 1.5vh; 
     left: 25px; /* Ajuste a posição horizontal da linha conforme necessário */ 
     transform: translateY(-50%); 
 
@@ -64,7 +64,7 @@ body {
     position: absolute; 
     width: 200px; /* Ajuste o comprimento da linha conforme necessário */ 
     height: 2px; /* Ajuste a espessura da linha conforme necessário */ 
-    background-color: #8D8D8D; /* Cor da linha */ 
+    background-color: var(--vermelho); /* Cor da linha */ 
     top: 2vh; 
     left: 10px; /* Ajuste a posição horizontal da linha conforme necessário */ 
     transform: translateY(-50%); 

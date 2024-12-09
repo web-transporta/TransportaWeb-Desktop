@@ -54,9 +54,11 @@ const adicionarMotoristaEquipe = async (motoristaId) => {
             return;
         }
 
+        console.log(motoristaId, empresaId)
+
         // Cria o objeto para enviar na requisição POST
         const dadosEquipe = {
-            id_motorsta: motoristaId,
+            id_motorista: motoristaId,
             id_empresa: empresaId
         };
 
