@@ -1,163 +1,154 @@
 import { getPartida, insertPartida } from "./funcoes.js";
-document.addEventListener('DOMContentLoaded', async () => {
-    const cepSelect = document.getElementById('selectCep');
-    const ruaInput = document.getElementById('rua');
-    const bairroInput = document.getElementById('bairro');
-    const cidadeInput = document.getElementById('cidade');
-    const estadoInput = document.getElementById('estado');
-    const paisInput = document.getElementById('pais');
-    const modalCep = document.getElementById('modalCep');
-    const btnAdicionarCep = document.getElementById('adicionarCep');
-    const novoCepInput = document.getElementById('novoCep');
-    const salvarCepBtn = document.getElementById('salvarCep');
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const cepSelect = document.getElementById("selectCep");
+    const ruaInput = document.getElementById("rua");
+    const bairroInput = document.getElementById("bairro");
+    const cidadeInput = document.getElementById("cidade");
+    const estadoInput = document.getElementById("estado");
+    const paisInput = document.getElementById("pais");
+    const modalCep = document.getElementById("modalCep");
+    const btnAdicionarCep = document.getElementById("adicionarCep");
+    const novoCepInput = document.getElementById("novoCep");
+    const salvarCepBtn = document.getElementById("salvarCep");
+    const imagemDireita = document.querySelector(".imagem-direita");
+    let map, marker;
 
     paisInput.value = "Brasil";
 
-    // Função para limpar os campos de endereço
-    const limparCampos = () => {
-        ruaInput.value = '';
-        bairroInput.value = '';
-        cidadeInput.value = '';
-        estadoInput.value = '';
+    // Inicializa o mapa com localização padrão
+    const initializeMap = () => {
+        map = new google.maps.Map(imagemDireita, {
+            center: { lat: -14.235004, lng: -51.92528 }, // Coordenadas do Brasil
+            zoom: 4,
+        });
+
+        marker = new google.maps.Marker({
+            position: { lat: -14.235004, lng: -51.92528 },
+            map: map,
+        });
     };
 
-    // Função para preencher o select com os CEPs retornados do banco
+    // Atualiza o mapa com nova localização
+    const updateMap = (latitude, longitude) => {
+        const position = { lat: latitude, lng: longitude };
+        map.setCenter(position);
+        map.setZoom(15);
+        marker.setPosition(position);
+    };
+
+    // Função para buscar informações do CEP e atualizar mapa
+    const buscarCep = async (cep) => {
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            if (!response.ok) throw new Error("Erro ao buscar CEP");
+
+            const data = await response.json();
+            if (data.erro) throw new Error("CEP não encontrado");
+
+            ruaInput.value = data.logradouro || "";
+            bairroInput.value = data.bairro || "";
+            cidadeInput.value = data.localidade || "";
+            estadoInput.value = data.uf || "";
+
+            // Busca coordenadas usando a API do Google Maps
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: `${data.logradouro}, ${data.localidade}, ${data.uf}` }, (results, status) => {
+                if (status === "OK") {
+                    const location = results[0].geometry.location;
+                    updateMap(location.lat(), location.lng());
+                } else {
+                    console.error("Erro ao buscar coordenadas: " + status);
+                }
+            });
+        } catch (error) {
+            console.error(error.message);
+            alert("Erro ao buscar informações do CEP");
+        }
+    };
+
+    // Limpa os campos de endereço
+    const limparCampos = () => {
+        ruaInput.value = "";
+        bairroInput.value = "";
+        cidadeInput.value = "";
+        estadoInput.value = "";
+    };
+
+    // Preenche o select com os CEPs retornados do banco
     const preencherSelectCeps = async () => {
         try {
-            const empresas = await getPartida(); // Chamando a função que retorna o JSON com os CEPs
-            console.log("Empresas recebidas:", empresas);
-
+            const empresas = await getPartida();
             if (empresas && empresas.length > 0) {
-                // Limpando opções existentes antes de adicionar novas
                 cepSelect.innerHTML = '<option value="">Selecione um CEP</option>';
-
-                empresas.forEach(empresa => {
-                    // Verificando se a empresa tem o campo cep
+                empresas.forEach((empresa) => {
                     if (empresa.cep) {
-                        const option = document.createElement('option');
-                        option.value = empresa.cep; // Valor do CEP
-                        option.textContent = empresa.cep; // Texto visível no <select>
+                        const option = document.createElement("option");
+                        option.value = empresa.cep;
+                        option.textContent = empresa.cep;
                         cepSelect.appendChild(option);
                     }
                 });
-
-                console.log("Select preenchido corretamente");
-            } else {
-                Swal.fire('Erro', 'Nenhum CEP encontrado.', 'error');
             }
         } catch (error) {
-            Swal.fire('Erro', 'Erro ao carregar os CEPs. Verifique a conexão com o banco.', 'error');
-            console.error('Erro ao preencher select:', error);
+            console.error("Erro ao preencher CEPs: ", error);
         }
     };
 
-    // Função para buscar informações de endereço com base no CEP
-    const buscarEnderecoPorCep = async (cep) => {
-        if (cep.length === 8 || cep.length === 9) { // Aceitar CEPs com 8 ou 9 caracteres
-            Swal.fire({
-                title: 'Carregando...',
-                html: 'Buscando informações...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
+    // Abre o modal para adicionar novo CEP
+    btnAdicionarCep.addEventListener("click", () => {
+        modalCep.style.display = "block";
+    });
 
-            try {
-                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                if (!response.ok) throw new Error('CEP não encontrado');
+    // Fecha o modal
+    document.getElementById("closeModal").addEventListener("click", () => {
+        modalCep.style.display = "none";
+    });
 
-                const data = await response.json();
-                if (data.erro) {
-                    Swal.fire('Erro', 'CEP não encontrado.', 'error');
-                    limparCampos();
-                    return;
-                }
+    // Salva o novo CEP no banco
+    salvarCepBtn.addEventListener("click", async () => {
+        const novoCep = novoCepInput.value.trim();
+        if (!novoCep) {
+            alert("Digite um CEP válido.");
+            return;
+        }
 
-                ruaInput.value = data.logradouro || '';
-                bairroInput.value = data.bairro || '';
-                cidadeInput.value = data.localidade || '';
-                estadoInput.value = data.uf || '';
-
-                Swal.fire('Sucesso', 'Informações do CEP carregadas!', 'success');
-            } catch (error) {
-                Swal.fire('Erro', 'Erro ao buscar o CEP. Verifique a conexão ou o CEP informado.', 'error');
-                limparCampos();
+        try {
+            const response = await insertPartida({ cep: novoCep });
+            if (response.success) {
+                alert("CEP salvo com sucesso!");
+                modalCep.style.display = "none";
+                preencherSelectCeps();
+            } else {
+                throw new Error("Erro ao salvar o CEP.");
             }
-        } else {
-            Swal.fire('Atenção', 'Por favor, insira um CEP válido com 8 ou 9 caracteres, incluindo o traço.', 'warning');
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao salvar o CEP.");
         }
-    };
+    });
 
-    // Preencher o select quando a página for carregada
+    // Listener para buscar informações do CEP ao selecionar no dropdown
+    cepSelect.addEventListener("change", () => {
+        const selectedCep = cepSelect.value;
+        if (selectedCep) {
+            buscarCep(selectedCep);
+        } else {
+            limparCampos();
+        }
+    });
+
+    // Listener para buscar informações do CEP ao digitar
+    document.getElementById("cep").addEventListener("input", (e) => {
+        const cep = e.target.value.replace(/\D/g, "");
+        if (cep.length === 8) {
+            buscarCep(cep);
+        } else {
+            limparCampos();
+        }
+    });
+
+    // Inicializa a aplicação
     await preencherSelectCeps();
-
-    // Evento para buscar o CEP selecionado no <select>
-    cepSelect.addEventListener('change', (event) => {
-        const cep = event.target.value.replace(/\D/g, ''); // Garantir que o CEP tenha apenas números
-        if (cep) {
-            buscarEnderecoPorCep(cep); // Busca as informações do CEP no ViaCEP
-        } else {
-            limparCampos(); // Limpa os campos se o CEP for vazio
-        }
-    });
-
-    // Evento para buscar o CEP digitado no input
-    const cepInput = document.querySelector('input[name="cep"]');
-    cepInput.addEventListener('input', (event) => {
-        const cep = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-        if (cep.length === 8 || cep.length === 9) {
-            buscarEnderecoPorCep(cep); // Chama a função para buscar o endereço
-        } else {
-            limparCampos(); // Limpa os campos se o CEP não tiver 8 ou 9 caracteres
-        }
-    });
-
-    // Função para abrir o modal de adicionar novo CEP
-    btnAdicionarCep.addEventListener('click', (e) => {
-        e.preventDefault(); // Impede o envio do formulário
-        modalCep.style.display = 'block'; // Abre o modal
-    });
-
-    // Função para fechar o modal
-    const fecharModal = () => {
-        modalCep.style.display = 'none';
-        novoCepInput.value = ''; // Limpa o input do novo CEP
-    };
-
-    // Evento para fechar o modal ao clicar no X
-    const closeModal = document.getElementById('closeModal');
-    if (closeModal) {
-        closeModal.addEventListener('click', fecharModal);
-    }
-
-    // Função para salvar o novo CEP, permitindo o formato com traço
-    salvarCepBtn.addEventListener('click', async () => {
-        const novoCep = novoCepInput.value.trim(); // Mantém o traço no CEP
-        if (novoCep.length === 9 || novoCep.length === 8) { // Verifica se o CEP tem 8 ou 9 caracteres
-            try {
-                // Envia somente o CEP
-                const success = await insertPartida({ cep: novoCep }); // Envia apenas o CEP
-                if (success) {
-                    Swal.fire('Sucesso', 'Novo CEP adicionado com sucesso!', 'success');
-                    modalCep.style.display = 'none'; // Fecha o modal
-                    preencherSelectCeps(); // Atualiza o select com o novo CEP
-                }
-            } catch (error) {
-                Swal.fire('Erro', 'Erro ao adicionar o CEP. Tente novamente.', 'error');
-            }
-        } else {
-            Swal.fire('Atenção', 'Por favor, insira um CEP válido com 8 ou 9 caracteres, incluindo o traço.', 'warning');
-        }
-    });
-
-    // Evento para limpar o input ao focar no select
-    cepSelect.addEventListener('focus', () => {
-        cepInput.value = ''; // Limpa o input ao focar no select
-    });
-
-    // Evento para limpar o select ao focar no input
-    cepInput.addEventListener('focus', () => {
-        cepSelect.value = ''; // Limpa o select ao focar no input
-    });
+    initializeMap();
 });

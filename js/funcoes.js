@@ -517,3 +517,31 @@ export async function getMotoristasAvaliacoes() {
         return []; // Retorna um array vazio em caso de erro
     }
 }
+
+export async function postEquipe(insert) {
+    try {
+        // Faz a requisição para a API
+        const response = await fetch('https://crud-03-09.onrender.com/v1/transportaweb/newequipe', {
+            method: 'POST',
+            body: JSON.stringify(insert),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        // Verifica o status da resposta
+        console.log('Status da resposta:', response.status);
+
+        // Se a resposta for bem-sucedida (status 2xx)
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Resposta da API:', data);
+            return response; // Retorna a resposta completa em vez de apenas um booleano
+        } else {
+            const errorMessage = await response.text();
+            console.error('Erro da API:', errorMessage); // Mostra a mensagem de erro da API
+            throw new Error(`Erro da API: ${errorMessage}`); // Lança um erro para ser capturado no catch
+        }
+    } catch (error) {
+        console.error('Erro na requisição:', error);
+        throw error; // Re-lança o erro para tratamento no código chamador
+    }
+}
