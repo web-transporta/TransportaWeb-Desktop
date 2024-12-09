@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="icon" href="../css/img/LOGO.png" type="image/x-icon">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -13,16 +12,19 @@
     <title>Endereços dos CEPs</title>
     <link rel="icon" href="../css/img/logo-topo.PNG" type="image/x-icon">
     <link rel="stylesheet" href="../css/ceps.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 
-<!-- Botão de Voltar e Logo fora do Container -->
-<div class="header">
-    <a href="./paginaHome.html" class="back-button">⬅</a>
-    <h1>ENDEREÇOS DOS CEPS</h1>
-    <img src="../css/img/LOGO.png" alt="Logo" class="logo">
-</div>
- 
+    <!-- Botão de Voltar -->
+    <a href="./viagens.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <div class="container2">
+        <img src="../css/img/mapa.png" alt="Imagem" class="imagem-direita">
+    </div>
+
 <!-- Container Principal -->
 <div class="container">
     <form class="cep-form">
@@ -44,7 +46,6 @@
                 <input type="text" id="bairro" name="bairro" value="" disabled>
 
             </div>
-
         </div>
 
         <div class="form-group">
@@ -66,6 +67,8 @@
 
         <!-- Botão para adicionar novo CEP -->
         <button type="button" class="add-cep-button" id="adicionarCep">ADICIONAR NOVO CEP</button>
+        
+
     </form>
 </div>
 
@@ -74,7 +77,6 @@
     <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
         <h2>Adicionar Novo CEP</h2>
-        <label for="novoCep">Digite o novo CEP:</label>
         <input type="text" id="novoCep" name="novoCep" maxlength="9" placeholder="Digite o CEP">
         <button id="salvarCep">Salvar CEP</button>
     </div>
