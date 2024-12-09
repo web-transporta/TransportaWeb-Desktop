@@ -20,13 +20,13 @@ async function getMotoristasAvaliacoes(cpf) {
 }
 
 async function renderMotoristaCards() {
-    const id = localStorage.getItem('userId'); 
+    const id = localStorage.getItem('userId');
     if (!id) {
         console.error('ID do usuário não encontrado no localStorage.');
         return;
     }
 
-    const cardContainer = document.getElementById('card-container'); 
+    const cardContainer = document.getElementById('card-container');
 
     if (!cardContainer) {
         console.error('Elemento card-container não encontrado!');
@@ -36,7 +36,7 @@ async function renderMotoristaCards() {
     try {
         // Buscar os motoristas da equipe
         const motoristasEquipe = await getMotoristasEmEquipes(id);
-        
+
         // Buscar todos os motoristas para obter informações completas (email, etc)
         const todosMotoristas = await getMotoristas();
 
@@ -49,8 +49,6 @@ async function renderMotoristaCards() {
             if (motoristaCompleto) {
                 const card = document.createElement('div');
                 card.classList.add('driver-card');
-
-
 
                 // Pega a avaliação do motorista
                 const numEstrelas = await getMotoristasAvaliacoes(motoristaEquipe.cpf);
@@ -71,7 +69,7 @@ async function renderMotoristaCards() {
                         <div class="contact-info">
                             <div class="info-icons">
                                 <img src="../css/img/email.png" alt="email" height="20px">
-                                <p><strong>Email:</strong> ${motoristaCompleto.email}</p> <!-- Mostrar o email do motorista completo -->
+                                <p><strong>Email:</strong> ${motoristaCompleto.email}</p>
                             </div>
                             <div class="info-icons">
                                 <img src="../css/img/telefone.png" alt="telefone" height="20px">
@@ -79,8 +77,8 @@ async function renderMotoristaCards() {
                             </div>
                         </div>
                         <div class="actions">
-                            <button class="remove">Retirar da equipe</button>
-                            <button class="request">Solicitar Corrida</button>
+                            <button class="remove" data-id="${motoristaEquipe.id}">Retirar da equipe</button>
+                            <button class="request" data-cpf="${motoristaEquipe.cpf}">Solicitar Corrida</button>
                         </div>
                     </div>
                 `;
@@ -88,8 +86,53 @@ async function renderMotoristaCards() {
                 cardContainer.appendChild(card);
             }
         }
+
+        // Adiciona o evento de click para o botão "Retirar da equipe"
+        const removeButtons = document.querySelectorAll('.remove');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const idMotorista = event.target.getAttribute('data-id');
+                const idEmpresa = localStorage.getItem('userId');
+
+                if (idMotorista && idEmpresa) {
+                    await retirarMotoristaDaEquipe(idMotorista, idEmpresa); // Usar o ID do motorista para deletar
+                } else {
+                    alert('Dados incompletos para retirar motorista da equipe.');
+                }
+            });
+        });
+
     } catch (error) {
         console.error('Erro ao renderizar os motoristas:', error);
+    }
+}
+
+// Função para retirar o motorista da equipe
+async function retirarMotoristaDaEquipe(idMotorista, idEmpresa) {
+    try {
+        const response = await fetch('https://crud-03-09.onrender.com/v1/transportaweb/deleteequipe', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_motorista: idMotorista,  // Usando o ID aqui para deletar
+                id_empresa: idEmpresa
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.status) {
+            alert('Motorista retirado da equipe com sucesso!');
+            renderMotoristaCards(); // Recarrega a lista de motoristas após a remoção
+        } else {
+            alert(`Erro: ${result.message}`);
+        }
+
+    } catch (error) {
+        console.error('Erro ao remover motorista da equipe:', error);
+        alert('Ocorreu um erro ao tentar retirar o motorista da equipe.');
     }
 }
 
