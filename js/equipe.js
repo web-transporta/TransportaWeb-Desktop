@@ -77,7 +77,7 @@ async function renderMotoristaCards() {
                             </div>
                         </div>
                         <div class="actions">
-                            <button class="remove" data-id="${motoristaEquipe.id}">Retirar da equipe</button>
+                            <button class="remove" data-id="${motoristaCompleto.id}">Retirar da equipe</button>
                             <button class="request" data-cpf="${motoristaEquipe.cpf}">Solicitar Corrida</button>
                         </div>
                     </div>
