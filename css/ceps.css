@@ -58,6 +58,7 @@ label {
   text-align: left;  /* Alinha os títulos (labels) à esquerda */
   width: 50%;       /* Faz com que o título ocupe toda a largura disponível */
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 
 

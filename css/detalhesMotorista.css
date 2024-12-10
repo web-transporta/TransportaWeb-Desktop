@@ -3,17 +3,15 @@ body {
     font-family: Nunito, Arial, sans-serif;
     margin: 0;
     padding: 0;
-
     background: linear-gradient(135deg, #880000, #a73131, #ffffff, #c47575);
     background-size: 200% 200%;
-    animation: gradientAnimation 10s ease infinite, backgroundShape 8s ease-in-out infinite;
-
+    animation: gradientAnimation 2s ease infinite, backgroundShape 8s ease-in-out infinite;
     height: 100vh; /* Garante que o body ocupe toda a altura da tela */
     width: 100vw; /* Garante que o body ocupe toda a largura da tela */
     background: linear-gradient(135deg, #c48484, #ffffff, #ffffff, #c48484); /* Gradiente com vermelho nas pontas e branco no meio */
     background-size: 200% 200%; /* Ajuste para cobrir toda a tela */
     background-repeat: no-repeat; /* Garante que o gradiente não se repita */
-    animation: gradientAnimation 15s ease infinite; /* Animação mais suave e contínua */
+    animation: gradientAnimation 5s ease infinite; /* Animação mais suave e contínua */
 }
 
 /* Animação do gradiente */
